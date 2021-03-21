@@ -1,7 +1,8 @@
-# Description  
+## Description  
 코드 구현을 위해 필요한 `requirements`를 정리하는 문서입니다.  
 문서 작성 및 변경 시 `commit message`를 남겨주세요.  
 ex) docs: Add/Revise ... part  
+<br>
 <br>
 
 ## Milestone Description (BlackBoard)   
@@ -16,10 +17,12 @@ category input can be one or more categories with “|” as a delimiter.
 For example, if the input is Adventure|Comedy, then your program   
 must output the average rating score of those movies that belong  
 to both Adventure and Comedy categories. The occupation input must   
-be only one.
+be only one.  
+<br>
 <br>
 
 ## Requirements  
 requirements를 `구체적`으로 기술해주세요.  
 정리된 requirements를 바탕으로 코드를 작성할 예정입니다.  
+<br>
 <br>

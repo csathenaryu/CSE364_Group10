@@ -1,6 +1,5 @@
 FROM ubuntu:20.04
-
-ARG DEBIAN_FRONTED=noninteractive
+ARG DEBIAN_FRONTEND=noninteractive
 
 RUN mkdir /root/project
 WORKDIR /root/project

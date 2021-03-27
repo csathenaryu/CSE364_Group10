@@ -15,18 +15,24 @@ public class App
 
 
     public void Load_Data(){
+
+        // 어제 말했던 list들을 여기서 선언
+        // list 두개
+
         try{
-            //파일 객체 생성
+
             File file = new File("C:\\Users\\ajm69\\Desktop\\maven_test\\maven_test\\data\\movies.dat");
-            //입력 스트림 생성
+
             FileReader filereader = new FileReader(file);
-            //입력 버퍼 생성
+
             BufferedReader bufReader = new BufferedReader(filereader);
             String line = "";
             while((line = bufReader.readLine()) != null){
                 System.out.println(line);
+                // 여기에 Parse_data를 가져오는 건 어떤가요?
+                // 여기서 새로운 함수 만들어서 list들을 채워나가는거죠
+                //
             }
-            //.readLine()은 끝에 개행문자를 읽지 않는다.
             bufReader.close();
         }catch (FileNotFoundException e) {
             System.out.println("There is no file in data");
@@ -34,17 +40,20 @@ public class App
             System.out.println(e);
         }
 
+
+
+
     }
 
-
-    public void Parse_Data(){
-
+    public void Parse_Data(String line){
+        //Load Data에서 받아온 line값을 처리해서 정보를 뱉는 함수
+        //return array(각정보들의 집합)
 
 
     }
 
     public void Average(){
-
+        //
 
 
     }

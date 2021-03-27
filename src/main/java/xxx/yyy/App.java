@@ -14,14 +14,14 @@ public class App
     }
 
 
-    public void Milestone1(){
+    public static void Milestone(){
 
         // 어제 말했던 list들을 여기서 선언
         // list 두개
 
         try{
 
-            File file = new File("C:\\Users\\ajm69\\Desktop\\maven_test\\maven_test\\data\\movies.dat");
+            File file = new File("C:\\Users\\ajm69\\Desktop\\maven\\CSE364_Group10\\data\\movies.dat");
 
             FileReader filereader = new FileReader(file);
 
@@ -40,7 +40,7 @@ public class App
             System.out.println(e);
         }
 
-
+        //여기서 Average Function이 들어오는
 
 
     }
@@ -48,7 +48,7 @@ public class App
     public void Parse_Data(String line){
         //Load Data에서 받아온 line값을 처리해서 정보를 뱉는 함수
         //return array(각정보들의 집합)
-
+        String[] words = line.split("::");
 
     }
 
@@ -69,7 +69,9 @@ public class App
 
 
     public static void main(String[] args){
-        Milestone1();
-    }
+
+
+        Milestone();
+   }
 
 }

@@ -14,7 +14,7 @@ public class App
     }
 
 
-    public void Load_Data(){
+    public void Milestone1(){
 
         // 어제 말했던 list들을 여기서 선언
         // list 두개
@@ -69,7 +69,7 @@ public class App
 
 
     public static void main(String[] args){
-
+        Milestone1();
     }
 
 }

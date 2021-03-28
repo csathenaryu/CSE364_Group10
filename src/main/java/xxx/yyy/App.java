@@ -125,7 +125,8 @@ public class App
     /* Main function */
     public static void main(String[] args) throws IOException{
         App app = new App();
-        System.out.println(app.Milestone1(args[0], args[1]));
+//        System.out.println(app.Milestone1(args[0], args[1]));
+        System.out.println(app.Milestone1("a", "b"));
 
    }
 

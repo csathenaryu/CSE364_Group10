@@ -9,69 +9,98 @@ import java.io.IOException;
 public class App
 {
 
-    public void Parse_Input(){
+    static String path_of_movies = "C:\\Users\\ajm69\\Desktop\\maven\\CSE364_Group10\\data\\movies.dat";
+    static String path_of_users = "C:\\Users\\ajm69\\Desktop\\maven\\CSE364_Group10\\data\\users.dat";
+    static String path_of_ratings = "C:\\Users\\ajm69\\Desktop\\maven\\CSE364_Group10\\data\\ratings.dat";
 
-    }
 
+    /* file로 받아온 users.dat를 가공해서 해당 직업에 맞는 user의 리스트를 가져오기*/
+    public String[] Parse_Data_User(String Occupation){
 
-    public static void Milestone(){
-
-        // 어제 말했던 list들을 여기서 선언
-        // list 두개
-
+        String[] arr={};
         try{
 
-            File file = new File("C:\\Users\\ajm69\\Desktop\\maven\\CSE364_Group10\\data\\movies.dat");
+            File file = new File(path_of_users);
 
             FileReader filereader = new FileReader(file);
 
             BufferedReader bufReader = new BufferedReader(filereader);
             String line = "";
             while((line = bufReader.readLine()) != null){
-                System.out.println(line);
-                // 여기에 Parse_data를 가져오는 건 어떤가요?
-                // 여기서 새로운 함수 만들어서 list들을 채워나가는거죠
+                System.out.println(line); // 지울것
+                //직업이 일치하는 UserID 다 뽑아와서 arr에 삽입
+                //Arraylist
                 //
             }
             bufReader.close();
         }catch (FileNotFoundException e) {
-            System.out.println("There is no file in data");
+            System.out.println("There is no users.dat file in data");
         }catch(IOException e){
             System.out.println(e);
         }
 
-        //여기서 Average Function이 들어오는
-
-
-    }
-
-    public void Parse_Data(String line){
-        //Load Data에서 받아온 line값을 처리해서 정보를 뱉는 함수
-        //return array(각정보들의 집합)
-        String[] words = line.split("::");
-
-    }
-
-    public void Average(){
-        //
-
-
+        return arr;
     }
 
 
 
-    public void Get_Averaged_Data(){
+    /* file로 받아온 movies.dat를 가공해서 해당 장르에 맞는 movie의 리스트를 가져오기*/
+    public String[] Parse_Data_Movie(String Genres){
+
+        String[] arr = {};
+
+        try{
+
+            File file = new File(path_of_movies);
+
+            FileReader filereader = new FileReader(file);
+
+            BufferedReader bufReader = new BufferedReader(filereader);
+            String line = "";
+            while((line = bufReader.readLine()) != null){
+                System.out.println(line); // 지울것
+                //장르가 같은 movieID를 전부 뽑아와서 arr에다가 삽입
+                //ArrayList
+                //
+            }
+            bufReader.close();
+        }catch (FileNotFoundException e) {
+            System.out.println("There is no movies.dat file in data");
+        }catch(IOException e){
+            System.out.println(e);
+        }
 
 
-
-
+        return arr;
     }
 
+    public int Get_Average(String[] MovieID, String[] UserID) throws IOException{
 
-    public static void main(String[] args){
 
 
-        Milestone();
+
+
+
+        int average = 0;
+        return average;
+    }
+
+    public int Milestone1(String Occupation, String Genres) throws IOException{
+        String[] MovieID = Parse_Data_Movie(Genres);
+        String[] UserID = Parse_Data_User(Occupation);
+
+        int sum = Get_Average(MovieID, UserID);
+
+
+        return sum;
+    }
+
+    public static void main(String[] args) throws IOException{
+
+
+        App app = new App();
+        System.out.println(app.Milestone1(args[0], args[1]));
+
    }
 
 }

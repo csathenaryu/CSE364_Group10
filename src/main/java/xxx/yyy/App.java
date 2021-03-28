@@ -70,34 +70,60 @@ public class App
             System.out.println(e);
         }
 
-
         return arr;
     }
 
+    /* UserID list에서 movie를 본게 있으면 평점을 average에 더하고, average_count++ */
     public int Get_Average(String[] MovieID, String[] UserID) throws IOException{
 
-
-
-
-
-
         int average = 0;
-        return average;
+        int average_count = 0;
+        try{
+
+            File file = new File(path_of_ratings);
+
+            FileReader filereader = new FileReader(file);
+
+            BufferedReader bufReader = new BufferedReader(filereader);
+            String line = "";
+            while((line = bufReader.readLine()) != null){
+                System.out.println(line); // 지울것
+                //
+                //
+                //
+            }
+            bufReader.close();
+        }catch (FileNotFoundException e) {
+            System.out.println("There is no movies.dat file in data");
+        }catch(IOException e){
+            System.out.println(e);
+        }
+
+
+
+
+        if(average_count == 0){
+            return -1;
+        }
+        else {
+            return average / average_count;
+        }
     }
 
+    /* Milestone1의 기능 구현 함수 */
     public int Milestone1(String Occupation, String Genres) throws IOException{
+
         String[] MovieID = Parse_Data_Movie(Genres);
         String[] UserID = Parse_Data_User(Occupation);
 
         int sum = Get_Average(MovieID, UserID);
 
-
         return sum;
     }
 
+
+    /* Main function */
     public static void main(String[] args) throws IOException{
-
-
         App app = new App();
         System.out.println(app.Milestone1(args[0], args[1]));
 

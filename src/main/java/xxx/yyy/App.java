@@ -126,10 +126,22 @@ public class App
 
     /* Main function */
     public static void main(String[] args) throws IOException{
-        App app = new App();
-//        System.out.println(app.Milestone1(args[0], args[1]));
-        System.out.println(app.Milestone1("a", "b"));
+        String[] inputvalue = {"Horror", "Comedy"};
+        Function func = new Function();
+        CustomList a = func.makeTargetTable(path_of_movies, inputvalue, 2);
+        System.out.println(a.dataList);
 
    }
 
+
+
+/*
+    public static void main(String[] args) throws IOException{
+        CustomList a = new CustomList(100);
+        a.dataList.add(0, false);
+
+        System.out.println(a.dataList.size());
+
+    }
+*/
 }

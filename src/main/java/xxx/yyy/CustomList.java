@@ -1,6 +1,7 @@
 package xxx.yyy;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 
 
@@ -11,8 +12,8 @@ public class CustomList {
     ArrayList<Boolean> dataList;
 
     // Constructor: How to use template?
-    public CustomList(int initialCapacity) {
-        dataList = new ArrayList<>(initialCapacity);
+    public CustomList(int a) {
+        dataList = new ArrayList<Boolean>(Collections.nCopies(10000,false));
     }
 
     // get length

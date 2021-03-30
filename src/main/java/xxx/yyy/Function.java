@@ -1,6 +1,9 @@
 package xxx.yyy;
 
 import java.io.*;
+import org.junit.*;
+
+import static xxx.yyy.App.path_of_movies;
 
 public class Function extends Parsing{
 
@@ -49,3 +52,5 @@ public class Function extends Parsing{
         return true;
     }
 }
+
+

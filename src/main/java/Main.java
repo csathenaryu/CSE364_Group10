@@ -218,7 +218,7 @@ class CustomList {
     }
 }
 
-class Function {
+class GetProperObjects {
 
     /*fileName = file path, targetsProp = parsed input data, targetIndex = */
     public CustomList makeTargetTable(String fileName, String[] targetsProp, int targetIndex) {
@@ -249,17 +249,23 @@ class Function {
         return a;
     }
 
-    public boolean returnTrueOrFalse(String[] line, String[] targetsProp, int targetIndex)
-    {
+    public boolean returnTrueOrFalse(String[] line, String[] targetsProp, int targetIndex) {
 
-        if(targetsProp.length == 0)
+        if (targetsProp.length == 0)
             return false;
 
         for (String str : targetsProp) {
             String a = line[targetIndex];
             a = a.toLowerCase();
-            if(!a.contains(str))
-            {
+
+            String[] parse_line = parseByDelimiter(a, "\\|");
+            int flag = 0;
+            for (String str2 : parse_line) {
+                if (str.equals(str2)) {
+                    flag++;
+                }
+            }
+            if (flag == 0) {
                 return false;
             }
         }

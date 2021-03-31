@@ -194,7 +194,7 @@ class CustomList {
 
     // Constructor: How to use template?
     public CustomList(int a) {
-        dataList = new ArrayList<Boolean>(Collections.nCopies(10000,false));
+        dataList = new ArrayList<Boolean>(Collections.nCopies(a,false));
     }
 
     // get length
@@ -213,8 +213,22 @@ class CustomList {
         dataList.add(index, value);
     }
 
-    public void setAt(int index, boolean value){
-        dataList.set(index, value);
+    // set element
+    public void setAt(int index, boolean value) {
+        if (index < dataList.size())
+            dataList.set(index, value);
+        else {
+            addElementTillIndex(index);
+            dataList.add(index, value);
+        }
+    }
+
+    //If index is not found, add element until the index
+    public void addElementTillIndex (int index) {
+
+        for (int i = dataList.size() ; i < index ; i++){
+            dataList.add(i, false);
+        }
     }
 }
 
@@ -224,7 +238,7 @@ class GetProperObjects {
     public CustomList makeTargetTable(String fileName, String[] targetsProp, int targetIndex) {
 
 
-        CustomList a = new CustomList(10000);
+        CustomList a = new CustomList(90);
         a.dataList.add(0, false);
 
         try {
@@ -258,7 +272,7 @@ class GetProperObjects {
             String a = line[targetIndex];
             a = a.toLowerCase();
 
-            String[] parse_line = parseByDelimiter(a, "\\|");
+            String[] parse_line = Parser.parseByDelimiter(a, "\\|");
             int flag = 0;
             for (String str2 : parse_line) {
                 if (str.equals(str2)) {

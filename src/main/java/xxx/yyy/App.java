@@ -126,7 +126,7 @@ public class App
 
     /* Main function */
     public static void main(String[] args) throws IOException{
-        String[] inputvalue = {"Horror", "Comedy"};
+        String[] inputvalue = {};
         Function func = new Function();
         CustomList a = func.makeTargetTable(path_of_movies, inputvalue, 2);
         System.out.println(a.dataList);

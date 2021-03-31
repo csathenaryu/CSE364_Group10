@@ -28,13 +28,11 @@ public class Function extends Parsing{
             while ((line = bufReader.readLine()) != null) {
                 String[] string_array_line = parseByDelimiter(line, "::");  // delimiter를 parameter로 받으면 안되나
                 int to = Integer.parseInt(string_array_line[0]);
-                a.dataList.add(to, return_true_or_false(string_array_line, targetsProp, targetIndex));
+                a.setAt(to, return_true_or_false(string_array_line, targetsProp, targetIndex));
             }
             bufReader.close();
-        } catch (FileNotFoundException e) {
-            System.out.println(e);
         } catch (IOException e) {
-            System.out.println(e);
+            System.out.println("There is no file");
         }
 
 
@@ -43,8 +41,15 @@ public class Function extends Parsing{
 
     public boolean return_true_or_false(String[] line, String[] targetsProp, int targetIndex)
     {
+
+        if(targetsProp.length == 0)
+            return false;
+
+
         for (String str : targetsProp) {
-            if(!line[targetIndex].contains(str))
+            String a = line[targetIndex];
+            a = a.toLowerCase();
+            if(!a.contains(str))
             {
                 return false;
             }

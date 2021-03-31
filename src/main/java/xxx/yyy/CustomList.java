@@ -32,5 +32,7 @@ public class CustomList {
         dataList.add(index, value);
     }
 
-
+    public void setAt(int index, boolean value){
+        dataList.set(index, value);
+    }
 }

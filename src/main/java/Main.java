@@ -206,7 +206,7 @@ class Function {
             while ((line = bufReader.readLine()) != null) {
                 String[] string_array_line = Parser.parseByDelimiter(line, "::");  // delimiter를 parameter로 받으면 안되나
                 int to = Integer.parseInt(string_array_line[0]);
-                a.dataList.add(to, return_true_or_false(string_array_line, targetsProp, targetIndex));
+                a.setAt(to, return_true_or_false(string_array_line, targetsProp, targetIndex));
             }
             bufReader.close();
         } catch (FileNotFoundException e) {

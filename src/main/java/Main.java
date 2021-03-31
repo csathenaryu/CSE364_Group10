@@ -181,6 +181,10 @@ class CustomList {
     public void push(int index, boolean value){
         dataList.add(index, value);
     }
+
+    public void setAt(int index, boolean value){
+        dataList.set(index, value);
+    }
 }
 
 class Function {
@@ -202,7 +206,7 @@ class Function {
             while ((line = bufReader.readLine()) != null) {
                 String[] string_array_line = Parser.parseByDelimiter(line, "::");  // delimiter를 parameter로 받으면 안되나
                 int to = Integer.parseInt(string_array_line[0]);
-                a.dataList.add(to, return_true_or_false(string_array_line, targetsProp, targetIndex));
+                a.setAt(to, return_true_or_false(string_array_line, targetsProp, targetIndex));
             }
             bufReader.close();
         } catch (FileNotFoundException e) {
@@ -214,9 +218,17 @@ class Function {
         return a;
     }
 
-    public boolean return_true_or_false(String[] line, String[] targetsProp, int targetIndex) {
+    public boolean returnTrueOrFalse(String[] line, String[] targetsProp, int targetIndex)
+    {
+
+        if(targetsProp.length == 0)
+            return false;
+
         for (String str : targetsProp) {
-            if (!line[targetIndex].contains(str)) {
+            String a = line[targetIndex];
+            a = a.toLowerCase();
+            if(!a.contains(str))
+            {
                 return false;
             }
         }

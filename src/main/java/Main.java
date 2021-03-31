@@ -11,8 +11,6 @@ public class Main {
         String[] genres;
         String[] occupation;
 
-        String[] arg = {"action|romance", "educator"};
-
         // Args[0]: movie genres
         try{
             genres = ArgsPreprocessing.preprocess(MovieGenres.list, args[0], "\\|", new MovieGenres());
@@ -28,6 +26,11 @@ public class Main {
 
         System.out.println(Arrays.toString(genres));
         System.out.println(Arrays.toString(occupation));
+
+	CustomList movieList = Function.makeTargetTable("movies.dat", genres, ??);
+	CustomList userList = Function.makeTargetTable("users.dat", occupation, ??);
+	float avgRating = GetRating.getTargetRating("ratings.dat", movieList, userList);
+	System.out.println(avgRating);
 
 
 

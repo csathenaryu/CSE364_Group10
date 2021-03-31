@@ -238,20 +238,19 @@ class GetProperObjects {
     public CustomList makeTargetTable(String fileName, String[] targetsProp, int targetIndex) {
 
 
-        CustomList a = new CustomList(90);
-        a.dataList.add(0, false);
+        CustomList targetTable = new CustomList(10000);
 
         try {
 
             File file = new File(fileName);
             FileReader filereader = new FileReader(file);
             BufferedReader bufReader = new BufferedReader(filereader);
-            String line = "";
+            String fileLine = "";
 
-            while ((line = bufReader.readLine()) != null) {
-                String[] string_array_line = Parser.parseByDelimiter(line, "::");  // delimiter를 parameter로 받으면 안되나
-                int to = Integer.parseInt(string_array_line[0]);
-                a.setAt(to, returnTrueOrFalse(string_array_line, targetsProp, targetIndex));
+            while ((fileLine = bufReader.readLine()) != null) {
+                String[] parsedFileLine = Parser.parseByDelimiter(fileLine, "::");  // delimiter를 parameter로 받으면 안되나
+                int targetID = Integer.parseInt(parsedFileLine[0]);
+                targetTable.setAt(targetID, returnTrueOrFalse(parsedFileLine, targetsProp, targetIndex));
             }
             bufReader.close();
         } catch (FileNotFoundException e) {
@@ -260,7 +259,7 @@ class GetProperObjects {
             System.out.println(e);
         }
 
-        return a;
+        return targetTable;
     }
 
     public boolean returnTrueOrFalse(String[] line, String[] targetsProp, int targetIndex) {

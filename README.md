@@ -1,6 +1,5 @@
 # CSE364_Group10
 ## Introduction
----------------------
 영화 genres와 user의 occupation을 입력하시면 rating 정보를 보여줍니다.  
 
 For example  
@@ -12,7 +11,6 @@ For example
 <br>
 
 ## Getting Started
-------------------------------
 pre-requisite: `java11`
 제공하는 run.sh 파일을 사용하셔도 좋습니다.  
 run.sh 를 사용할 때는 `git`, `maven` 이 설치되어 있어야 합니다.  
@@ -31,7 +29,6 @@ mvn install
 <br>
 
 ## 사용 방법
-------------------------------
 `genres`와 `occupation`을 순서대로 입력해주시면, 해당하는 영화의 평균 `rating` 결과를 출력합니다.  
 해당 프로그램은 다음 명령어를 이용하여 실행할 수 있습니다.  
 ```
@@ -111,7 +108,6 @@ hoemmaker     # other
 <br>
 
 ## Contributors
-------------------
 20171113 박소연  
 20171155 안종민  
 20171375 류성화  

@@ -1,6 +1,6 @@
 # CSE364_Group10
 ## Introduction
-영화 genres와 user의 occupation을 입력하시면 rating 정보를 보여줍니다.  
+영화 `genres`와 user의 `occupation`을 입력하시면 rating 정보를 보여줍니다.  
 
 For example  
 `movie genres` - action, romance  

@@ -15,13 +15,13 @@ public class Main {
 
         // Args[0]: movie genres
         try{
-            genres = ArgsPreprocessing.preprocess(Occupation.list, args[0], "\\|", new MovieGenres());
+            genres = ArgsPreprocessing.preprocess(MovieGenres.list, args[0], "\\|", new MovieGenres());
         } catch (Exception e){
             genres = MovieGenres.list.getAll().toArray(new String[0]);
         }
         // Args[1]: occupation
         try{
-            occupation = ArgsPreprocessing.preprocess(MovieGenres.list, args[1], "\\|", new Occupation());
+            occupation = ArgsPreprocessing.preprocess(Occupation.list, args[1], "\\|", new Occupation());
         } catch (Exception e){
             occupation = Occupation.list.getAll().toArray(new String[0]);
         }

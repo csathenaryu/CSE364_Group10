@@ -28,6 +28,34 @@ public class Main {
 
         System.out.println(Arrays.toString(genres));
         System.out.println(Arrays.toString(occupation));
+
+
+
+/*
+        CustomList list2 = new CustomList(4);
+        list2.push(0, false);
+        list2.push(1, true);
+        list2.push(2, true);
+        list2.push(3, false);
+
+        CustomList list1 = new CustomList(4);
+        list1.push(0, false);
+        list1.push(1, true);
+        list1.push(2, true);
+        list1.push(3, true);
+
+        GetRating r = new GetRating();
+        float average = 0;
+        try {
+            average = r.getTargetRating("C:\\Users\\syparksy98\\Desktop\\SE_project\\testAverage\\data\\ratings.dat", list1, list2);
+            System.out.println(average);
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Error: Cannot find \"ratings.dat\" file");
+        }
+
+ */
+
     }
 }
 
@@ -181,6 +209,10 @@ class CustomList {
     public void push(int index, boolean value){
         dataList.add(index, value);
     }
+
+    public void setAt(int index, boolean value){
+        dataList.set(index, value);
+    }
 }
 
 class Function {
@@ -202,7 +234,7 @@ class Function {
             while ((line = bufReader.readLine()) != null) {
                 String[] string_array_line = Parser.parseByDelimiter(line, "::");  // delimiter를 parameter로 받으면 안되나
                 int to = Integer.parseInt(string_array_line[0]);
-                a.dataList.add(to, return_true_or_false(string_array_line, targetsProp, targetIndex));
+                a.setAt(to, returnTrueOrFalse(string_array_line, targetsProp, targetIndex));
             }
             bufReader.close();
         } catch (FileNotFoundException e) {
@@ -214,9 +246,17 @@ class Function {
         return a;
     }
 
-    public boolean return_true_or_false(String[] line, String[] targetsProp, int targetIndex) {
+    public boolean returnTrueOrFalse(String[] line, String[] targetsProp, int targetIndex)
+    {
+
+        if(targetsProp.length == 0)
+            return false;
+
         for (String str : targetsProp) {
-            if (!line[targetIndex].contains(str)) {
+            String a = line[targetIndex];
+            a = a.toLowerCase();
+            if(!a.contains(str))
+            {
                 return false;
             }
         }
@@ -225,32 +265,48 @@ class Function {
 }
 
 class GetRating {
+    int userID;
+    int movieID;
+    int rating;
+
+    public GetRating(){
+        userID = 0;
+        movieID = 0;
+        rating = 0;
+    }
+
     public float getTargetRating(String fileName, CustomList targetMovieList, CustomList targetUserList) throws IOException {
         RatingManager ratingManager = new RatingManager();
 
-        // load data
         File file = new File(fileName);
-        // read one line
         FileReader reader = new FileReader(file);
         BufferedReader buffer = new BufferedReader(reader);
         String line = "";
-
-        // Parsing.parseByDelimiter();
         while ((line = buffer.readLine()) != null) {
-            String[] parse = Parser.parseByDelimiter(line, "::");
-
-            // targetMovieList에 movieID 있고, targetUserList에 userID 있으면, update rating
-            int userID = Integer.parseInt(parse[0]);
-            int movieID = Integer.parseInt(parse[1]);
-            if (targetUserList.getAt(userID) && targetMovieList.getAt(movieID)) {
-                int rating = Integer.parseInt(parse[2]);
-                ratingManager.update(rating);
-            }
+            getRatingInfo(line);
+            updateTargetRating(ratingManager, targetMovieList, targetUserList);
         }
 
-        return ratingManager.getAverageRating();
+        // see also: RatingManager
+
+        float AverageRating = ratingManager.getAverageRating();
+        return AverageRating;
+    }
+
+    public void getRatingInfo (String line) {
+        String[] parse = Parser.parseByDelimiter(line,"::");
+        userID = Integer.parseInt(parse[0]);
+        movieID = Integer.parseInt(parse[1]);
+        rating = Integer.parseInt(parse[2]);
+    }
+
+    public void updateTargetRating (RatingManager ratingManager, CustomList targetMovieList, CustomList targetUserList) {
+        if (targetUserList.getAt(userID) && targetMovieList.getAt(movieID)) {
+            ratingManager.update(rating);
+        }
     }
 }
+
 
 class RatingManager {
     int sum;
@@ -277,6 +333,10 @@ class RatingManager {
 
     // average rating 을 반환
     public float getAverageRating(){
+        if (count == 0) {
+            System.out.println("No information");
+            return 0;
+        }
         float averageRating = (float)sum / (float)count;
         // 소수점 셋째자리에서 반올림
         return averageRating;

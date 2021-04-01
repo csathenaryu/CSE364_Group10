@@ -27,14 +27,15 @@ public class Main {
             occupation = Occupation.list.getAll().toArray(new String[0]);
         }
 
-        System.out.println(Arrays.toString(genres));
-        System.out.println(Arrays.toString(occupation));
+        System.out.println("Your genres are "+ Arrays.toString(genres));
+        System.out.println("Your occupation code is " + Arrays.toString(occupation));
+        System.out.println();
 
 	CustomList movieList = getProperObjects.makeTargetTable("data/movies.dat", genres, 2);
 	CustomList userList = getProperObjects.makeTargetTable("data/users.dat", occupation, 3);
 	float avgRating = getRating.getTargetRating("data/ratings.dat", movieList, userList);
         // System.out.println(avgRating);
-        System.out.println(String.format("%.2f", avgRating));
+        System.out.println(String.format("Average rating is %.2f", avgRating));
 
     }
 }
@@ -62,6 +63,7 @@ class ArgsPreprocessing{
             temp = mappedArg;
         } else{
             temp = inputArgument.getAll();
+            System.exit(0);
         }
         return temp.toArray(new String[0]);
     }
@@ -83,6 +85,9 @@ class MovieGenres implements InputArgument{
     public void filter(ArrayList<String> mappedArg, String lowerArg){
         if (list.has(lowerArg) && (!mappedArg.contains(lowerArg))){
             mappedArg.add(list.get(lowerArg));
+        }
+        else {
+            System.out.println(lowerArg + " is invalid or already exist. Try to use another genres.");
         }
     }
 }

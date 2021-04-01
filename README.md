@@ -1,8 +1,9 @@
-# 프로젝트이름 (CSE364_Group10)
+# VIM PROJECTOR (CSE364_Group10)
+
 ## Introduction
-`프로젝트이름`은 **조건**에 맞는 영화를 추천해주는 `영화 추천 프로그램`입니다.  
-영화의 `genres`와 user의 `occupation` 정보를 입력하시면, 해당 조건에 맞는 영화들의 평균 `rating`을 보실 수 있습니다.  
-`프로젝트이름`을 통해 당신의 취향에 맞는 영화를 찾으세요!  
+`VIM PROJECTOR` is a `movie recommendation program` which recommends movies according to given conditions.  
+Type in the `genres` you wish to watch and your `occupation`, and you will recieve an `average rating` of the movies that belong to the given genres and were rated by others in your occupation.  
+Find your next movie to watch with `VIM PROJECTOR`!!!  
 <br>
 <br>
 <br>
@@ -25,15 +26,15 @@
 
 
 ## Installation
-해당 repository를 다운받거나, 아래 커맨드를 실행하여 프로그램을 설치합니다.  
+To install this program, download the repository directly, or run the commands below.  
 ```
-$ git init
 $ git clone https://github.com/csathenaryu/CSE364_Group10.git
 $ git pull origin main
 $ mvn install
+$ mvn assembly:assembly
 ``` 
-해당 repository에서 제공하는 `run.sh` 파일을 활용할 수도 있습니다.  
-Pre-requisite: 프로그램 설치와 실행을 위해 `java` 11 이상, `git` and `maven`이 필요합니다.  
+This program can also be installed by running the `run.sh` file that is included in the repository.  
+`Java(version 11 or up)`, `Git` and `Maven` installation must be preceded before installing and running this program.  
 <br>
 <br>
 <br>
@@ -41,130 +42,141 @@ Pre-requisite: 프로그램 설치와 실행을 위해 `java` 11 이상, `git` a
 
 
 ## Usage
-`genres`와 `occupation`을 **순서대로 입력**하면, 조건에 맞는 영화의 평균 `rating` 결과가 출력됩니다.  
-다음 명령어를 이용하여 프로그램을 실행할 수 있습니다.  
-반드시 **입력 순서**를 지켜주세요.  
+Entering `genres` and `occupation` in order will give you the `average rating score` of the movies that correspond to the conditions you entered.  
+Run this program by typing in the following command.
+Please enter your conditions **in the given order.**  
+  
 ```
-java -cp target/CSE364-project-1.0-SNAPSHOT.jar main.java.Main "gernre1|genre2|...|genreN" "occupation"
+$ java -cp target/CSE364-project-1.0-SNAPSHOT-jar-with-dependencies.jar main.java.Main "gernre1|genre2|...|genreN" "occupation"
 ```  
-
-예를 들어, `action`, `animation`, `romance` 장르에 모두 해당하는 영화에 대해 `educator` 직업을 가진 user가 평가한 결과가 궁금한 경우, 아래와 같이 입력합니다.  
+For example, if you wish to know the average rating score of the movies that belong to `action`, `animation` and `romance` and are rated by users with an occupation of `educator`, type command as below.  
 ```
-java -cp target/CSE364-project-1.0-SNAPSHOT.jar main.java.Main action|animation|romance educator
+$ java -cp target/CSE364-project-1.0-SNAPSHOT-jar-with-dependencies.jar main.java.Main "action|animation|romance" "educator"
 ```  
-`genres`와 `occupation` 입력에 대한 상세 설명은 아래를 참고해주세요.   
+Note that a rating score of a movie will be incorporated in the result only if the movie belongs to all three genres.  
+Please refer to the following sections about details in inputting `genres` and `occupation`.  
+<br>
 <br>
 
 
 ### Genres  
-- 검색 가능한 `genres`는 다음과 같습니다.   
+- The `genres` available are listed as the following:  
 `action`, `animation`, `children's`, `comedy`, `crime`,  `documentary`, `drama`, `fantasy`, `film-noir`, `horror`,  `musical`, `mystery`, `romance`, `scifi`, `thriller`, `war`, `western`  
     ```
-    action            # action 장르 영화 검색
+    action            # output: Your genres are [action]
     ```
+    **Capitalization** does not matter.  
     ```
-    thriller          # thriller 장르 영화 검색
+    thRILler          # output: Your genres are [thriller]
     ```
-    **대소문자 관계 없이** 검색 가능합니다.  
+    **Genres not listed on the list above** will be ignored when entered.  
     ```
-    Action            # action 장르 영화 검색
+    adventure         # output: adventure is invalid or already exist. Try using another genres.
+                      #         There is no valid input. Terminate program.
     ```
+    Please **avoid spelling mistakes.**  
+    This program does not provide any fool-proof feature for such mistakes.  
+    In this case, the input will be ignored.  
+ 
     ```
-    thRILler          # thriller 장르 영화 검색
-    ```
-    **위 목록에 기술되지 않은 장르**를 입력할 경우 해당 영화 장르는 무시됩니다.
-    ```
-    adventure         # Error: InvalidValueError
-    ```
-    **철자**에 유의하여 작성해주세요.  
-    아쉽게도 이 프로그램은 철자 자동 교정 기능을 제공하지 않습니다.  
-    이 경우, 해당 장르의 입력은 무시됩니다.  
-    ```
-    actino            # Error: InvalidValueError
+    actino            # output: actino is invalid or already exist. Try using another genres.
+                      #         There is no valid input. Terminate program.
     ```
 
-- 여러 장르를 입력하는 경우, delimiter `|`로 장르를 구분하여 입력해주세요.  
-입력한 장르에 모두 해당되는 영화를 검색합니다.  
+- In case you are entering **several genres**, please distinguish each genre by delimiter `|`.  
+The program will search for movies that match all genres given as input.  
     ```
-    action|thriller   # action, thriller에 모두 해당되는 영화 검색
+    action|thriller   # output: Your genres are [action, thriller]
     ```
-    이 경우, 중간에 **띄어쓰기**가 들어가지 않도록 주의해주세요.   
-    띄어쓰기가 포함된 경우 가장 앞의 입력만 반영되며, `occupation` 정보가 제대로 반영되지 않을 수 있습니다.  
+    Please **do not include spaces** in between genres.  
+    If a space exists, only the inputs in front of the space will be applied, and `occupation` information may be omitted.  
+
     ```
-    action|romance |thriller|war     # action, romance에 모두 해당되는 영화 검색, thriller, war는 검색되지 않음
+    action|romance |thriller|war     # output: Your genres are [action, romance]
+                                     # thriller, war are not included
     ```
 
-- **위 목록에 기술되지 않은 장르**를 포함하여 입력할 경우 해당 영화 장르는 무시되며, 유효한 장르에 대해서만 검색합니다.  
+- If a genre is not in the list above but is included in a list of genres given, the invalid genre will be ignored, and the program will search only for those available.  
     ```
-    adventure|animation              # animation 장르 영화만 검색, adventure는 무시됨
+    adventure|animation      # output: Your genres are [animation]
     ```
-    유효한 장르가 입력되지 않은 경우, 프로그램을 종료합니다.  
+    If there is **no valid genre input**, the program will be terminated.  
     ```
-    adventure|animatino              # Error: InvalidValueError
+    adventure|animatino      # output: adventure is invalid or already exist. Try using another genres.
+                             #         animatino is invalid or already exist. Try using another genres.
+                             #         There is no valid input. Terminate program.
     ```
-- 장르를 **중복** 입력한 경우, 중복 입력은 무시합니다.  
+- **Repeated inputs** will be ignored.  
     ```
-    animation|animation|romance      # animation, romance 장르 영화 검색
+    animation|animation|romance      # output: animation is invalid or already exist. Try using another genres.
+                                     # Your genres are [animation, romance]
     ```
-<br>
 <br>
 
 ### Occupation  
-- 검색 가능한 `occupation`은 다음과 같습니다.  
+- The `occupations` available are listed as the following:  
 `academic`, `educator`, `artist`, `clerical`, `admin`, `collegestudent`, `gradstudent`, `customerservice`, `doctor`,`healthcare`, `executive`, `managerial`, `farmer`, `homemaker`, `k-12student`, `lawyer`, `programmer`, `retired`, `sales`, `marketing`, `scientist`, `self-employed`, `technician`, `engineer`, `tradesman`, `craftsman`, `unemployed`, `writer`, `other`  
     ```
-    artist          # artist 가 평가한 영화 검색
+    artist          # output: Your occupation code is [2]
     ```
+    **Capitalization** does not matter.  
     ```
-    farmer          # farmer 가 평가한 영화 검색
+    faRMer             # output: Your occupation code is [8]
     ```
-    **대소문자 관계 없이** 검색 가능합니다.  
+    **Occupation informations that are not listed in the list above** will be regarded as `other`.   
     ```
-    Artist          # artist 가 평가한 영화 검색
+    dentist            # output: Your occupation code is [0]
+                       # The occupation code of 'other' is 0
     ```
+    Please **avoid spelling mistakes.**  
+    This program does not provide any fool-proof feature for such mistakes.  
+    In this case, the input will be regarded as `other`.  
+  
     ```
-    faRMer          # farmer 가 평가한 영화 검색
-    ```
-    **위 목록에 기술되지 않은 직업**은 `other` 직업군으로 인식하여 검색을 진행합니다.   
-    ```
-    dentist         # other 직업군이 평가한 영화 검색
-    ```
-    **철자**에 유의하여 작성해주세요.  
-    아쉽게도 이 프로그램은 철자 자동 교정 기능을 제공하지 않습니다.  
-    이 경우, 철자 오류가 있는 직업은 `other` 직업군으로 인식됩니다.     
-    ```
-    actino      # Error: InvalidValueError
+    actino             # output: Your occupation code is [0]
     ```
     
-- **두 단어 이상**으로 이루어진 `occupation`의 경우, **띄어쓰기 없이** 하나로 붙여서 검색해주세요.  
+- For `occupation` informations that consist of **more than one word**, omit the space in between and **input as one word.**  
     ```
-    collegestudent  # collegestudent 가 평가한 영화 검색
+    collegestudent     # output: Your occupation code is [4]
     ```
-    일부만 입력하는 경우, `other` 직업 군으로 검색을 진행합니다.  
+    In case only a part of occupation is entered, it will be regarded as `other`.     
     ```
-    college         # other 가 평가한 영화 검색
+    college            # output: Your occupation code is [0]
     ```
 
-- `genres`만 입력하고 **`occupation`을 입력하지 않은 경우**, 모든 `occupation`에 대한 결과를 계산합니다.  
+- If `genre(s)` has been entered and **`occupation` omitted**, the program will include movies rated by all `occupations`.  
     ```
-    java -cp target/CSE364-project-1.0-SNAPSHOT.jar main.java.Main Action|Romance   # action, romance 장르 영화 검색, 모든 직업 군의 평가 정보 반영
+    java -cp target/CSE364-project-1.0-SNAPSHOT-jar-with-dependencies.jar main.java.Main Action|Romance   # output: Your occupation code is [0, 1, 2, ..., 19, 20]
     ```  
-<br>
 <br>
 
 ### Rating
-- `rating`은 입력한 genres와 occupation에 해당하는 영화 rating의 `평균` 값입니다.  
-- average rating은 소수점 셋째자리에서 반올림되어 제공됩니다.    
-- 입력한 genres와 occupation에 해당하는 영화 rating 정보가 없는 경우, `No Information` 메시지가 출력됩니다.  
+- `Rating` is an **average rating score** of the movies in given `genres` and rated by given `occupation`.  
+- Rating will be printed out with a value rounded off to the nearest hundreadths.  
+- If there is no movie rating information corresponding to given inputs, a message of `No Information` will be printed out.  
 <br>
 <br>
 <br>
 
+
+
 ## Contributors
-20171113 박소연  
-20171155 안종민  
-20171375 류성화  
-20181072 김혜진
+- 20171113 박소연
+    1. Suggested algorithm utilizing boolean ArrayList
+    2. Implemented code that receives boolean ArrayList as input and returns Rating as output
+
+- 20171155 안종민
+    1. Implemented code that processes parsed data as a boolean ArrayList
+    2. Edited Pom.xml
+
+- 20171375 류성화
+    1. Implemented code that processes parsed data as a boolean ArrayList
+    2. Translated README.md
+
+- 20181072 김혜진
+    1. Implemented code that receives and parses arguments as inputs
+    2. Wrote first draft of README.md
 <br>
 <br>
 <br>

@@ -1,11 +1,12 @@
 # CSE364_Group10
 ## Introduction
-영화 genres와 user의 occupation을 입력하시면 rating 정보를 보여줍니다.  
+영화 `genres`와 user의 `occupation`을 입력하시면,  
+해당 조건에 맞는 영화들의 평균 `rating`을 보여줍니다.  
 
 For example  
-`movie genres` - action, romance  
-`user occupation` - educator  
-`result rating` - 3.44  
+`Movie Genres` - action, romance  
+`User Occupation` - educator  
+`Average Rating` - 3.44  
 <br>
 <br>
 <br>

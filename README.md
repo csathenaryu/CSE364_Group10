@@ -123,7 +123,7 @@ The program will search for movies that match all genres given as input.
     ```
     faRMer             # output: Your occupation code is [8]
     ```
-    **Occupation informations that are not listed in the list above** will be regarded as `other`.   
+    **Occupations that are not listed in the list above** will be regarded as `other`.   
     ```
     dentist            # output: Your occupation code is [0]
                        # The occupation code of 'other' is 0
@@ -133,14 +133,14 @@ The program will search for movies that match all genres given as input.
     In this case, the input will be regarded as `other`.  
   
     ```
-    actino             # output: Your occupation code is [0]
+    aritst             # output: Your occupation code is [0]
     ```
     
-- For `occupation` informations that consist of **more than one word**, omit the space in between and **input as one word.**  
+- For an `occupation` that consists of **more than one word**, omit the space in between and **input as one word.**  
     ```
     collegestudent     # output: Your occupation code is [4]
     ```
-    In case only a part of occupation is entered, it will be regarded as `other`.     
+    If only a part of occupation is entered, it will be regarded as `other`.     
     ```
     college            # output: Your occupation code is [0]
     ```
@@ -154,7 +154,7 @@ The program will search for movies that match all genres given as input.
 ### Rating
 - `Rating` is an **average rating score** of the movies in given `genres` and rated by given `occupation`.  
 - Rating will be printed out with a value rounded off to the nearest hundreadths.  
-- If there is no movie rating information corresponding to given inputs, a message of `No Information` will be printed out.  
+- If there is no movie rating information corresponding to given inputs, a message of `No Information` will be printed out, and 0 will be the return value.  
 <br>
 <br>
 <br>

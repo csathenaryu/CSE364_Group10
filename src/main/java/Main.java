@@ -11,6 +11,9 @@ public class Main {
         String[] genres;
         String[] occupation;
 
+        GetProperObjects getProperObjects = new GetProperObjects();
+        GetRating getRating = new GetRating();
+
         // Args[0]: movie genres
         try{
             genres = ArgsPreprocessing.preprocess(MovieGenres.list, args[0], "\\|", new MovieGenres());
@@ -27,37 +30,11 @@ public class Main {
         System.out.println(Arrays.toString(genres));
         System.out.println(Arrays.toString(occupation));
 
-	CustomList movieList = Function.makeTargetTable("movies.dat", genres, ??);
-	CustomList userList = Function.makeTargetTable("users.dat", occupation, ??);
-	float avgRating = GetRating.getTargetRating("ratings.dat", movieList, userList);
-	System.out.println(avgRating);
-
-
-
-/*
-        CustomList list2 = new CustomList(4);
-        list2.push(0, false);
-        list2.push(1, true);
-        list2.push(2, true);
-        list2.push(3, false);
-
-        CustomList list1 = new CustomList(4);
-        list1.push(0, false);
-        list1.push(1, true);
-        list1.push(2, true);
-        list1.push(3, true);
-
-        GetRating r = new GetRating();
-        float average = 0;
-        try {
-            average = r.getTargetRating("C:\\Users\\syparksy98\\Desktop\\SE_project\\testAverage\\data\\ratings.dat", list1, list2);
-            System.out.println(average);
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("Error: Cannot find \"ratings.dat\" file");
-        }
-
- */
+	CustomList movieList = getProperObjects.makeTargetTable("data/movies.dat", genres, 2);
+	CustomList userList = getProperObjects.makeTargetTable("data/users.dat", occupation, 3);
+	float avgRating = getRating.getTargetRating("data/ratings.dat", movieList, userList);
+        // System.out.println(avgRating);
+        System.out.println(String.format("%.2f", avgRating));
 
     }
 }
@@ -258,7 +235,7 @@ class GetProperObjects {
             String a = line[targetIndex];
             a = a.toLowerCase();
 
-            String[] parse_line = parseByDelimiter(a, "\\|");
+            String[] parse_line = Parser.parseByDelimiter(a, "\\|");
             int flag = 0;
             for (String str2 : parse_line) {
                 if (str.equals(str2)) {
@@ -284,14 +261,24 @@ class GetRating {
         rating = 0;
     }
 
-    public float getTargetRating(String fileName, CustomList targetMovieList, CustomList targetUserList) throws IOException {
+    public float getTargetRating(String fileName, CustomList targetMovieList, CustomList targetUserList) {
         RatingManager ratingManager = new RatingManager();
 
         File file = new File(fileName);
-        FileReader reader = new FileReader(file);
+        FileReader reader = null;
+        try {
+            reader = new FileReader(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         BufferedReader buffer = new BufferedReader(reader);
         String line = "";
-        while ((line = buffer.readLine()) != null) {
+        while (true) {
+            try {
+                if (!((line = buffer.readLine()) != null)) break;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             getRatingInfo(line);
             updateTargetRating(ratingManager, targetMovieList, targetUserList);
         }

@@ -33,7 +33,7 @@ $ git pull origin main
 $ mvn install
 ``` 
 해당 repository에서 제공하는 `run.sh` 파일을 활용할 수도 있습니다.  
-Prequisite: 프로그램 설치와 실행을 위해 `java` 11 이상, `git` and `maven`이 필요합니다.  
+Pre-requisite: 프로그램 설치와 실행을 위해 `java` 11 이상, `git` and `maven`이 필요합니다.  
 <br>
 <br>
 <br>

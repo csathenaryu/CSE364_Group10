@@ -63,7 +63,7 @@ class ArgsPreprocessing{
             temp = mappedArg;
         } else{
             temp = inputArgument.getAll();
-            System.out.println("There is no valid input. Terminate program.")
+            System.out.println("There is no valid input. Terminate program.");
             System.exit(0);
         }
         return temp.toArray(new String[0]);

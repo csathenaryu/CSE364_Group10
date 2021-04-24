@@ -356,4 +356,40 @@ class RatingManager {
         // 소수점 셋째자리에서 반올림
         return averageRating;
     }
+
+
+    // 각 영화의
+}
+
+class GetTopRating {
+    HashMap<String, Integer> movie_rating = new HashMap<String, Integer>();
+    HashMap<String, Integer> movie_rating_num = new HashMap<String, Integer>();
+    HashMap<String, Integer> movie_rating_sum = new HashMap<String, Integer>();
+
+    void Get_movie_rating (String fileName, CustomList targetMovieList, CustomList targetUserList) {
+        // 	rating 읽으면서 target 해당하면
+        //	update_movie_rating (movie id, movie rating)
+        //	rating list = get_movie_average ()
+        //	get_top_rating (rating list)
+   }
+
+   void update_movie_rating (String id, Integer rating) {
+       movie_rating_num.id++ // id에 해당하는 num 1 증가
+       movie_rating_sum.id += rating // id에 해당하는 rating update
+   }
+
+    get_movie_average () {
+        movie_rating.id = movie_rating_sum.id / movie_rating_num.id
+    }
+
+    sort_movie_average () {
+        movie_rating value 기준으로 내림차순 정렬
+        return movie_rating_list;
+    }
+
+    get_top_rating () {
+        movie_rating_list에서 상위 10개의 id를 recommended (arraylist) 로 받아옴
+        return recommended (arraylist)
+    }
+
 }

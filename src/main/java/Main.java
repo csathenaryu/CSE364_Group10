@@ -2,6 +2,8 @@ package main.java;
 
 import java.io.*;
 import java.util.*;
+import java.util.Collections;
+import java.util.Comaparator;
 
 
 public class Main {
@@ -373,7 +375,7 @@ class GetTopRating {
         //	get_top_rating (rating list)
    }
 
-   void update_movie_rating (String id, Integer rating) {
+   void update_movie_rating (String id, int rating) {
        movie_rating_num.put(id, movie_rating_num.get(id) + 1); // id에 해당하는 num 1 증가
        movie_rating_sum.put(id, movie_rating_sum.get(id) + rating);// id에 해당하는 rating update
    }
@@ -387,8 +389,20 @@ class GetTopRating {
         movie_rating.put(id, average_rating);
     }
 
+    ArrayList<HashMap>
     sort_movie_average () {
-        movie_rating value 기준으로 내림차순 정렬
+        //movie_rating value 기준으로 내림차순 정렬
+        ArrayList<HashMap<String, Integer>> movie_rating_list = new ArrayList<HashMap<String, Integer>>(movie_rating.entrySet());
+
+        // 비교함수 Comparator
+        Collections.sort(movie_rating_list, new Comparator<HashMap<String, float>>() {
+            // compare로 값을 비교
+            public int compare(HashMap<String, float> mov1, HashMap<String, float> mov2)
+            {
+                // 내림 차순으로 정렬
+                return mov2.getValue().compareTo(mov1.getValue());
+            }
+        });
         return movie_rating_list;
     }
 

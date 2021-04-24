@@ -381,7 +381,9 @@ class GetTopRating {
     get_movie_average (String id) {
         float count = (float) movie_rating_num.get(id);
         float rating_sum = (float) movie_rating_sum.get(id);
-        float average_rating = rating_sum/count;
+        if (count != 0) {
+            float average_rating = rating_sum / count;
+        }
         movie_rating.put(id, average_rating);
     }
 

@@ -374,12 +374,14 @@ class GetTopRating {
    }
 
    void update_movie_rating (String id, Integer rating) {
-       movie_rating_num.id++ // id에 해당하는 num 1 증가
-       movie_rating_sum.id += rating // id에 해당하는 rating update
+       movie_rating_num.put(id, movie_rating_num.get(id) + 1); // id에 해당하는 num 1 증가
+       movie_rating_sum.put(id, movie_rating_sum.get(id) + rating);// id에 해당하는 rating update
    }
 
     get_movie_average () {
         movie_rating.id = movie_rating_sum.id / movie_rating_num.id
+    }{
+
     }
 
     sort_movie_average () {

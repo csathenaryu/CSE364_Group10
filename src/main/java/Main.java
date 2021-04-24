@@ -362,7 +362,7 @@ class RatingManager {
 }
 
 class GetTopRating {
-    HashMap<String, Integer> movie_rating = new HashMap<String, Integer>();
+    HashMap<String, float> movie_rating = new HashMap<String, float>();
     HashMap<String, Integer> movie_rating_num = new HashMap<String, Integer>();
     HashMap<String, Integer> movie_rating_sum = new HashMap<String, Integer>();
 
@@ -378,10 +378,11 @@ class GetTopRating {
        movie_rating_sum.put(id, movie_rating_sum.get(id) + rating);// id에 해당하는 rating update
    }
 
-    get_movie_average () {
-        movie_rating.id = movie_rating_sum.id / movie_rating_num.id
-    }{
-
+    get_movie_average (String id) {
+        float count = (float) movie_rating_num.get(id);
+        float rating_sum = (float) movie_rating_sum.get(id);
+        float average_rating = rating_sum/count;
+        movie_rating.put(id, average_rating);
     }
 
     sort_movie_average () {

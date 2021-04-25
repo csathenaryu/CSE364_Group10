@@ -2,8 +2,7 @@ package main.java;
 
 import java.io.*;
 import java.util.*;
-import java.util.Collections;
-import java.util.Comaparator;
+import java.util.Map.Entry;
 
 
 public class Main {
@@ -14,7 +13,9 @@ public class Main {
         String[] occupation;
 
         GetProperObjects getProperObjects = new GetProperObjects();
-        GetRating getRating = new GetRating();
+        // GetRating getRating = new GetRating();
+        args[0] = "animation|dfd";
+        args[1] = "farmer";
 
         // Args[0]: movie genres
         try{
@@ -35,9 +36,21 @@ public class Main {
 
         CustomList movieList = getProperObjects.makeTargetTable("data/movies.dat", genres, 2);
         CustomList userList = getProperObjects.makeTargetTable("data/users.dat", occupation, 3);
-        float avgRating = getRating.getTargetRating("data/ratings.dat", movieList, userList);
+
+        GetTopRating getTopRating = new GetTopRating();
+        // GetTotalRating getTotalRating = new GetTotalRating();
+
+        ArrayList<Integer> recommeded_movie = null;
+        try {
+            recommeded_movie = getTopRating.Get_movie_rating("data/ratings.dat", movieList, userList);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        System.out.println(recommeded_movie);
+
+        // float avgRating = getTotalRating.getTargetRating("data/ratings.dat", movieList, userList);
         // System.out.println(avgRating);
-        System.out.println(String.format("Average rating is %.2f", avgRating));
+        // System.out.println(String.format("Average rating is %.2f", avgRating));
 
     }
 }
@@ -282,6 +295,114 @@ class GetRating {
         rating = 0;
     }
 
+    public void getRatingInfo (String line) {
+        String[] parse = Parser.parseByDelimiter(line,"::");
+        userID = Integer.parseInt(parse[0]);
+        movieID = Integer.parseInt(parse[1]);
+        rating = Integer.parseInt(parse[2]);
+    }
+
+}
+
+class GetTopRating extends GetRating {
+    HashMap<Integer, Float> movie_rating = new HashMap<Integer, Float>();
+    HashMap<Integer, Integer> movie_rating_num = new HashMap<Integer, Integer>();
+    HashMap<Integer, Integer> movie_rating_sum = new HashMap<Integer, Integer>();
+
+
+    ArrayList<Integer> Get_movie_rating (String fileName, CustomList targetMovieList, CustomList targetUserList) throws FileNotFoundException {
+
+        File file = new File(fileName);
+        FileReader reader = null;
+        try {
+            reader = new FileReader(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        BufferedReader buffer = new BufferedReader(reader);
+        String line = "";
+        while (true) {
+            try {
+                if (!((line = buffer.readLine()) != null)) break;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            getRatingInfo(line);
+            update_movie_rating(movieID, rating);
+        }
+        ArrayList<Entry<Integer, Integer>> list_entries = new ArrayList<Entry<Integer, Integer>>(movie_rating_num.entrySet());
+
+        for (Entry<Integer, Integer> entry : list_entries) {
+            get_movie_average(entry.getKey());
+        }
+        ArrayList<Entry<Integer, Float>> movie_rating_list = sort_movie_average();
+        ArrayList<Integer> recommended_movie = get_top_rating(movie_rating_list);
+
+        return recommended_movie;
+    }
+
+    void update_movie_rating (int id, int rating) {
+
+        if (movie_rating_num.get(id) == null) {
+            movie_rating_num.put(id, 1);
+            movie_rating_sum.put(id, rating);
+        }
+        movie_rating_num.put(id, movie_rating_num.get(id) + 1); // id에 해당하는 num 1 증가
+        movie_rating_sum.put(id, movie_rating_sum.get(id) + rating);// id에 해당하는 rating update
+    }
+
+    void get_movie_average (Integer id) {
+        float count = (float) movie_rating_num.get(id);
+        float rating_sum = (float) movie_rating_sum.get(id);
+        float average_rating = 0;
+        if (count != 0) {
+            average_rating = rating_sum / count;
+        }
+        movie_rating.put(id, average_rating);
+    }
+
+    ArrayList<Entry<Integer, Float>>
+    sort_movie_average () {
+
+        //movie_rating value 기준으로 내림차순 정렬
+        ArrayList<Entry<Integer, Float>> movie_rating_list = new ArrayList<Entry<Integer, Float>>(movie_rating.entrySet());
+
+        // 비교함수 Comparator
+        Collections.sort(movie_rating_list, new Comparator<Entry<Integer, Float>>() {
+            @Override
+            // compare로 값을 비교
+            public int compare(Entry<Integer, Float> mov1, Entry<Integer, Float> mov2) {
+                // 내림 차순으로 정렬
+                return mov2.getValue().compareTo(mov1.getValue());
+            }
+        });
+        System.out.println(movie_rating_list);
+        return movie_rating_list;
+    }
+
+    ArrayList<Integer>
+    get_top_rating (ArrayList<Entry<Integer, Float>> movie_rating_list) {
+        //movie_rating_list에서 상위 10개의 id를 recommended (arraylist) 로 받아옴
+        int n = 10;
+        int size = movie_rating_list.size();
+        if (size < 10) {
+            n = size;
+        }
+
+        ArrayList<Integer> recommended_movie = new ArrayList<>(10);
+        for (int i = 0; i < n; i++) {
+            recommended_movie.add(movie_rating_list.get(i).getKey());
+        }
+        //return recommended (arraylist)
+        return recommended_movie;
+    }
+
+}
+
+
+class GetTotalRating extends GetRating {
+
+
     public float getTargetRating(String fileName, CustomList targetMovieList, CustomList targetUserList) {
         RatingManager ratingManager = new RatingManager();
 
@@ -310,20 +431,12 @@ class GetRating {
         return AverageRating;
     }
 
-    public void getRatingInfo (String line) {
-        String[] parse = Parser.parseByDelimiter(line,"::");
-        userID = Integer.parseInt(parse[0]);
-        movieID = Integer.parseInt(parse[1]);
-        rating = Integer.parseInt(parse[2]);
-    }
-
     public void updateTargetRating (RatingManager ratingManager, CustomList targetMovieList, CustomList targetUserList) {
         if (targetUserList.getAt(userID) && targetMovieList.getAt(movieID)) {
             ratingManager.update(rating);
         }
     }
 }
-
 
 class RatingManager {
     int sum;
@@ -359,58 +472,6 @@ class RatingManager {
         return averageRating;
     }
 
-
-    // 각 영화의
-}
-
-class GetTopRating {
-    HashMap<String, float> movie_rating = new HashMap<String, float>();
-    HashMap<String, Integer> movie_rating_num = new HashMap<String, Integer>();
-    HashMap<String, Integer> movie_rating_sum = new HashMap<String, Integer>();
-
-    void Get_movie_rating (String fileName, CustomList targetMovieList, CustomList targetUserList) {
-        // 	rating 읽으면서 target 해당하면
-        //	update_movie_rating (movie id, movie rating)
-        //	rating list = get_movie_average ()
-        //	get_top_rating (rating list)
-   }
-
-   void update_movie_rating (String id, int rating) {
-       movie_rating_num.put(id, movie_rating_num.get(id) + 1); // id에 해당하는 num 1 증가
-       movie_rating_sum.put(id, movie_rating_sum.get(id) + rating);// id에 해당하는 rating update
-   }
-
-    get_movie_average (String id) {
-        float count = (float) movie_rating_num.get(id);
-        float rating_sum = (float) movie_rating_sum.get(id);
-        if (count != 0) {
-            float average_rating = rating_sum / count;
-        }
-        movie_rating.put(id, average_rating);
-    }
-
-    ArrayList<HashMap>
-    sort_movie_average () {
-        //movie_rating value 기준으로 내림차순 정렬
-        ArrayList<HashMap<String, Integer>> movie_rating_list = new ArrayList<HashMap<String, Integer>>(movie_rating.entrySet());
-
-        // 비교함수 Comparator
-        Collections.sort(movie_rating_list, new Comparator<HashMap<String, float>>() {
-            // compare로 값을 비교
-            public int compare(HashMap<String, float> mov1, HashMap<String, float> mov2)
-            {
-                // 내림 차순으로 정렬
-                return mov2.getValue().compareTo(mov1.getValue());
-            }
-        });
-        return movie_rating_list;
-    }
-
-    get_top_rating () {
-        movie_rating_list에서 상위 10개의 id를 recommended (arraylist) 로 받아옴
-        return recommended (arraylist)
-    }
-
 }
 
 class ReadFile{
@@ -438,18 +499,4 @@ class ReadFile{
             e.printStackTrace();
         }
     }
-}
-
-class GetRating {
-    userID;
-    movieID;
-    rating;
-
-    public void getRatingInfo (String line) {
-        String[] parse = Parser.parseByDelimiter(line,"::");
-        userID = Integer.parseInt(parse[0]);
-        movieID = Integer.parseInt(parse[1]);
-        rating = Integer.parseInt(parse[2]);
-    }
-
 }

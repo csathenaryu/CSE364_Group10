@@ -14,8 +14,9 @@ public class Main {
 
         GetProperObjects getProperObjects = new GetProperObjects();
         // GetRating getRating = new GetRating();
-        args[0] = "animation|dfd";
-        args[1] = "farmer";
+
+        args[0] = "Adventure";
+        args[1] = "educator";
 
         // Args[0]: movie genres
         try{
@@ -38,19 +39,19 @@ public class Main {
         CustomList userList = getProperObjects.makeTargetTable("data/users.dat", occupation, 3);
 
         GetTopRating getTopRating = new GetTopRating();
-        // GetTotalRating getTotalRating = new GetTotalRating();
+        //GetTotalRating getTotalRating = new GetTotalRating();
 
-        ArrayList<Integer> recommeded_movie = null;
+        ArrayList<Integer> recommended_movie = null;
         try {
-            recommeded_movie = getTopRating.Get_movie_rating("data/ratings.dat", movieList, userList);
+            recommended_movie = getTopRating.Get_movie_rating("data/ratings.dat", movieList, userList);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        System.out.println(recommeded_movie);
+        System.out.println(recommended_movie);
 
-        // float avgRating = getTotalRating.getTargetRating("data/ratings.dat", movieList, userList);
-        // System.out.println(avgRating);
-        // System.out.println(String.format("Average rating is %.2f", avgRating));
+         //float avgRating = getTotalRating.getTargetRating("data/ratings.dat", movieList, userList);
+         //System.out.println(avgRating);
+         //System.out.println(String.format("Average rating is %.2f", avgRating));
 
     }
 }
@@ -95,7 +96,7 @@ interface InputArgument {
 // Pair 대신 다른 data structure를 알아볼 것
 class MovieGenres implements InputArgument{
     static Pair list = new Pair(
-            "action:action,animation:animation,children's:children's,comedy:comedy,crime:crime,documentary:documentary,drama:drama,fantasy:fantasy,film-noir:film-noir,horror:horror,musical:musical,mystery:mystery,romance:romance,scifi:scifi,thriller:thriller,war:war,western:western");
+            "action:action,adventure:adventure,animation:animation,children's:children's,comedy:comedy,crime:crime,documentary:documentary,drama:drama,fantasy:fantasy,film-noir:film-noir,horror:horror,musical:musical,mystery:mystery,romance:romance,scifi:scifi,thriller:thriller,war:war,western:western");
 
     @Override
     public void filter(ArrayList<String> mappedArg, String lowerArg){
@@ -312,22 +313,20 @@ class GetTopRating extends GetRating {
 
     ArrayList<Integer> Get_movie_rating (String fileName, CustomList targetMovieList, CustomList targetUserList) throws FileNotFoundException {
 
-        File file = new File(fileName);
-        FileReader reader = null;
-        try {
-            reader = new FileReader(file);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        BufferedReader buffer = new BufferedReader(reader);
-        String line = "";
+        ReadFile readfile = new ReadFile();
+        readfile.filename = fileName;
+
+        readfile.file = readfile.getFile();
+
+        readfile.tryReading();
+
+        readfile.buffer = readfile.GetBuffer();
+
         while (true) {
-            try {
-                if (!((line = buffer.readLine()) != null)) break;
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            getRatingInfo(line);
+            readfile.readLine();
+            if (readfile.checkline == 0)
+                break;
+            getRatingInfo(readfile.line);
             update_movie_rating(movieID, rating);
         }
         ArrayList<Entry<Integer, Integer>> list_entries = new ArrayList<Entry<Integer, Integer>>(movie_rating_num.entrySet());
@@ -406,22 +405,20 @@ class GetTotalRating extends GetRating {
     public float getTargetRating(String fileName, CustomList targetMovieList, CustomList targetUserList) {
         RatingManager ratingManager = new RatingManager();
 
-        File file = new File(fileName);
-        FileReader reader = null;
-        try {
-            reader = new FileReader(file);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        BufferedReader buffer = new BufferedReader(reader);
-        String line = "";
+        ReadFile readfile = new ReadFile();
+        readfile.filename = fileName;
+
+        readfile.file = readfile.getFile();
+
+        readfile.tryReading();
+
+        readfile.buffer = readfile.GetBuffer();
+
         while (true) {
-            try {
-                if (!((line = buffer.readLine()) != null)) break;
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            getRatingInfo(line);
+            readfile.readLine();
+            if (readfile.checkline == 0)
+                break;
+            getRatingInfo(readfile.line);
             updateTargetRating(ratingManager, targetMovieList, targetUserList);
         }
 
@@ -478,13 +475,27 @@ class ReadFile{
 
     File file;
 
-    FileReader reader;
+    String filename;
+
+    FileReader reader = null;
 
     BufferedReader buffer;
 
-    String line;
+    String line = "";
 
-    tryReading{
+    int checkline = 1;
+
+    File getFile(){
+        file = new File(filename);
+        return file;
+    }
+
+    BufferedReader GetBuffer(){
+        buffer = new BufferedReader(reader);
+        return buffer;
+    }
+
+    void tryReading (){
         try {
             reader = new FileReader(file);
         } catch (FileNotFoundException e) {
@@ -492,9 +503,10 @@ class ReadFile{
         }
     }
 
-    readLine{
+    void readLine(){
         try {
-            if (!((line = buffer.readLine()) != null)) break;
+            if (!((line = buffer.readLine()) != null))
+                checkline = 0;
         } catch (IOException e) {
             e.printStackTrace();
         }

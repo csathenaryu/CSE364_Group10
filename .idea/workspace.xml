@@ -7,6 +7,17 @@
     <list default="true" id="165058b7-9182-45cb-a6a6-73c4a6e9e92c" name="Default Changelist" comment="feat : Implement GetTopRating">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/java/Age.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/java/Age.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/java/ArgsPreprocessing.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/java/ArgsPreprocessing.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/java/CustomList.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/java/CustomList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/java/GetProperObjects.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/java/GetProperObjects.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/java/GetRating.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/java/GetRating.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/java/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/java/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/java/MovieGenres.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/java/MovieGenres.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/java/Occupation.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/java/Occupation.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/java/Pair.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/java/Pair.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/java/Parser.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/java/Parser.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/java/RatingManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/java/RatingManager.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,6 +62,7 @@
     <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.java.Main" />
       <module name="CSE364-project" />
+      <option name="PROGRAM_PARAMETERS" value="&quot;adventure&quot; &quot;educator&quot;" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="main.java.*" />
@@ -69,7 +81,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="8160d3bf-e9d6-405d-b3d6-09094608efe2" name="Default Changelist" comment="" />
+      <changelist id="165058b7-9182-45cb-a6a6-73c4a6e9e92c" name="Default Changelist" comment="feat : Implement GetTopRating" />
       <created>1617205935084</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />

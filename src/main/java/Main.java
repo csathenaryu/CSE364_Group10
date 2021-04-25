@@ -412,3 +412,44 @@ class GetTopRating {
     }
 
 }
+
+class ReadFile{
+
+    File file;
+
+    FileReader reader;
+
+    BufferedReader buffer;
+
+    String line;
+
+    tryReading{
+        try {
+            reader = new FileReader(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    readLine{
+        try {
+            if (!((line = buffer.readLine()) != null)) break;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+class GetRating {
+    userID;
+    movieID;
+    rating;
+
+    public void getRatingInfo (String line) {
+        String[] parse = Parser.parseByDelimiter(line,"::");
+        userID = Integer.parseInt(parse[0]);
+        movieID = Integer.parseInt(parse[1]);
+        rating = Integer.parseInt(parse[2]);
+    }
+
+}

@@ -24,8 +24,9 @@ public class TopRating {
 
         for (HashMap<String, String> rat : ratingData){
             int movieID = Integer.parseInt(rat.get("MovieID"));
+            int userID = Integer.parseInt(rat.get("UserID"));
             int rating = Integer.parseInt(rat.get("Rating"));
-            updateMovieRating(movieID, rating);
+            updateMovieRating(movieID, userID, rating);
         }
 
         ArrayList<IdAndRating> movieAverageRating = getMovieAverageRating();
@@ -33,15 +34,17 @@ public class TopRating {
         return extractTopMovie(movieAverageRating);
     }
 
-    public void updateMovieRating(int id, int rating) {
-        if (movieRating.containsKey(id)){
-            RatingCounter ratingCounter = movieRating.get(id);
-            ratingCounter.update(rating);
-        }
-        else{
-            RatingCounter ratingCounter = new RatingCounter();
-            ratingCounter.update(rating);
-            movieRating.put(id, ratingCounter);
+    public void updateMovieRating(int movieID, int userID, int rating) {
+        if(targetMovie.getAt(movieID) && targetUser.getAt(userID)){
+            if (movieRating.containsKey(movieID)){
+                RatingCounter ratingCounter = movieRating.get(movieID);
+                ratingCounter.update(rating);
+            }
+            else{
+                RatingCounter ratingCounter = new RatingCounter();
+                ratingCounter.update(rating);
+                movieRating.put(movieID, ratingCounter);
+            }
         }
     }
 

@@ -12,6 +12,10 @@ public class ParsingAge extends ParsingInputArgument{
         return getParsedProperty(propertyMapping, inputProp, delimiter);
     }
 
+    public String[] getAllProperty(){
+        return propertyMapping.getAll().toArray(new String[0]);
+    }
+
     @Override
     public void addProperty(ArrayList<String> propertyList, String property) {
         int age = Integer.parseInt(property);

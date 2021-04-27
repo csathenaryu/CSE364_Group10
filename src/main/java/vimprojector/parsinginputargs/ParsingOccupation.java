@@ -11,6 +11,10 @@ public class ParsingOccupation extends ParsingInputArgument{
         return getParsedProperty(propertyMapping, inputProp, delimiter);
     }
 
+    public String[] getAllProperty(){
+        return propertyMapping.getAll().toArray(new String[0]);
+    }
+
     @Override
     public void addProperty(ArrayList<String> propertyList, String property){
         if (propertyMapping.has(property) && !propertyList.contains(property)){

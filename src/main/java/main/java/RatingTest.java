@@ -46,27 +46,6 @@ public class RatingTest {
     }
 }
 
-
-class GetRating {
-    int userID;
-    int movieID;
-    int rating;
-
-    public GetRating(){
-        userID = 0;
-        movieID = 0;
-        rating = 0;
-    }
-
-    public void getRatingInfo (String line) {
-        String[] parse = Parser.parseByDelimiter(line,"::");
-        userID = Integer.parseInt(parse[0]);
-        movieID = Integer.parseInt(parse[1]);
-        rating = Integer.parseInt(parse[2]);
-    }
-
-}
-
 class GetTopRating {
     HashMap<Integer, Float> movieRating = new HashMap<Integer, Float>();
     HashMap<Integer, Integer> movieRatingNum = new HashMap<Integer, Integer>();

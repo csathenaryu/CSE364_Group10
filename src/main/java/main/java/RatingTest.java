@@ -6,7 +6,6 @@ import java.util.Map.Entry;
 
 
 import vimprojector.customdatastructure.*;
-import vimprojector.parsinginputargs.*;
 import vimprojector.loadingdata.*;
 
 
@@ -33,7 +32,7 @@ public class RatingTest {
 
         ArrayList<Integer> recommended_movie = null;
         try {
-            recommended_movie = getTopRating.Get_movie_rating(ratingData, movieList, userList);
+            recommended_movie = getTopRating.getMovieRating(ratingData, movieList, userList);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -68,58 +67,57 @@ class GetRating {
 }
 
 class GetTopRating extends GetRating {
-    HashMap<Integer, Float> movie_rating = new HashMap<Integer, Float>();
-    HashMap<Integer, Integer> movie_rating_num = new HashMap<Integer, Integer>();
-    HashMap<Integer, Integer> movie_rating_sum = new HashMap<Integer, Integer>();
+    HashMap<Integer, Float> movieRating = new HashMap<Integer, Float>();
+    HashMap<Integer, Integer> movieRatingNum = new HashMap<Integer, Integer>();
+    HashMap<Integer, Integer> movieRatingSum = new HashMap<Integer, Integer>();
 
 
-    ArrayList<Integer> Get_movie_rating (ArrayList<HashMap<String, String>> ratingData, Bitmap targetMovieList, Bitmap targetUserList) throws FileNotFoundException {
+    ArrayList<Integer> getMovieRating(ArrayList<HashMap<String, String>> ratingData, Bitmap targetMovieList, Bitmap targetUserList) throws FileNotFoundException {
 
         for (HashMap<String, String> rat : ratingData){
             int movieID = Integer.parseInt(rat.get("MovieID"));
             int rating = Integer.parseInt(rat.get("Rating"));
-            update_movie_rating(movieID, rating);
+            updateMovieRating(movieID, rating);
         }
 
-        ArrayList<Entry<Integer, Integer>> list_entries = new ArrayList<Entry<Integer, Integer>>(movie_rating_num.entrySet());
+        ArrayList<Entry<Integer, Integer>> listEntries = new ArrayList<Entry<Integer, Integer>>(movieRatingNum.entrySet());
 
-        for (Entry<Integer, Integer> entry : list_entries) {
-            get_movie_average(entry.getKey());
+        for (Entry<Integer, Integer> entry : listEntries) {
+            getMovieAverage(entry.getKey());
         }
-        ArrayList<Entry<Integer, Float>> movie_rating_list = sort_movie_average();
-        ArrayList<Integer> recommended_movie = get_top_rating(movie_rating_list);
+        ArrayList<Entry<Integer, Float>> movieRatingList = sortMovieAverage();
+        ArrayList<Integer> recommendedMovie = getTopRating(movieRatingList);
 
-        return recommended_movie;
+        return recommendedMovie;
     }
 
-    void update_movie_rating (int id, int rating) {
+    void updateMovieRating(int id, int rating) {
 
-        if (movie_rating_num.get(id) == null) {
-            movie_rating_num.put(id, 1);
-            movie_rating_sum.put(id, rating);
+        if (movieRatingNum.get(id) == null) {
+            movieRatingNum.put(id, 1);
+            movieRatingSum.put(id, rating);
         }
-        movie_rating_num.put(id, movie_rating_num.get(id) + 1); // id에 해당하는 num 1 증가
-        movie_rating_sum.put(id, movie_rating_sum.get(id) + rating);// id에 해당하는 rating update
+        movieRatingNum.put(id, movieRatingNum.get(id) + 1); // id에 해당하는 num 1 증가
+        movieRatingSum.put(id, movieRatingSum.get(id) + rating);// id에 해당하는 rating update
     }
 
-    void get_movie_average (Integer id) {
-        float count = (float) movie_rating_num.get(id);
-        float rating_sum = (float) movie_rating_sum.get(id);
-        float average_rating = 0;
+    void getMovieAverage(Integer id) {
+        float count = (float) movieRatingNum.get(id);
+        float ratingSum = (float) movieRatingSum.get(id);
+        float averageRating = 0;
         if (count != 0) {
-            average_rating = rating_sum / count;
+            averageRating = ratingSum / count;
         }
-        movie_rating.put(id, average_rating);
+        movieRating.put(id, averageRating);
     }
 
-    ArrayList<Entry<Integer, Float>>
-    sort_movie_average () {
+    ArrayList<Entry<Integer, Float>> sortMovieAverage() {
 
         //movie_rating value 기준으로 내림차순 정렬
-        ArrayList<Entry<Integer, Float>> movie_rating_list = new ArrayList<Entry<Integer, Float>>(movie_rating.entrySet());
+        ArrayList<Entry<Integer, Float>> movieRatingList = new ArrayList<Entry<Integer, Float>>(movieRating.entrySet());
 
         // 비교함수 Comparator
-        Collections.sort(movie_rating_list, new Comparator<Entry<Integer, Float>>() {
+        Collections.sort(movieRatingList, new Comparator<Entry<Integer, Float>>() {
             @Override
             // compare로 값을 비교
             public int compare(Entry<Integer, Float> mov1, Entry<Integer, Float> mov2) {
@@ -127,25 +125,25 @@ class GetTopRating extends GetRating {
                 return mov2.getValue().compareTo(mov1.getValue());
             }
         });
-        System.out.println(movie_rating_list);
-        return movie_rating_list;
+        System.out.println(movieRatingList);
+        return movieRatingList;
     }
 
     ArrayList<Integer>
-    get_top_rating (ArrayList<Entry<Integer, Float>> movie_rating_list) {
+    getTopRating(ArrayList<Entry<Integer, Float>> movieRatingList) {
         //movie_rating_list에서 상위 10개의 id를 recommended (arraylist) 로 받아옴
         int n = 10;
-        int size = movie_rating_list.size();
+        int size = movieRatingList.size();
         if (size < 10) {
             n = size;
         }
 
-        ArrayList<Integer> recommended_movie = new ArrayList<>(10);
+        ArrayList<Integer> recommendedMovie = new ArrayList<>(10);
         for (int i = 0; i < n; i++) {
-            recommended_movie.add(movie_rating_list.get(i).getKey());
+            recommendedMovie.add(movieRatingList.get(i).getKey());
         }
         //return recommended (arraylist)
-        return recommended_movie;
+        return recommendedMovie;
     }
 
 }

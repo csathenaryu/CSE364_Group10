@@ -3,7 +3,7 @@ package vimprojector.parsinginputargs;
 import vimprojector.customdatastructure.Pair;
 import vimprojector.parsinginputargs.ArgumentParser;
 import java.util.ArrayList;
-
+import java.util.Locale;
 
 
 public class ParsingInputArgument {
@@ -14,7 +14,7 @@ public class ParsingInputArgument {
 
         ArrayList<String> propertyList = new ArrayList<>();
         for (String property : parsedProperty){
-            addProperty(propertyList, property);
+            addProperty(propertyList, property.toLowerCase());
         }
 
         if (propertyList.size() == 0) {

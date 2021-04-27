@@ -33,7 +33,7 @@ public class RatingTest {
 
         ArrayList<Integer> recommended_movie = null;
         try {
-            recommended_movie = getTopRating.Get_movie_rating("data/ratings.dat", movieList, userList);
+            recommended_movie = getTopRating.Get_movie_rating(ratingData, movieList, userList);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -73,24 +73,14 @@ class GetTopRating extends GetRating {
     HashMap<Integer, Integer> movie_rating_sum = new HashMap<Integer, Integer>();
 
 
-    ArrayList<Integer> Get_movie_rating (String fileName, CustomList targetMovieList, CustomList targetUserList) throws FileNotFoundException {
+    ArrayList<Integer> Get_movie_rating (ArrayList<HashMap<String, String>> ratingData, Bitmap targetMovieList, Bitmap targetUserList) throws FileNotFoundException {
 
-        ReadFile readfile = new ReadFile();
-        readfile.filename = fileName;
-
-        readfile.file = readfile.getFile();
-
-        readfile.tryReading();
-
-        readfile.buffer = readfile.GetBuffer();
-
-        while (true) {
-            readfile.readLine();
-            if (readfile.checkline == 0)
-                break;
-            getRatingInfo(readfile.line);
+        for (HashMap<String, String> rat : ratingData){
+            int movieID = Integer.parseInt(rat.get("MovieID"));
+            int rating = Integer.parseInt(rat.get("Rating"));
             update_movie_rating(movieID, rating);
         }
+
         ArrayList<Entry<Integer, Integer>> list_entries = new ArrayList<Entry<Integer, Integer>>(movie_rating_num.entrySet());
 
         for (Entry<Integer, Integer> entry : list_entries) {

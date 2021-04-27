@@ -1,4 +1,4 @@
-package vimprojector.parsingargs;
+package vimprojector.parsinginputargs;
 
 import java.util.ArrayList;
 import vimprojector.customdatastructure.Pair;

@@ -67,7 +67,7 @@ class GetRating {
 
 }
 
-class GetTopRating extends GetRating {
+class GetTopRating {
     HashMap<Integer, Float> movieRating = new HashMap<Integer, Float>();
     HashMap<Integer, Integer> movieRatingNum = new HashMap<Integer, Integer>();
     HashMap<Integer, Integer> movieRatingSum = new HashMap<Integer, Integer>();

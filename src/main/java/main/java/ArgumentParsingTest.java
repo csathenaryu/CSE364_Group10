@@ -13,11 +13,9 @@ public class ArgumentParsingTest {
 
         String[] aaa = new String[4];
         aaa[3] = "\"Animation|Drama|hardware\"";
-        aaa[2] = "\"Retired\"";
-        aaa[1] = "\"36\"";
-        aaa[0] = "\"M\"";
-
-
+        aaa[2] = "\"Retired|astronaut\"";
+        aaa[1] = "\"36|-3\"";
+        aaa[0] = "\"M|m\"";
 
         // Args[0]: genders
         try{

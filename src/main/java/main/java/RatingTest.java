@@ -150,7 +150,7 @@ class GetTopRating extends GetRating {
 }
 
 
-class GetTotalRating extends GetRating {
+class GetTotalRating{
 
     public float getTargetRating(ArrayList<HashMap<String, String>> ratingData, Bitmap targetMovieList, Bitmap targetUserList) {
         RatingCounter ratingCounter = new RatingCounter();

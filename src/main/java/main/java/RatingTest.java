@@ -129,25 +129,33 @@ class GetTopRating {
 }
 
 
-class GetTotalRating{
+class TotalRating{
 
-    public float getTargetRating(ArrayList<HashMap<String, String>> ratingData, Bitmap targetMovieList, Bitmap targetUserList) {
-        RatingCounter ratingCounter = new RatingCounter();
+    RatingCounter ratingCounter;
+    ArrayList<HashMap<String, String>> ratingData;
+    Bitmap targetMovie;
+    Bitmap targetUser;
+
+    public TotalRating(ArrayList<HashMap<String, String>> ratData, Bitmap targetMovieList, Bitmap targetUserList){
+        ratingCounter = new RatingCounter();
+        ratingData = ratData;
+        targetMovie = targetMovieList;
+        targetUser = targetUserList;
+    }
+
+    public float getTotalRating() {
 
         for (HashMap<String, String> rat : ratingData){
             int userID = Integer.parseInt(rat.get("UserID"));
             int movieID = Integer.parseInt(rat.get("MovieID"));
             int rating = Integer.parseInt(rat.get("Rating"));
-            updateTargetRating(ratingCounter, targetMovieList, targetUserList, movieID, userID, rating);
+            updateRating(movieID, userID, rating);
         }
-
-        // see also: RatingManager
-        float AverageRating = ratingCounter.getAverageRating();
-        return AverageRating;
+        return ratingCounter.getAverageRating();
     }
 
-    public void updateTargetRating (RatingCounter ratingCounter, Bitmap targetMovieList, Bitmap targetUserList, int movieID, int userID, int rating) {
-        if (targetUserList.getAt(userID) && targetMovieList.getAt(movieID)) {
+    public void updateRating(int movieID, int userID, int rating) {
+        if (targetMovie.getAt(movieID) && targetUser.getAt(userID)) {
             ratingCounter.update(rating);
         }
     }

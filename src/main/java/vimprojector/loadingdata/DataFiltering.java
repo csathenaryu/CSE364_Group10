@@ -6,11 +6,12 @@ import vimprojector.customdatastructure.OneToMany;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+
 public class DataFiltering {
 
     public static Boolean containsTargetProperty(OneToMany oneToMany, HashMap<String, String> data){
         String argument = oneToMany.getArgument();
-        String dataProperty = data.get(argument);
+        String dataProperty = data.get(argument).toLowerCase();
         return oneToMany.containsAtLeastOne(dataProperty.split("\\|"));
     }
 

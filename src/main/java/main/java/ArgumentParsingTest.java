@@ -1,3 +1,4 @@
+/*
 package main.java;
 
 import java.util.Arrays;
@@ -18,7 +19,7 @@ public class ArgumentParsingTest {
         aaa[0] = "\"M\"";
 
 
-/*
+
         // Args[0]: genders
         try{
             if(aaa[0] == "\"\"")
@@ -54,6 +55,7 @@ public class ArgumentParsingTest {
         System.out.println("Age : " + Arrays.toString(age));
         System.out.println("Genres : "+ Arrays.toString(genres));
         System.out.println("Occupation Code : " + Arrays.toString(occupation));
-        System.out.println();*/
+        System.out.println();
     }
 }
+*/

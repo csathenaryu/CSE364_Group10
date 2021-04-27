@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import vimprojector.customdatastructure.Pair;
 
 public class Age implements InputArgument{
-    static Pair list = new Pair(
+    public static Pair list = new Pair(
             "under18:1,18-24:18,25-34:25,35-44:35,45-49:45,50-55:50,56+:56");
 
     @Override

@@ -20,7 +20,7 @@ public class TopRating {
         targetUser = targetUserList;
     }
 
-    ArrayList<Integer> getTopRating() throws FileNotFoundException {
+    public ArrayList<Integer> getTopRating() throws FileNotFoundException {
 
         for (HashMap<String, String> rat : ratingData){
             int movieID = Integer.parseInt(rat.get("MovieID"));
@@ -28,18 +28,12 @@ public class TopRating {
             updateMovieRating(movieID, rating);
         }
 
-        ArrayList<Map.Entry<Integer, Integer>> listEntries = new ArrayList<Map.Entry<Integer, Integer>>(movieRatingNum.entrySet());
-
-        for (Map.Entry<Integer, Integer> entry : listEntries) {
-            getMovieAverage(entry.getKey());
-        }
-        ArrayList<Map.Entry<Integer, Float>> movieRatingList = sortMovieAverage();
-        ArrayList<Integer> recommendedMovie = getTopRating(movieRatingList);
-
-        return recommendedMovie;
+        ArrayList<IdAndRating> movieAverageRating = getMovieAverageRating();
+        sortMovieAverageRating(movieAverageRating);
+        return extractTopMovie(movieAverageRating);
     }
 
-    void updateMovieRating(int id, int rating) {
+    public void updateMovieRating(int id, int rating) {
         if (movieRating.containsKey(id)){
             RatingCounter ratingCounter = movieRating.get(id);
             ratingCounter.update(rating);
@@ -51,43 +45,50 @@ public class TopRating {
         }
     }
 
-    void getMovieAverage(Integer id) {
-        float count = (float) movieRatingNum.get(id);
-        float ratingSum = (float) movieRatingSum.get(id);
-        float averageRating = 0;
-        if (count != 0) {
-            averageRating = ratingSum / count;
+    public ArrayList<IdAndRating> getMovieAverageRating() {
+        ArrayList<IdAndRating> movieAverageRating = new ArrayList<>();
+        for (Map.Entry<Integer, RatingCounter> movieRatingCounter : movieRating.entrySet()){
+            IdAndRating idAndRating = new IdAndRating(movieRatingCounter.getKey(), movieRatingCounter.getValue().getAverageRating());
+            movieAverageRating.add(idAndRating);
         }
-        movieRating.put(id, averageRating);
+        return movieAverageRating;
     }
 
-    ArrayList<Map.Entry<Integer, Float>> sortMovieAverage() {
+    public void sortMovieAverageRating(ArrayList<IdAndRating> movieAverageRating) {
 
-        //movie_rating value 기준으로 내림차순 정렬
-        ArrayList<Map.Entry<Integer, Float>> movieRatingList = new ArrayList<Map.Entry<Integer, Float>>(movieRating.entrySet());
-
-        // 비교함수 Comparator
-        Collections.sort(movieRatingList, new Comparator<Map.Entry<Integer, Float>>() {
+        Comparator<IdAndRating> comparator = new Comparator<IdAndRating>() {
             @Override
-            // compare로 값을 비교
-            public int compare(Map.Entry<Integer, Float> mov1, Map.Entry<Integer, Float> mov2) {
-                // 내림 차순으로 정렬
-                return mov2.getValue().compareTo(mov1.getValue());
+            public int compare(IdAndRating o1, IdAndRating o2) {
+                if (o1.rating > o2.rating){
+                    return -1;
+                } else if (o1.rating < o2.rating){
+                    return 1;
+                } else{
+                    return Integer.compare(o1.id, o2.id);
+                }
             }
-        });
-        System.out.println(movieRatingList);
-        return movieRatingList;
+        };
+
+        movieAverageRating.sort(comparator);
+        System.out.println(movieAverageRating);
     }
 
-    ArrayList<Integer> getTopRating(ArrayList<Map.Entry<Integer, Float>> movieRatingList) {
-        //movie_rating_list 에서 상위 10개의 id를 recommended (arraylist) 로 받아옴
+    public ArrayList<Integer> extractTopMovie(ArrayList<IdAndRating> movieRatingList) {
         int n = Math.min(10, movieRatingList.size());
-
         ArrayList<Integer> recommendedMovie = new ArrayList<>(10);
         for (int i = 0; i < n; i++) {
-            recommendedMovie.add(movieRatingList.get(i).getKey());
+            recommendedMovie.add(movieRatingList.get(i).id);
         }
-        //return recommended (arraylist)
         return recommendedMovie;
+    }
+}
+
+class IdAndRating{
+    int id;
+    float rating;
+
+    IdAndRating(int movieID, float averageRating){
+        id = movieID;
+        rating = averageRating;
     }
 }

@@ -32,9 +32,9 @@ public class RatingTest {
 
 
         // Target Property
-        String[] occupationProperty = {"1", "2"};
+        String[] occupationProperty = {"15"};
         OneToMany occupationTargetProperty = new OneToMany("Occupation", occupationProperty);
-        String[] genresProperty = {"drama", "animation"};
+        String[] genresProperty = {"action"};
         OneToMany genresTargetProperty = new OneToMany("Genres", genresProperty);
 
         OneToMany[] userFilteringCriteria = {occupationTargetProperty};
@@ -42,10 +42,18 @@ public class RatingTest {
 
         Bitmap filteredUser = DataFiltering.filterData(userFilteringCriteria, userData, "UserID");
         Bitmap filteredMovie = DataFiltering.filterData(movieFilteringCriteria, movieData, "MovieID");
+        filteredUser.print();
+        filteredMovie.print();
+
+
+        // extract top 10 movie
+        TopRating topRating = new TopRating(ratingData, filteredMovie, filteredUser);
+        ArrayList<Integer> recommendedMovie = topRating.getTopRating();
+        System.out.println(recommendedMovie);
 
 
         // Top 10
-        GetTopRating getTopRating = new GetTopRating();
+        /*GetTopRating getTopRating = new GetTopRating();
 
         ArrayList<Integer> recommendedMovie = null;
         try {
@@ -53,7 +61,7 @@ public class RatingTest {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        System.out.println(recommendedMovie);
+        System.out.println(recommendedMovie);*/
 
         //GetTotalRating getTotalRating = new GetTotalRating();
         //float avgRating = getTotalRating.getTargetRating("data/ratings.dat", movieList, userList);
@@ -62,6 +70,7 @@ public class RatingTest {
 
     }
 }
+/*
 
 class GetTopRating {
     HashMap<Integer, Float> movieRating = new HashMap<Integer, Float>();
@@ -145,3 +154,4 @@ class GetTopRating {
 
 }
 
+*/

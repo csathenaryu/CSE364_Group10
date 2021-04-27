@@ -7,6 +7,7 @@ import java.util.Map.Entry;
 
 import vimprojector.customdatastructure.*;
 import vimprojector.loadingdata.*;
+import vimprojector.recommender.RatingCounter;
 
 
 public class RatingTest {
@@ -151,36 +152,24 @@ class GetTopRating extends GetRating {
 
 class GetTotalRating extends GetRating {
 
+    public float getTargetRating(ArrayList<HashMap<String, String>> ratingData, Bitmap targetMovieList, Bitmap targetUserList) {
+        RatingCounter ratingCounter = new RatingCounter();
 
-    public float getTargetRating(String fileName, CustomList targetMovieList, CustomList targetUserList) {
-        RatingManager ratingManager = new RatingManager();
-
-        ReadFile readfile = new ReadFile();
-        readfile.filename = fileName;
-
-        readfile.file = readfile.getFile();
-
-        readfile.tryReading();
-
-        readfile.buffer = readfile.GetBuffer();
-
-        while (true) {
-            readfile.readLine();
-            if (readfile.checkline == 0)
-                break;
-            getRatingInfo(readfile.line);
-            updateTargetRating(ratingManager, targetMovieList, targetUserList);
+        for (HashMap<String, String> rat : ratingData){
+            int userID = Integer.parseInt(rat.get("UserID"));
+            int movieID = Integer.parseInt(rat.get("MovieID"));
+            int rating = Integer.parseInt(rat.get("Rating"));
+            updateTargetRating(ratingCounter, targetMovieList, targetUserList, movieID, userID, rating);
         }
 
         // see also: RatingManager
-
-        float AverageRating = ratingManager.getAverageRating();
+        float AverageRating = ratingCounter.getAverageRating();
         return AverageRating;
     }
 
-    public void updateTargetRating (RatingManager ratingManager, CustomList targetMovieList, CustomList targetUserList) {
+    public void updateTargetRating (RatingCounter ratingCounter, Bitmap targetMovieList, Bitmap targetUserList, int movieID, int userID, int rating) {
         if (targetUserList.getAt(userID) && targetMovieList.getAt(movieID)) {
-            ratingManager.update(rating);
+            ratingCounter.update(rating);
         }
     }
 }

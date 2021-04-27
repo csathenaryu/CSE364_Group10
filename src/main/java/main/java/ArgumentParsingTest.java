@@ -1,4 +1,3 @@
-/*
 package main.java;
 
 import java.util.Arrays;
@@ -24,9 +23,10 @@ public class ArgumentParsingTest {
         try{
             if(aaa[0] == "\"\"")
                 throw new Exception();
-            gender = ArgsPreprocessing.preprocess(Gender.list, aaa[0], "\\|", new Gender());
+            gender = new ParsingGender().parseProperty(aaa[0], "\\|");
         } catch (Exception e){
-            gender = Gender.list.getAll().toArray(new String[0]);
+            ParsingGender parsingGender = new ParsingGender();
+            gender = new ParsingGender().getAllProperty();
         }
         // Args[1]: ages
         try{
@@ -58,4 +58,3 @@ public class ArgumentParsingTest {
         System.out.println();
     }
 }
-*/

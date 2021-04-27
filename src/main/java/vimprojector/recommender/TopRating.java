@@ -70,7 +70,6 @@ public class TopRating {
         };
 
         movieAverageRating.sort(comparator);
-        System.out.println(movieAverageRating);
     }
 
     public ArrayList<Integer> extractTopMovie(ArrayList<IdAndRating> movieRatingList) {

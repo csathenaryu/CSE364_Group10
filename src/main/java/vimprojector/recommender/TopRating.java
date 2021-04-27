@@ -8,11 +8,19 @@ import java.util.*;
 
 public class TopRating {
 
-    HashMap<Integer, Float> movieRating = new HashMap<Integer, Float>();
-    HashMap<Integer, Integer> movieRatingNum = new HashMap<Integer, Integer>();
-    HashMap<Integer, Integer> movieRatingSum = new HashMap<Integer, Integer>();
+    HashMap<Integer, RatingCounter> movieRating;
+    ArrayList<HashMap<String, String>> ratingData;
+    Bitmap targetMovie;
+    Bitmap targetUser;
 
-    ArrayList<Integer> getMovieRating(ArrayList<HashMap<String, String>> ratingData, Bitmap targetMovieList, Bitmap targetUserList) throws FileNotFoundException {
+    public TopRating(ArrayList<HashMap<String, String>> ratData, Bitmap targetMovieList, Bitmap targetUserList){
+        movieRating = new HashMap<>();
+        ratingData = ratData;
+        targetMovie = targetMovieList;
+        targetUser = targetUserList;
+    }
+
+    ArrayList<Integer> getTopRating() throws FileNotFoundException {
 
         for (HashMap<String, String> rat : ratingData){
             int movieID = Integer.parseInt(rat.get("MovieID"));
@@ -32,13 +40,15 @@ public class TopRating {
     }
 
     void updateMovieRating(int id, int rating) {
-
-        if (movieRatingNum.get(id) == null) {
-            movieRatingNum.put(id, 1);
-            movieRatingSum.put(id, rating);
+        if (movieRating.containsKey(id)){
+            RatingCounter ratingCounter = movieRating.get(id);
+            ratingCounter.update(rating);
         }
-        movieRatingNum.put(id, movieRatingNum.get(id) + 1); // id에 해당하는 num 1 증가
-        movieRatingSum.put(id, movieRatingSum.get(id) + rating);// id에 해당하는 rating update
+        else{
+            RatingCounter ratingCounter = new RatingCounter();
+            ratingCounter.update(rating);
+            movieRating.put(id, ratingCounter);
+        }
     }
 
     void getMovieAverage(Integer id) {

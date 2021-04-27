@@ -20,7 +20,7 @@ public class TopRating {
         targetUser = targetUserList;
     }
 
-    public ArrayList<Integer> getTopRating() throws FileNotFoundException {
+    public ArrayList<Integer> getTopRating() {
 
         for (HashMap<String, String> rat : ratingData){
             int movieID = Integer.parseInt(rat.get("MovieID"));

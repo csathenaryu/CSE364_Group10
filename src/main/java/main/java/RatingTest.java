@@ -4,13 +4,29 @@ import java.io.*;
 import java.util.*;
 import java.util.Map.Entry;
 
-import vimprojector.parsinginputargs.*;
+
 import vimprojector.customdatastructure.*;
+import vimprojector.parsinginputargs.*;
+import vimprojector.loadingdata.*;
 
 
 public class RatingTest {
 
     public static void main(String[] args) {
+
+        // Data Label
+        // rating: UserID::MovieID::Rating::Timestamp
+        String[] ratingLabel = {"UserID", "MovieID", "Rating", "Timestamp"};
+        // user: UserID::Gender::Age::Occupation::Zip-code
+        String[] userLabel = {"UserID", "Gender", "Age", "Occupation", "Zip-code"};
+        // movie: MovieID::Title::Genres
+        String[] movieLabel = {"MovieID", "Title", "Genres"};
+
+        // Load Data
+        String charset = "ISO-8859-15";
+        ArrayList<HashMap<String, String>> movieData = FilePreprocessing.loadDataFrom("data/movies.dat", movieLabel, charset);
+        ArrayList<HashMap<String, String>> userData = FilePreprocessing.loadDataFrom("data/users.dat", userLabel, charset);
+        ArrayList<HashMap<String, String>> ratingData = FilePreprocessing.loadDataFrom("data/ratings.dat", ratingLabel, charset);
 
         GetTopRating getTopRating = new GetTopRating();
         //GetTotalRating getTotalRating = new GetTotalRating();

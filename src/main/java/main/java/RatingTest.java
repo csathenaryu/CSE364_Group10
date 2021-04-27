@@ -476,11 +476,8 @@ class RatingManager {
 class ReadFile{
 
     File file;
-
     String filename;
-
     FileReader reader = null;
-
     BufferedReader buffer;
 
     String line = "";

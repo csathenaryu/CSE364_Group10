@@ -21,34 +21,39 @@ public class ArgumentParsingTest {
 
         // Args[0]: genders
         try{
-            if(aaa[0] == "\"\"")
+            if(aaa[0] == "\"\""){
                 throw new Exception();
+            }
             gender = new ParsingGender().parseProperty(aaa[0], "\\|");
         } catch (Exception e){
-            ParsingGender parsingGender = new ParsingGender();
             gender = new ParsingGender().getAllProperty();
         }
         // Args[1]: ages
         try{
-            age = ArgsPreprocessing.preprocess(Age.list, aaa[1], "\\|", new Age());
+            if(aaa[1] == "\"\""){
+                throw new Exception();
+            }
+            age = new ParsingAge().parseProperty(aaa[1], "\\|");
         } catch (Exception e){
-            age = Age.list.getAll().toArray(new String[0]);
+            age = new ParsingAge().getAllProperty();
         }
         // Args[2]: occupation
         try{
-            if(aaa[2] == "\"\"")
+            if(aaa[2] == "\"\""){
                 throw new Exception();
-            occupation = ArgsPreprocessing.preprocess(Occupation.list, aaa[2], "\\|", new Occupation());
+            }
+            occupation = new ParsingOccupation().parseProperty(aaa[2], "\\|");
         } catch (Exception e){
-            occupation = Occupation.list.getAll().toArray(new String[0]);
+            occupation = new ParsingOccupation().getAllProperty();
         }
         // Args[3]: movie genres
         try{
-            if(aaa[3] == "\"\"")
+            if(aaa[3] == "\"\""){
                 throw new Exception();
-            genres = ArgsPreprocessing.preprocess(MovieGenres.list, aaa[3], "\\|", new MovieGenres());
+            }
+            genres = new ParsingGenres().parseProperty(aaa[3], "\\|");
         } catch (Exception e){
-            genres = MovieGenres.list.getAll().toArray(new String[0]);
+            genres = new ParsingGenres().getAllProperty();
         }
 
         System.out.println("Gender : " + Arrays.toString(gender));

@@ -14,6 +14,7 @@ public class RatingTest {
 
     public static void main(String[] args) {
 
+
         // Data Label
         // rating: UserID::MovieID::Rating::Timestamp
         String[] ratingLabel = {"UserID", "MovieID", "Rating", "Timestamp"};
@@ -22,23 +23,39 @@ public class RatingTest {
         // movie: MovieID::Title::Genres
         String[] movieLabel = {"MovieID", "Title", "Genres"};
 
+
         // Load Data
         String charset = "ISO-8859-15";
         ArrayList<HashMap<String, String>> movieData = FilePreprocessing.loadDataFrom("data/movies.dat", movieLabel, charset);
         ArrayList<HashMap<String, String>> userData = FilePreprocessing.loadDataFrom("data/users.dat", userLabel, charset);
         ArrayList<HashMap<String, String>> ratingData = FilePreprocessing.loadDataFrom("data/ratings.dat", ratingLabel, charset);
 
-        GetTopRating getTopRating = new GetTopRating();
-        //GetTotalRating getTotalRating = new GetTotalRating();
 
-        ArrayList<Integer> recommended_movie = null;
+        // Target Property
+        String[] occupationProperty = {"1", "2"};
+        OneToMany occupationTargetProperty = new OneToMany("Occupation", occupationProperty);
+        String[] genresProperty = {"drama", "animation"};
+        OneToMany genresTargetProperty = new OneToMany("Genres", genresProperty);
+
+        OneToMany[] userFilteringCriteria = {occupationTargetProperty};
+        OneToMany[] movieFilteringCriteria = {genresTargetProperty};
+
+        Bitmap filteredUser = DataFiltering.filterData(userFilteringCriteria, userData, "UserID");
+        Bitmap filteredMovie = DataFiltering.filterData(movieFilteringCriteria, movieData, "MovieID");
+
+
+        // Top 10
+        GetTopRating getTopRating = new GetTopRating();
+
+        ArrayList<Integer> recommendedMovie = null;
         try {
-            recommended_movie = getTopRating.getMovieRating(ratingData, movieList, userList);
+            recommendedMovie = getTopRating.getMovieRating(ratingData, filteredMovie, filteredUser);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        System.out.println(recommended_movie);
+        System.out.println(recommendedMovie);
 
+        //GetTotalRating getTotalRating = new GetTotalRating();
         //float avgRating = getTotalRating.getTargetRating("data/ratings.dat", movieList, userList);
         //System.out.println(avgRating);
         //System.out.println(String.format("Average rating is %.2f", avgRating));

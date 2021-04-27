@@ -4,11 +4,15 @@ import vimprojector.customdatastructure.Pair;
 import java.util.ArrayList;
 
 public class ParsingGender extends ParsingInputArgument{
-    static Pair propertyMapping = new Pair(
+     Pair propertyMapping = new Pair(
             "m:m,f:f");
 
     public String[] parseProperty(String inputProp, String delimiter){
         return getParsedProperty(propertyMapping, inputProp, delimiter);
+    }
+
+    public String[] getAllProperty(){
+        return propertyMapping.getAll().toArray(new String[0]);
     }
 
     @Override

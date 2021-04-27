@@ -79,14 +79,9 @@ public class TopRating {
         return movieRatingList;
     }
 
-    ArrayList<Integer>
-    getTopRating(ArrayList<Map.Entry<Integer, Float>> movieRatingList) {
-        //movie_rating_list에서 상위 10개의 id를 recommended (arraylist) 로 받아옴
-        int n = 10;
-        int size = movieRatingList.size();
-        if (size < 10) {
-            n = size;
-        }
+    ArrayList<Integer> getTopRating(ArrayList<Map.Entry<Integer, Float>> movieRatingList) {
+        //movie_rating_list 에서 상위 10개의 id를 recommended (arraylist) 로 받아옴
+        int n = Math.min(10, movieRatingList.size());
 
         ArrayList<Integer> recommendedMovie = new ArrayList<>(10);
         for (int i = 0; i < n; i++) {

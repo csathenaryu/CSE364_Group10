@@ -82,9 +82,6 @@ public class TopRating {
     }
 }
 
-
-
-
 class MovieRatingCounter extends RatingCounter{
     String title;
 

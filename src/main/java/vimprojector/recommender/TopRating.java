@@ -8,7 +8,7 @@ import java.util.*;
 
 public class TopRating {
 
-    HashMap<Integer, RatingCounter> movieRating;
+    HashMap<Integer, MovieRatingCounter> movieRating;
     ArrayList<HashMap<String, String>> ratingData;
     Bitmap targetMovie;
     Bitmap targetUser;
@@ -23,10 +23,11 @@ public class TopRating {
     public ArrayList<Integer> getTopRating() {
 
         for (HashMap<String, String> rat : ratingData){
+            String movieTitle = rat.get("Title");
             int movieID = Integer.parseInt(rat.get("MovieID"));
             int userID = Integer.parseInt(rat.get("UserID"));
             int rating = Integer.parseInt(rat.get("Rating"));
-            updateMovieRating(movieID, userID, rating);
+            updateMovieRating(movieTitle, movieID, userID, rating);
         }
 
         ArrayList<IdAndRating> movieAverageRating = getMovieAverageRating();
@@ -34,14 +35,14 @@ public class TopRating {
         return extractTopMovie(movieAverageRating);
     }
 
-    public void updateMovieRating(int movieID, int userID, int rating) {
+    public void updateMovieRating(String movieTitle, int movieID, int userID, int rating) {
         if(targetMovie.getAt(movieID) && targetUser.getAt(userID)){
             if (movieRating.containsKey(movieID)){
-                RatingCounter ratingCounter = movieRating.get(movieID);
+                MovieRatingCounter ratingCounter = movieRating.get(movieID);
                 ratingCounter.update(rating);
             }
             else{
-                RatingCounter ratingCounter = new RatingCounter();
+                MovieRatingCounter ratingCounter = new MovieRatingCounter(movieTitle);
                 ratingCounter.update(rating);
                 movieRating.put(movieID, ratingCounter);
             }
@@ -50,7 +51,7 @@ public class TopRating {
 
     public ArrayList<IdAndRating> getMovieAverageRating() {
         ArrayList<IdAndRating> movieAverageRating = new ArrayList<>();
-        for (Map.Entry<Integer, RatingCounter> movieRatingCounter : movieRating.entrySet()){
+        for (Map.Entry<Integer, MovieRatingCounter> movieRatingCounter : movieRating.entrySet()){
             IdAndRating idAndRating = new IdAndRating(movieRatingCounter.getKey(), movieRatingCounter.getValue().getAverageRating());
             movieAverageRating.add(idAndRating);
         }
@@ -89,5 +90,15 @@ class IdAndRating{
     IdAndRating(int movieID, float averageRating){
         id = movieID;
         rating = averageRating;
+    }
+}
+
+
+class MovieRatingCounter extends RatingCounter{
+    String title;
+
+    MovieRatingCounter(String movieTitle){
+        super();
+        title = movieTitle;
     }
 }

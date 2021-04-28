@@ -50,7 +50,7 @@ public class TopRating {
     public ArrayList<RecommendedMovieInfo> getMovieAverageRating() {
         ArrayList<RecommendedMovieInfo> movieAverageRating = new ArrayList<>();
         for (Map.Entry<Integer, RatingCounter> movieRatingCounter : movieRating.entrySet()){
-            RecommendedMovieInfo recommendedMovieInfo = new RecommendedMovieInfo(movieRatingCounter.getKey(), movieRatingCounter.getValue().getAverageRating(), "");
+            RecommendedMovieInfo recommendedMovieInfo = new RecommendedMovieInfo(movieRatingCounter.getKey(), movieRatingCounter.getValue().getAverageRating());
             movieAverageRating.add(recommendedMovieInfo);
         }
         return movieAverageRating;

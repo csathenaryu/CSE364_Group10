@@ -31,7 +31,9 @@ public class RatingTest {
         ArrayList<HashMap<String, String>> userData = FilePreprocessing.loadDataFrom("data/users.dat", userLabel, charset);
         ArrayList<HashMap<String, String>> movieData = FilePreprocessing.loadDataFrom("data/movies.dat", movieLabel, charset);
         ArrayList<HashMap<String, String>> ratingData = FilePreprocessing.loadDataFrom("data/ratings.dat", ratingLabel, charset);
-        ArrayList<HashMap<String, String>> linkData = FilePreprocessing.loadDataFrom("data/links.dat", linkLabel, charset);
+        HashMap<Integer, String> linkHash = FilePreprocessing.loadHashFrom("data/links.dat", linkLabel, "MovieID", "imdbID", charset);
+        HashMap<Integer, String> movieHash = FilePreprocessing.loadHashFrom("data/movies.dat", movieLabel, "MovieID", "Title", charset);
+
 
 
         // Set Target Property and Filter User and Movie
@@ -53,7 +55,11 @@ public class RatingTest {
         TopRating topRating = new TopRating(ratingData, filteredMovie, filteredUser);
         ArrayList<RecommendedMovieInfo> recommendedMovie = topRating.getTopRating();
         for (RecommendedMovieInfo recommendedMovieInfo: recommendedMovie){
-            System.out.println(recommendedMovieInfo.id + "  " + recommendedMovieInfo.rating);
+            int movieId = recommendedMovieInfo.id;
+            float movieRating = recommendedMovieInfo.rating;
+            String movieTitle = movieHash.get(movieId);
+            String imdbId = linkHash.get(movieId);
+            System.out.println("["+ movieId + "] " + movieTitle + " (http://www.imdb.com/title/tt" + imdbId + ")   [RATING] " + movieRating);
         }
     }
 }

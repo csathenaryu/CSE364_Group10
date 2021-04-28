@@ -1,9 +1,9 @@
 package vimprojector.recommender;
 
 public class RecommendedMovieInfo {
-    int id;
-    float rating;
-    String title;
+    public int id;
+    public float rating;
+    public String title;
 
     RecommendedMovieInfo(int movieID, float averageRating, String movieTitle){
         id = movieID;

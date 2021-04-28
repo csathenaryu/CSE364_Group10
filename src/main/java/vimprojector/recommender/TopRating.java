@@ -7,7 +7,7 @@ import java.util.*;
 
 public class TopRating {
 
-    HashMap<Integer, MovieRatingCounter> movieRating;
+    HashMap<Integer, RatingCounter> movieRating;
     ArrayList<HashMap<String, String>> ratingData;
     Bitmap targetMovie;
     Bitmap targetUser;
@@ -22,11 +22,10 @@ public class TopRating {
     public ArrayList<RecommendedMovieInfo> getTopRating() {
 
         for (HashMap<String, String> rat : ratingData){
-            String movieTitle = rat.get("Title");
             int movieID = Integer.parseInt(rat.get("MovieID"));
             int userID = Integer.parseInt(rat.get("UserID"));
             int rating = Integer.parseInt(rat.get("Rating"));
-            updateMovieRating(movieTitle, movieID, userID, rating);
+            updateMovieRating(movieID, userID, rating);
         }
 
         ArrayList<RecommendedMovieInfo> movieAverageRating = getMovieAverageRating();
@@ -34,14 +33,14 @@ public class TopRating {
         return extractTopMovie(movieAverageRating);
     }
 
-    public void updateMovieRating(String movieTitle, int movieID, int userID, int rating) {
+    public void updateMovieRating(int movieID, int userID, int rating) {
         if(targetMovie.getAt(movieID) && targetUser.getAt(userID)){
             if (movieRating.containsKey(movieID)){
-                MovieRatingCounter ratingCounter = movieRating.get(movieID);
+                RatingCounter ratingCounter = movieRating.get(movieID);
                 ratingCounter.update(rating);
             }
             else{
-                MovieRatingCounter ratingCounter = new MovieRatingCounter(movieTitle);
+                RatingCounter ratingCounter = new RatingCounter();
                 ratingCounter.update(rating);
                 movieRating.put(movieID, ratingCounter);
             }
@@ -50,8 +49,8 @@ public class TopRating {
 
     public ArrayList<RecommendedMovieInfo> getMovieAverageRating() {
         ArrayList<RecommendedMovieInfo> movieAverageRating = new ArrayList<>();
-        for (Map.Entry<Integer, MovieRatingCounter> movieRatingCounter : movieRating.entrySet()){
-            RecommendedMovieInfo recommendedMovieInfo = new RecommendedMovieInfo(movieRatingCounter.getKey(), movieRatingCounter.getValue().getAverageRating(), movieRatingCounter.getValue().title);
+        for (Map.Entry<Integer, RatingCounter> movieRatingCounter : movieRating.entrySet()){
+            RecommendedMovieInfo recommendedMovieInfo = new RecommendedMovieInfo(movieRatingCounter.getKey(), movieRatingCounter.getValue().getAverageRating(), "");
             movieAverageRating.add(recommendedMovieInfo);
         }
         return movieAverageRating;
@@ -73,20 +72,11 @@ public class TopRating {
     }
 
     public ArrayList<RecommendedMovieInfo> extractTopMovie(ArrayList<RecommendedMovieInfo> movieRatingList) {
-        int n = Math.min(10, movieRatingList.size());
         ArrayList<RecommendedMovieInfo> recommendedMovie = new ArrayList<>(10);
+        int n = Math.min(10, movieRatingList.size());
         for (int i = 0; i < n; i++) {
             recommendedMovie.add(movieRatingList.get(i));
         }
         return recommendedMovie;
-    }
-}
-
-class MovieRatingCounter extends RatingCounter{
-    String title;
-
-    MovieRatingCounter(String movieTitle){
-        super();
-        title = movieTitle;
     }
 }

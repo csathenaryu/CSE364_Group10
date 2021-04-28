@@ -1,8 +1,7 @@
 package vimprojector.recommender;
 
 import vimprojector.customdatastructure.Bitmap;
-import vimprojector.recommender.RatingCounter;
-import java.io.FileNotFoundException;
+
 import java.util.*;
 
 
@@ -20,7 +19,7 @@ public class TopRating {
         targetUser = targetUserList;
     }
 
-    public ArrayList<Integer> getTopRating() {
+    public ArrayList<RecommendedMovieInfo> getTopRating() {
 
         for (HashMap<String, String> rat : ratingData){
             String movieTitle = rat.get("Title");
@@ -30,7 +29,7 @@ public class TopRating {
             updateMovieRating(movieTitle, movieID, userID, rating);
         }
 
-        ArrayList<IdAndRating> movieAverageRating = getMovieAverageRating();
+        ArrayList<RecommendedMovieInfo> movieAverageRating = getMovieAverageRating();
         sortMovieAverageRating(movieAverageRating);
         return extractTopMovie(movieAverageRating);
     }
@@ -49,18 +48,18 @@ public class TopRating {
         }
     }
 
-    public ArrayList<IdAndRating> getMovieAverageRating() {
-        ArrayList<IdAndRating> movieAverageRating = new ArrayList<>();
+    public ArrayList<RecommendedMovieInfo> getMovieAverageRating() {
+        ArrayList<RecommendedMovieInfo> movieAverageRating = new ArrayList<>();
         for (Map.Entry<Integer, MovieRatingCounter> movieRatingCounter : movieRating.entrySet()){
-            IdAndRating idAndRating = new IdAndRating(movieRatingCounter.getKey(), movieRatingCounter.getValue().getAverageRating());
-            movieAverageRating.add(idAndRating);
+            RecommendedMovieInfo recommendedMovieInfo = new RecommendedMovieInfo(movieRatingCounter.getKey(), movieRatingCounter.getValue().getAverageRating(), movieRatingCounter.getValue().title);
+            movieAverageRating.add(recommendedMovieInfo);
         }
         return movieAverageRating;
     }
 
-    public void sortMovieAverageRating(ArrayList<IdAndRating> movieAverageRating) {
+    public void sortMovieAverageRating(ArrayList<RecommendedMovieInfo> movieAverageRating) {
 
-        Comparator<IdAndRating> comparator = (o1, o2) -> {
+        Comparator<RecommendedMovieInfo> comparator = (o1, o2) -> {
             if (o1.rating > o2.rating){
                 return -1;
             } else if (o1.rating < o2.rating){
@@ -73,23 +72,25 @@ public class TopRating {
         movieAverageRating.sort(comparator);
     }
 
-    public ArrayList<Integer> extractTopMovie(ArrayList<IdAndRating> movieRatingList) {
+    public ArrayList<RecommendedMovieInfo> extractTopMovie(ArrayList<RecommendedMovieInfo> movieRatingList) {
         int n = Math.min(10, movieRatingList.size());
-        ArrayList<Integer> recommendedMovie = new ArrayList<>(10);
+        ArrayList<RecommendedMovieInfo> recommendedMovie = new ArrayList<>(10);
         for (int i = 0; i < n; i++) {
-            recommendedMovie.add(movieRatingList.get(i).id);
+            recommendedMovie.add(movieRatingList.get(i));
         }
         return recommendedMovie;
     }
 }
 
-class IdAndRating{
+class RecommendedMovieInfo {
     int id;
     float rating;
+    String title;
 
-    IdAndRating(int movieID, float averageRating){
+    RecommendedMovieInfo(int movieID, float averageRating, String movieTitle){
         id = movieID;
         rating = averageRating;
+        title = movieTitle;
     }
 }
 

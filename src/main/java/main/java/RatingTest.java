@@ -51,7 +51,7 @@ public class RatingTest {
 
         // extract top 10 movie
         TopRating topRating = new TopRating(ratingData, filteredMovie, filteredUser);
-        ArrayList<Integer> recommendedMovie = topRating.getTopRating();
+        ArrayList<RecommendedMovieInfo> recommendedMovie = topRating.getTopRating();
         System.out.println(recommendedMovie);
     }
 }

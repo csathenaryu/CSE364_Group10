@@ -4,6 +4,7 @@ import vimprojector.customdatastructure.Bitmap;
 import vimprojector.customdatastructure.OneToMany;
 import vimprojector.loadingdata.DataFiltering;
 import vimprojector.loadingdata.FilePreprocessing;
+import vimprojector.parsinginputargs.*;
 import vimprojector.recommender.RecommendedMovieInfo;
 import vimprojector.recommender.TopRating;
 
@@ -43,12 +44,54 @@ public class Milestone2 {
 
         // 3. Set Target Property and Filter User and Movie
         String[] genderProperty = {"m"};
+        String[] ageProperty = {"18"};
+        String[] occupationProperty = {"11"};
+        String[] genresProperty = {"adventure", "animation"};
+/*
+
+        try{
+            if (args[0].equals("")){
+                throw new Exception();
+            }
+            genderProperty = new ParsingGender().parseProperty(args[0], "\\|");
+        } catch (Exception e){
+            genderProperty = new ParsingGender().getAllProperty();
+        }
+
+        try{
+            if (args[1].equals("")){
+                throw new Exception();
+            }
+            ageProperty = new ParsingAge().parseProperty(args[1], "\\|");
+        } catch (Exception e){
+            ageProperty = new ParsingAge().getAllProperty();
+        }
+
+        try{
+            if (args[2].equals("")){
+                throw new Exception();
+            }
+            occupationProperty = new ParsingOccupation().parseProperty(args[2], "\\|");
+        } catch (Exception e){
+            occupationProperty = new ParsingOccupation().getAllProperty();
+        }
+
+        try{
+            if (args[3].equals("")){
+                throw new Exception();
+            }
+            genresProperty = new ParsingGenres().parseProperty(args[3], "\\|");
+        } catch (Exception e){
+            genresProperty = new ParsingGenres().getAllProperty();
+        }
+*/
+
+
+
+        /* 늘리는 순위: occupation (제한을 풀어버림) > age > gender */
         OneToMany genderTargetProperty = new OneToMany("Gender", genderProperty);
-        String[] ageProperty = {"25"};
         OneToMany ageTargetProperty = new OneToMany("Age", ageProperty);
-        String[] occupationProperty = {"15"};
         OneToMany occupationTargetProperty = new OneToMany("Occupation", occupationProperty);
-        String[] genresProperty = {"action"};
         OneToMany genresTargetProperty = new OneToMany("Genres", genresProperty);
 
         OneToMany[] userFilteringCriteria = {genderTargetProperty, ageTargetProperty, occupationTargetProperty};
@@ -61,7 +104,6 @@ public class Milestone2 {
         // 4. extract top 10 movie
         TopRating topRating = new TopRating(ratingData, filteredMovie, filteredUser);
         ArrayList<RecommendedMovieInfo> recommendedMovie = topRating.getTopRating();
-
 
 
 

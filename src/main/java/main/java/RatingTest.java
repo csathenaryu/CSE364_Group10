@@ -37,12 +37,16 @@ public class RatingTest {
 
 
         // Set Target Property and Filter User and Movie
+        String[] genderProperty = {"m"};
+        OneToMany genderTargetProperty = new OneToMany("Gender", genderProperty);
+        String[] ageProperty = {"25"};
+        OneToMany ageTargetProperty = new OneToMany("Age", ageProperty);
         String[] occupationProperty = {"15"};
         OneToMany occupationTargetProperty = new OneToMany("Occupation", occupationProperty);
         String[] genresProperty = {"action"};
         OneToMany genresTargetProperty = new OneToMany("Genres", genresProperty);
 
-        OneToMany[] userFilteringCriteria = {occupationTargetProperty};
+        OneToMany[] userFilteringCriteria = {genderTargetProperty, ageTargetProperty, occupationTargetProperty};
         OneToMany[] movieFilteringCriteria = {genresTargetProperty};
 
         Bitmap filteredUser = DataFiltering.filterData(userFilteringCriteria, userData, "UserID");
@@ -62,7 +66,10 @@ public class RatingTest {
             float movieRating = recommendedMovieInfo.rating;
             String movieTitle = movieHash.get(movieId);
             String imdbId = linkHash.get(movieId);
-            System.out.println("["+ movieId + "] " + movieTitle + " (http://www.imdb.com/title/tt" + imdbId + ")   [RATING] " + movieRating);
+            System.out.printf("[RATING] %.2f  ", movieRating);
+            System.out.printf("[%4d] ", movieId);
+            System.out.print(movieTitle + " ");
+            System.out.println("(http://www.imdb.com/title/tt" + imdbId + ") ");
         }
     }
 }

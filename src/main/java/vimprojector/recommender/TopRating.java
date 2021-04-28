@@ -59,16 +59,13 @@ public class TopRating {
 
     public void sortMovieAverageRating(ArrayList<IdAndRating> movieAverageRating) {
 
-        Comparator<IdAndRating> comparator = new Comparator<IdAndRating>() {
-            @Override
-            public int compare(IdAndRating o1, IdAndRating o2) {
-                if (o1.rating > o2.rating){
-                    return -1;
-                } else if (o1.rating < o2.rating){
-                    return 1;
-                } else{
-                    return Integer.compare(o1.id, o2.id);
-                }
+        Comparator<IdAndRating> comparator = (o1, o2) -> {
+            if (o1.rating > o2.rating){
+                return -1;
+            } else if (o1.rating < o2.rating){
+                return 1;
+            } else{
+                return Integer.compare(o1.id, o2.id);
             }
         };
 

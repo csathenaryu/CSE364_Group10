@@ -34,7 +34,7 @@ public class RatingTest {
         ArrayList<HashMap<String, String>> linkData = FilePreprocessing.loadDataFrom("data/links.dat", linkLabel, charset);
 
 
-        // Target Property
+        // Set Target Property and Filter User and Movie
         String[] occupationProperty = {"15"};
         OneToMany occupationTargetProperty = new OneToMany("Occupation", occupationProperty);
         String[] genresProperty = {"action"};

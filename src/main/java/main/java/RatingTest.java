@@ -47,8 +47,8 @@ public class RatingTest {
 
         Bitmap filteredUser = DataFiltering.filterData(userFilteringCriteria, userData, "UserID");
         Bitmap filteredMovie = DataFiltering.filterData(movieFilteringCriteria, movieData, "MovieID");
-        filteredUser.print();
-        filteredMovie.print();
+        //filteredUser.print();
+        //filteredMovie.print();
 
 
         // extract top 10 movie

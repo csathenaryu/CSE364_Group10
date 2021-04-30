@@ -26,9 +26,7 @@ public class ParsingInputArgument {
         return propertyList.toArray(new String[0]);
     }
 
-    public static String removeDoubleQuotes(String string){
-        return string.substring(1, string.length()-1);
-    }
+    public static String removeDoubleQuotes(String string){ return string;} //string.substring(1, string.length()-1);}
 
     // Override is necessary
     public void addProperty(ArrayList<String> propertyList, String property){

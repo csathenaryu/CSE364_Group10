@@ -15,6 +15,12 @@ public class Milestone2 {
 
     public static void main(String[] args) {
 
+        ArrayList<RecommendedMovieInfo> recommendedMovie = new ArrayList<>();
+        String[] genderProperty;
+        String[] ageProperty;
+        String[] occupationProperty;
+        String[] genresProperty;
+
         // 1. Data Label
         // user: UserID::Gender::Age::Occupation::Zip-code
         String[] userLabel = {"UserID", "Gender", "Age", "Occupation", "Zip-code"};
@@ -41,69 +47,108 @@ public class Milestone2 {
             > 'xxProperty' should be implemented. Using 'parsingInputArgs' package to get and parse 'args'.
             > 'topRating' must have 10 entries after this part.
             > When using package, please be careful to import it. */
-
+        //args[0] = "m";
+        //args[1] = "18";
+        //args[2] = "11";
+        //args[3] = "adventure|animation";
         // 3. Set Target Property and Filter User and Movie
-        String[] genderProperty = {"m"};
-        String[] ageProperty = {"18"};
-        String[] occupationProperty = {"11"};
-        String[] genresProperty = {"adventure", "animation"};
-/*
+        //String[] genderProperty = {"m"};
+        //String[] ageProperty = {"18"};
+        //String[] occupationProperty = {"11"};
+        //String[] genresProperty = {"adventure", "animation"};
 
-        try{
-            if (args[0].equals("")){
-                throw new Exception();
+
+        while(true) {
+
+            try{
+                if (args[0].equals("")){
+                    throw new Exception();
+                }
+                genderProperty = new ParsingGender().parseProperty(args[0], "\\|");
+            } catch (Exception e){
+                genderProperty = new ParsingGender().getAllProperty();
             }
-            genderProperty = new ParsingGender().parseProperty(args[0], "\\|");
-        } catch (Exception e){
-            genderProperty = new ParsingGender().getAllProperty();
-        }
 
-        try{
-            if (args[1].equals("")){
-                throw new Exception();
+            try{
+                if (args[1].equals("")){
+                    throw new Exception();
+                }
+                ageProperty = new ParsingAge().parseProperty(args[1], "\\|");
+            } catch (Exception e){
+                ageProperty = new ParsingAge().getAllProperty();
             }
-            ageProperty = new ParsingAge().parseProperty(args[1], "\\|");
-        } catch (Exception e){
-            ageProperty = new ParsingAge().getAllProperty();
-        }
 
-        try{
-            if (args[2].equals("")){
-                throw new Exception();
+            try{
+                if (args[2].equals("")){
+                    throw new Exception();
+                }
+                occupationProperty = new ParsingOccupation().parseProperty(args[2], "\\|");
+            } catch (Exception e){
+                occupationProperty = new ParsingOccupation().getAllProperty();
             }
-            occupationProperty = new ParsingOccupation().parseProperty(args[2], "\\|");
-        } catch (Exception e){
-            occupationProperty = new ParsingOccupation().getAllProperty();
-        }
 
-        try{
-            if (args[3].equals("")){
-                throw new Exception();
+            try{
+                if (args[3].equals("")){
+                    throw new Exception();
+                }
+                genresProperty = new ParsingGenres().parseProperty(args[3], "\\|");
+            } catch (Exception e){
+                genresProperty = new ParsingGenres().getAllProperty();
             }
-            genresProperty = new ParsingGenres().parseProperty(args[3], "\\|");
-        } catch (Exception e){
-            genresProperty = new ParsingGenres().getAllProperty();
+
+
+
+
+            /* 늘리는 순위: occupation (제한을 풀어버림) > age > gender */
+            OneToMany genderTargetProperty = new OneToMany("Gender", genderProperty);
+            OneToMany ageTargetProperty = new OneToMany("Age", ageProperty);
+            OneToMany occupationTargetProperty = new OneToMany("Occupation", occupationProperty);
+            OneToMany genresTargetProperty = new OneToMany("Genres", genresProperty);
+
+            OneToMany[] userFilteringCriteria = {genderTargetProperty, ageTargetProperty, occupationTargetProperty};
+            OneToMany[] movieFilteringCriteria = {genresTargetProperty};
+
+            Bitmap filteredUser = DataFiltering.filterData(userFilteringCriteria, userData, "UserID");
+            Bitmap filteredMovie = DataFiltering.filterData(movieFilteringCriteria, movieData, "MovieID");
+
+
+            // 4. extract top 10 movie
+            TopRating topRating = new TopRating(ratingData, filteredMovie, filteredUser);
+            ArrayList<RecommendedMovieInfo> newlyRecommendedMovie = topRating.getTopRating();
+
+            if (recommendedMovie.isEmpty()){
+                recommendedMovie = newlyRecommendedMovie;
+            }
+            else {
+                for (RecommendedMovieInfo recommendedMovieInfo : newlyRecommendedMovie) {
+                    if (recommendedMovie.size() < 10 && !recommendedMovie.contains(recommendedMovieInfo)) {
+                        recommendedMovie.add(recommendedMovieInfo);
+                        continue;
+                    }
+                    break;
+                }
+            }
+
+            if (recommendedMovie.size() == 10)
+                break;
+
+            if (!args[2].equals("")){
+                args[2] = "";
+                continue;
+            }
+
+            if (!args[1].equals("")){
+                args[1] = "";
+                continue;
+            }
+
+            if (!args[0].equals("")){
+                args[0] = "";
+            }
+            else
+                break;
+
         }
-*/
-
-
-
-        /* 늘리는 순위: occupation (제한을 풀어버림) > age > gender */
-        OneToMany genderTargetProperty = new OneToMany("Gender", genderProperty);
-        OneToMany ageTargetProperty = new OneToMany("Age", ageProperty);
-        OneToMany occupationTargetProperty = new OneToMany("Occupation", occupationProperty);
-        OneToMany genresTargetProperty = new OneToMany("Genres", genresProperty);
-
-        OneToMany[] userFilteringCriteria = {genderTargetProperty, ageTargetProperty, occupationTargetProperty};
-        OneToMany[] movieFilteringCriteria = {genresTargetProperty};
-
-        Bitmap filteredUser = DataFiltering.filterData(userFilteringCriteria, userData, "UserID");
-        Bitmap filteredMovie = DataFiltering.filterData(movieFilteringCriteria, movieData, "MovieID");
-
-
-        // 4. extract top 10 movie
-        TopRating topRating = new TopRating(ratingData, filteredMovie, filteredUser);
-        ArrayList<RecommendedMovieInfo> recommendedMovie = topRating.getTopRating();
 
 
 

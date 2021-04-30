@@ -132,6 +132,8 @@ public class Milestone2 {
             if (recommendedMovie.size() == 10)
                 break;
 
+            // System.out.println("Poor data!");
+
             if (!args[2].equals("")){
                 args[2] = "";
                 continue;

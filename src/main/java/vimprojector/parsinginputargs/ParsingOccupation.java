@@ -21,7 +21,7 @@ public class ParsingOccupation extends ParsingInputArgument{
             propertyList.add(propertyMapping.get(property));
         }
         else if(!propertyList.contains("0")){
-            System.out.println(property + " is invalid or already exist. Try using another occupation.");
+            System.out.println(property + " is invalid or already exist. Input occupation will be considered as \"others\"");
             propertyList.add("0");
         }
     }

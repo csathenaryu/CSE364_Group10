@@ -25,10 +25,13 @@ public class RatingCounter {
 
     // average rating 을 반환
     public float getAverageRating(){
+        /*
         if (count == 0) {
             System.out.println("No information");
             return 0;
         }
+
+         */
         float averageRating = (float)sum / (float)count;
         // 소수점 셋째자리에서 반올림
         return averageRating;

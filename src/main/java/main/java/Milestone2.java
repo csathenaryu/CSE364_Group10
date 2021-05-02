@@ -158,9 +158,11 @@ public class Milestone2 {
         for (RecommendedMovieInfo recommendedMovieInfo: recommendedMovie){
             int movieId = recommendedMovieInfo.id;
             float movieRating = recommendedMovieInfo.rating;
+            int ratingCount = recommendedMovieInfo.count;
             String movieTitle = movieHash.get(movieId);
             String imdbId = linkHash.get(movieId);
             System.out.printf("[RATING] %.2f  ", movieRating);
+            System.out.printf("[COUNT] %4d   ", ratingCount);
             System.out.printf("[%4d] ", movieId);
             System.out.print(movieTitle + " ");
             System.out.println("(http://www.imdb.com/title/tt" + imdbId + ") ");

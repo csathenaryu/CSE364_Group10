@@ -29,6 +29,7 @@ public class TopRating {
         }
 
         ArrayList<RecommendedMovieInfo> movieAverageRating = getMovieAverageRating();
+
         sortMovieAverageRating(movieAverageRating);
         return extractTopMovie(movieAverageRating);
     }
@@ -50,14 +51,14 @@ public class TopRating {
     public ArrayList<RecommendedMovieInfo> getMovieAverageRating() {
         ArrayList<RecommendedMovieInfo> movieAverageRating = new ArrayList<>();
         for (Map.Entry<Integer, RatingCounter> movieRatingCounter : movieRating.entrySet()){
-            RecommendedMovieInfo recommendedMovieInfo = new RecommendedMovieInfo(movieRatingCounter.getKey(), movieRatingCounter.getValue().getAverageRating());
+            RecommendedMovieInfo recommendedMovieInfo = new RecommendedMovieInfo(movieRatingCounter.getKey(), movieRatingCounter.getValue().getAverageRating(), movieRatingCounter.getValue().count);
             movieAverageRating.add(recommendedMovieInfo);
         }
         return movieAverageRating;
     }
 
     public void sortMovieAverageRating(ArrayList<RecommendedMovieInfo> movieAverageRating) {
-
+/*
         Comparator<RecommendedMovieInfo> comparator = (o1, o2) -> {
             if (o1.rating > o2.rating){
                 return -1;
@@ -67,12 +68,29 @@ public class TopRating {
                 return Integer.compare(o1.id, o2.id);
             }
         };
-
+ */
+        Comparator<RecommendedMovieInfo> comparator = (o1, o2) -> {
+            if (o1.rating > o2.rating){
+                return -1;
+            } else if (o1.rating < o2.rating){
+                return 1;
+            } else{
+                return Integer.compare(o2.count, o1.count);
+            }
+        };
         movieAverageRating.sort(comparator);
+        /*
+        for (int i = 0; i < movieAverageRating.size(); i++)
+        {
+            System.out.println(movieAverageRating.get(i).rating + " " + movieAverageRating.get(i).count + " " + movieAverageRating.get(i).id);
+        }
+
+         */
     }
 
     public ArrayList<RecommendedMovieInfo> extractTopMovie(ArrayList<RecommendedMovieInfo> movieRatingList) {
         ArrayList<RecommendedMovieInfo> recommendedMovie = new ArrayList<>(10);
+        System.out.println(movieRatingList.size());
 
 
         int n = Math.min(10, movieRatingList.size());

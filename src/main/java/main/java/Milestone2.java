@@ -96,9 +96,6 @@ public class Milestone2 {
                 genresProperty = new ParsingGenres().getAllProperty();
             }
 
-
-
-
             /* 늘리는 순위: occupation (제한을 풀어버림) > age > gender */
             OneToMany genderTargetProperty = new OneToMany("Gender", genderProperty);
             OneToMany ageTargetProperty = new OneToMany("Age", ageProperty);
@@ -115,6 +112,7 @@ public class Milestone2 {
             // 4. extract top 10 movie
             TopRating topRating = new TopRating(ratingData, filteredMovie, filteredUser);
             ArrayList<RecommendedMovieInfo> newlyRecommendedMovie = topRating.getTopRating();
+            // System.out.println(newlyRecommendedMovie.get(1).rating);
 
             if (recommendedMovie.isEmpty()){
                 recommendedMovie = newlyRecommendedMovie;

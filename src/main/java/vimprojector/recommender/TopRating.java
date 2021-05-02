@@ -90,7 +90,7 @@ public class TopRating {
 
     public ArrayList<RecommendedMovieInfo> extractTopMovie(ArrayList<RecommendedMovieInfo> movieRatingList) {
         ArrayList<RecommendedMovieInfo> recommendedMovie = new ArrayList<>(10);
-        System.out.println(movieRatingList.size());
+        // System.out.println(movieRatingList.size());
 
 
         int n = Math.min(10, movieRatingList.size());

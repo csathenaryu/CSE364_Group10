@@ -55,7 +55,7 @@ The GroupLens Research Project is a research group in the Department of
 Computer Science and Engineering at the University of Minnesota. Members of 
 the GroupLens Research Project are involved in many research projects related 
 to the fields of information filtering, collaborative filtering, and 
-recommender systems. The project is lead by professors John Riedl and Joseph 
+vimprojector.recommender systems. The project is lead by professors John Riedl and Joseph 
 Konstan. The project began to explore automated collaborative filtering in 
 1992, but is most well known for its world wide trial of an automated 
 collaborative filtering system for Usenet news in 1996. Since then the project 
@@ -68,7 +68,7 @@ publications, can be found at the following web site:
         
         http://www.grouplens.org/
 
-GroupLens Research currently operates a movie recommender based on 
+GroupLens Research currently operates a movie vimprojector.recommender based on 
 collaborative filtering:
 
         http://www.movielens.org/

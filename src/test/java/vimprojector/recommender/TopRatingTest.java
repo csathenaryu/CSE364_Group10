@@ -52,6 +52,7 @@ public class TopRatingTest {
             is_sorted_rating = (result.get(i).rating >= result.get(i+1).rating);
             Assert.assertTrue(is_sorted_rating);
         }
+        /*
         boolean is_sorted_count;
         for (int i = 0; i < result.size()-1; i++) {
             if (result.get(i).rating == result.get(i+1).rating) {
@@ -59,6 +60,8 @@ public class TopRatingTest {
                 Assert.assertTrue(is_sorted_count);
             }
         }
+
+         */
 
     }
 

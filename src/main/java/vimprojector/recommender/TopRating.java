@@ -87,11 +87,11 @@ public class TopRating {
 
          */
     }
-
     public ArrayList<RecommendedMovieInfo> extractTopMovie(ArrayList<RecommendedMovieInfo> movieRatingList) {
         ArrayList<RecommendedMovieInfo> recommendedMovie = new ArrayList<>(10);
         // System.out.println(movieRatingList.size());
 
+/*
         int n = Math.min(10, movieRatingList.size());
         for (int i = 0; i < n; i++) {
             if (movieRatingList.get(i).rating >= 4)
@@ -101,7 +101,11 @@ public class TopRating {
         }
         return recommendedMovie;
 
-/*
+
+
+ */
+
+
         int size = (int) (movieRatingList.size() * 0.01);
         int i = 0;
         while (recommendedMovie.size() <= 10 && i < movieRatingList.size() - 1) {
@@ -111,7 +115,7 @@ public class TopRating {
             i++;
         }
         return recommendedMovie;
-*/
+
         /*
         int i = 0;
         while (recommendedMovie.size() < 10) {

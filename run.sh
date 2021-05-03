@@ -6,7 +6,7 @@ folder="CSE364_Group10"
 git clone $repository
 
 cd $folder
-git checkout develop_milestone2
+git checkout main
 
 mvn install
 mvn assembly:assembly

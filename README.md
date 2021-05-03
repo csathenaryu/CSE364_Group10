@@ -62,13 +62,13 @@ This program can also be installed by running the `run.sh` file that is included
 The program will recommend you the `10 movies` and links to imdb according to `gender`, `age`, `occupation` and `genres`.  
 Run this program by typing in the following command.   
 ```
-$ java -cp target/CSE364-project-1.0-SNAPSHOT-jar-with-dependencies.jar main.java.main.java.Milestone2 "GENDER" "AGE" "OCCUPATION" "GENRES"
+$ java -cp target/CSE364-project-1.0-SNAPSHOT-jar-with-dependencies.jar main.java.Milestone2 "GENDER" "AGE" "OCCUPATION" "GENRES"
 ```   
 
 For example, let's see the sample command and recommended movie list.  
 It is the `romance` movies for the `man` who is `60` and `retired`.
 ```
-$ java -cp target/CSE364-project-1.0-SNAPSHOT-jar-with-dependencies.jar main.java.main.java.Milestone2 "M" "60" "Retired" "Romance"
+$ java -cp target/CSE364-project-1.0-SNAPSHOT-jar-with-dependencies.jar main.java.Milestone2 "M" "60" "Retired" "Romance"
 ```  
 ```
 Before Sunrise (1995) (http://www.imdb.com/title/tt0112471) 

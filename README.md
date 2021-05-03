@@ -39,7 +39,9 @@ If total number movies that satisfy condition is less than 10, the range or user
 For example, there is only one person in `male`, `56+`, `k-12 student` group. In this case, recommended movies are less than 10,
 so the scope of user will be expanded to `male`, `56+`. If this is still not enough, look for data for `male` user, and then all users.
 Finally, we recommend 10 movies by expanding the range to all users, even if the rating data of the target user is very little.
-
+<br>
+<br>
+<br>
 
 
 ## Installation

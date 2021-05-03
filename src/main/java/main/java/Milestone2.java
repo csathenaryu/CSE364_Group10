@@ -57,44 +57,45 @@ public class Milestone2 {
         //String[] occupationProperty = {"11"};
         //String[] genresProperty = {"adventure", "animation"};
 
+        try{
+            if (args[0].equals("")){
+                throw new Exception();
+            }
+            genderProperty = new ParsingGender().parseProperty(args[0], "\\|");
+        } catch (Exception e){
+            genderProperty = new ParsingGender().getAllProperty();
+        }
+
+        try{
+            if (args[1].equals("")){
+                throw new Exception();
+            }
+            ageProperty = new ParsingAge().parseProperty(args[1], "\\|");
+        } catch (Exception e){
+            ageProperty = new ParsingAge().getAllProperty();
+        }
+
+        try{
+            if (args[2].equals("")){
+                throw new Exception();
+            }
+            occupationProperty = new ParsingOccupation().parseProperty(args[2], "\\|");
+        } catch (Exception e){
+            occupationProperty = new ParsingOccupation().getAllProperty();
+        }
+
+        try{
+            if (args[3].equals("")){
+                throw new Exception();
+            }
+            genresProperty = new ParsingGenres().parseProperty(args[3], "\\|");
+        } catch (Exception e){
+            genresProperty = new ParsingGenres().getAllProperty();
+        }
+
+        int step = 1;
 
         while(true) {
-
-            try{
-                if (args[0].equals("")){
-                    throw new Exception();
-                }
-                genderProperty = new ParsingGender().parseProperty(args[0], "\\|");
-            } catch (Exception e){
-                genderProperty = new ParsingGender().getAllProperty();
-            }
-
-            try{
-                if (args[1].equals("")){
-                    throw new Exception();
-                }
-                ageProperty = new ParsingAge().parseProperty(args[1], "\\|");
-            } catch (Exception e){
-                ageProperty = new ParsingAge().getAllProperty();
-            }
-
-            try{
-                if (args[2].equals("")){
-                    throw new Exception();
-                }
-                occupationProperty = new ParsingOccupation().parseProperty(args[2], "\\|");
-            } catch (Exception e){
-                occupationProperty = new ParsingOccupation().getAllProperty();
-            }
-
-            try{
-                if (args[3].equals("")){
-                    throw new Exception();
-                }
-                genresProperty = new ParsingGenres().parseProperty(args[3], "\\|");
-            } catch (Exception e){
-                genresProperty = new ParsingGenres().getAllProperty();
-            }
 
             /* 늘리는 순위: occupation (제한을 풀어버림) > age > gender */
             OneToMany genderTargetProperty = new OneToMany("Gender", genderProperty);
@@ -119,11 +120,13 @@ public class Milestone2 {
             }
             else {
                 for (RecommendedMovieInfo recommendedMovieInfo : newlyRecommendedMovie) {
-                    if (recommendedMovie.size() < 10 && !recommendedMovie.contains(recommendedMovieInfo)) {
+                    if (recommendedMovie.size() >= 10){
+                        break;
+                    } else if (!recommendedMovie.contains(recommendedMovieInfo)) {
                         recommendedMovie.add(recommendedMovieInfo);
-                        continue;
+                    } else{
+                        // pass
                     }
-                    break;
                 }
             }
 
@@ -132,6 +135,17 @@ public class Milestone2 {
 
             // System.out.println("Poor data!");
 
+            if (step == 1){
+                occupationProperty = new ParsingOccupation().getAllProperty();
+            } else if(step == 2){
+                ageProperty = new ParsingAge().getAllProperty();
+            } else if(step == 3){
+                genderProperty = new ParsingGender().getAllProperty();
+            } else{
+                break;
+            }
+            step++;
+            /*
             if (!args[2].equals("")){
                 args[2] = "";
                 continue;
@@ -146,11 +160,9 @@ public class Milestone2 {
                 args[0] = "";
             }
             else
-                break;
+                break;*/
 
         }
-
-
 
         // 5. Print top rating movie information
         for (RecommendedMovieInfo recommendedMovieInfo: recommendedMovie){

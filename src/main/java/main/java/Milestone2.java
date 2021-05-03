@@ -14,7 +14,16 @@ import java.util.HashMap;
 public class Milestone2 {
 
     public static void main(String[] args) {
+        String userDataPath = "data/users.dat";
+        String movieDataPath = "data/movies.dat";
+        String ratingDataPath = "data/ratings.dat";
+        String linkDataPath = "data/links.dat";
+        milestone2(args, userDataPath, movieDataPath, ratingDataPath, linkDataPath);
+    }
 
+
+
+    public static void milestone2(String[] args, String userDataPath, String movieDataPath, String ratingDataPath, String linkDataPath) {
         ArrayList<RecommendedMovieInfo> recommendedMovie = new ArrayList<>();
         String[] genderProperty;
         String[] ageProperty;
@@ -34,11 +43,11 @@ public class Milestone2 {
 
         // 2. Load Data
         String charset = "ISO-8859-15";
-        ArrayList<HashMap<String, String>> userData = FilePreprocessing.loadDataFrom("data/users.dat", userLabel, charset);
-        ArrayList<HashMap<String, String>> movieData = FilePreprocessing.loadDataFrom("data/movies.dat", movieLabel, charset);
-        ArrayList<HashMap<String, String>> ratingData = FilePreprocessing.loadDataFrom("data/ratings.dat", ratingLabel, charset);
-        HashMap<Integer, String> linkHash = FilePreprocessing.loadHashFrom("data/links.dat", linkLabel, "MovieID", "imdbID", charset);
-        HashMap<Integer, String> movieHash = FilePreprocessing.loadHashFrom("data/movies.dat", movieLabel, "MovieID", "Title", charset);
+        ArrayList<HashMap<String, String>> userData = FilePreprocessing.loadDataFrom(userDataPath, userLabel, charset);
+        ArrayList<HashMap<String, String>> movieData = FilePreprocessing.loadDataFrom(movieDataPath, movieLabel, charset);
+        ArrayList<HashMap<String, String>> ratingData = FilePreprocessing.loadDataFrom(ratingDataPath, ratingLabel, charset);
+        HashMap<Integer, String> linkHash = FilePreprocessing.loadHashFrom(linkDataPath, linkLabel, "MovieID", "imdbID", charset);
+        HashMap<Integer, String> movieHash = FilePreprocessing.loadHashFrom(movieDataPath, movieLabel, "MovieID", "Title", charset);
 
 
 
@@ -113,26 +122,33 @@ public class Milestone2 {
             // 4. extract top 10 movie
             TopRating topRating = new TopRating(ratingData, filteredMovie, filteredUser);
             ArrayList<RecommendedMovieInfo> newlyRecommendedMovie = topRating.getTopRating();
-            // System.out.println(newlyRecommendedMovie.get(1).rating);
 
             if (recommendedMovie.isEmpty()){
                 recommendedMovie = newlyRecommendedMovie;
             }
             else {
-                for (RecommendedMovieInfo recommendedMovieInfo : newlyRecommendedMovie) {
+                for (RecommendedMovieInfo recommendedMovieInfo :  newlyRecommendedMovie) {
                     if (recommendedMovie.size() >= 10){
                         break;
-                    } else if (!recommendedMovie.contains(recommendedMovieInfo)) {
-                        recommendedMovie.add(recommendedMovieInfo);
-                    } else{
-                        // pass
+                    }
+                    else {
+                        boolean is_exist = false;
+                        for (int i = 0; i < recommendedMovie.size(); i++) {
+                            if (recommendedMovieInfo.id == recommendedMovie.get(i).id)
+                                is_exist = true;
+                        }
+                        if(!is_exist) {
+                            recommendedMovie.add(recommendedMovieInfo);
+                        }
                     }
                 }
-            }
 
+
+
+            }
+            // System.out.println(recommendedMovie.size());
             if (recommendedMovie.size() == 10)
                 break;
-
             // System.out.println("Poor data!");
 
             if (step == 1){
@@ -144,6 +160,8 @@ public class Milestone2 {
             } else{
                 break;
             }
+
+            // System.out.println(step);
             step++;
             /*
             if (!args[2].equals("")){

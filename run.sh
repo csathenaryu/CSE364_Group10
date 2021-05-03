@@ -11,4 +11,5 @@ git checkout main
 mvn install
 mvn assembly:assembly
 
-java -cp target/CSE364-project-1.0-SNAPSHOT-jar-with-dependencies.jar main.java.Main "adventure|romance" educator
+java -cp target/CSE364-project-1.0-SNAPSHOT-jar-with-dependencies.jar main.java.Milestone2 "" "" ""
+java -cp target/CSE364-project-1.0-SNAPSHOT-jar-with-dependencies.jar main.java.Milestone2 "" "" "" "Adventure"

@@ -1,28 +1,47 @@
 # VIM PROJECTOR (CSE364_Group10)
 
-## Introduction
+## Introduction - Milestone 2
 `VIM PROJECTOR` is a `movie recommendation program` which recommends movies according to given conditions.  
-Type in the `genres` you wish to watch and your `occupation`, and you will recieve an `average rating` of the movies that belong to the given genres and were rated by others in your occupation.  
-Find your next movie to watch with `VIM PROJECTOR`!!!  
+Type in the `genres` you wish to watch and your `gender`, `age` and `occupation` than you will recieve an `10 recommended movies` of the movies that belong to the given genres.  
+Find your next movie to watch with `VIM PROJECTOR`!!!
 <br>
 <br>
 <br>
-
-
 
 ## Index
++ [Algorithm](#Algorithm)
 + [Introduction](#Introduction)
 + [Index](#Index)
 + [Installation](#Installation)
 + [Usage](#Usage)
-    + [Genres](#Genres)
+    + [Common](#Common)
+    + [Gender](#Gender)
+    + [Age](#Age)
     + [Occupation](#Occupation)
-    + [Rating](#Rating)
+    + [Genres](#Genres)
 + [Contributors](#Contributors)
 <br>
 <br>
 <br>
 
+## Algorithm
+Our system uses two condition for good recommendation, `rating` and `count`.
+`rating` is the average score of each movie that belongs to `genre` which is rated by user belongs to `gender`, `age`, and `occupation`.
+`count` is the number of rating data corresponding to target users and movies which is entered by user.
+
+First, we sort the entire target rating so that the high rating comes first, and find 10 of them to recommend.
+At this, `rating` must be at least 4 points, and `count` must be at least 1% of the number of total rating data
+that corresponds to `gender`, `age`, `occupation`, and `genre`.
+
+If total number movies that satisfy condition is less than 10, the range or users will be expanded in order of
+`occupation`, `age`, and `gender` to fill 10 movies.
+
+For example, there is only one person in `male`, `56+`, `k-12 student` group. In this case, recommended movies are less than 10,
+so the scope of user will be expanded to `male`, `56+`. If this is still not enough, look for data for `male` user, and then all users.
+Finally, we recommend 10 movies by expanding the range to all users, even if the rating data of the target user is very little.
+<br>
+<br>
+<br>
 
 
 ## Installation
@@ -42,119 +61,146 @@ This program can also be installed by running the `run.sh` file that is included
 
 
 ## Usage
-Entering `genres` and `occupation` in order will give you the `average rating score` of the movies that correspond to the conditions you entered.  
-Run this program by typing in the following command.
-Please enter your conditions **in the given order.**  
-  
+The program will recommend you the `10 movies` and links to imdb according to `gender`, `age`, `occupation` and `genres`.  
+Run this program by typing in the following command.   
 ```
-$ java -cp target/CSE364-project-1.0-SNAPSHOT-jar-with-dependencies.jar main.java.Main "gernre1|genre2|...|genreN" "occupation"
-```  
-For example, if you wish to know the average rating score of the movies that belong to `action`, `animation` and `romance` and are rated by users with an occupation of `educator`, type command as below.  
+$ java -cp target/CSE364-project-1.0-SNAPSHOT-jar-with-dependencies.jar main.java.Milestone2 "GENDER" "AGE" "OCCUPATION" "GENRES"
+```   
+
+For example, let's see the sample command and recommended movie list.  
+It is the `romance` movies for the `man` who is `60` and `retired`.
 ```
-$ java -cp target/CSE364-project-1.0-SNAPSHOT-jar-with-dependencies.jar main.java.Main "action|animation|romance" "educator"
+$ java -cp target/CSE364-project-1.0-SNAPSHOT-jar-with-dependencies.jar main.java.Milestone2 "M" "60" "Retired" "Romance"
 ```  
-Note that a rating score of a movie will be incorporated in the result only if the movie belongs to all three genres.  
-Please refer to the following sections about details in inputting `genres` and `occupation`.  
+```
+Before Sunrise (1995) (http://www.imdb.com/title/tt0112471) 
+Much Ado About Nothing (1993) (http://www.imdb.com/title/tt0107616) 
+Bound (1996) (http://www.imdb.com/title/tt0115736) 
+Ninotchka (1939) (http://www.imdb.com/title/tt0031725) 
+Farewell to Arms, A (1932) (http://www.imdb.com/title/tt0022879) 
+Damsel in Distress, A (1937) (http://www.imdb.com/title/tt0028757) 
+Diva (1981) (http://www.imdb.com/title/tt0082269) 
+Wings (1927) (http://www.imdb.com/title/tt0018578) 
+Say Anything... (1989) (http://www.imdb.com/title/tt0098258) 
+Blame It on Rio (1984) (http://www.imdb.com/title/tt0086973)
+```
+
+Please refer to the following sections about details in inputting `gender`, `age`, `occupation` and `genres`.  
+<br>
+<br>
+
+
+### Common
+- Please enter `gender`, `age`, `occupation` and `genres` **in the given order**.  
+    ```
+    "M" "60" "Retired" "Romance"     # right input
+    ```
+    ```
+    "M" "Retired" "60" "Romance"     # wrong input
+    ```
+- If you want to search movie regardless of particular fields, please leave the part empty.
+    ```
+    "" "" "Retired" "Romance"        # search for regardless of gender and age
+    ```
+- Please refer to `list of available input`. The input which is not in the list might be ignored or miscategorized.
+- **Capitalization** does not matter.  
+- Please **avoid spelling mistakes.** This program does not provide any fool-proof feature for such mistakes.  
+- If there is **no valid input** in specific fields, the program will search movie regardless of the fields. 
+<br>
+<br>
+
+### Gender
+- **List of available input**: `m`, `f`
+    ```
+    "M"               # categorized as 'm'
+    ```
+- **Genders that are not in the list above** will be ignored.  
+    ```
+    "male"            # ignored
+                      # output: Invalid gender 'male' will be ignored.
+    ```
+<br>
+<br>
+
+
+### Age
+- **List of available input**: `0 or higher`
+    ```
+    "25"               # right input
+    ```
+    ```
+    "0"                # right input
+    ```
+- **Ages that are not integer** will be ignored.  
+    ```
+    "-23"              # ignored
+                       # output: Invalid age '-23' will be ignored
+    ```
+    ```             
+    "60.3"             # ignored
+                       # output: Invalid age '60.3' will be ignored
+    ```
+<br>
+<br>
+
+
+### Occupation  
+- **List of available input**: `academic`, `educator`, `artist`, `clerical`, `admin`, `collegestudent`, `gradstudent`, `customerservice`, `doctor`,`healthcare`, `executive`, `managerial`, `farmer`, `homemaker`, `k-12student`, `lawyer`, `programmer`, `retired`, `sales`, `marketing`, `scientist`, `self-employed`, `technician`, `engineer`, `tradesman`, `craftsman`, `unemployed`, `writer`  
+    ```
+    "Academic"              # categorized as 'academic'
+    ```
+- **Occupations that are not in the list above** will be categorized as `other`.   
+    ```
+    "dancer"                # categorized as 'other'
+                            # output: Invalid occupation 'dancer' will be categorized as 'Other'
+    ```
+- For an `occupation` that consists of **more than one word**, omit the space in between and **input as one word**.  
+    If you put the space in between, it will be categorized as `other`.
+
+    ```
+    "college student"       # categorized as 'other'
+                            # output: Invalid occupation 'college student' will be categorized as 'Other'
+    ```
+    If only a part of occupation is entered, it will be categorized as `other`.
+    ```
+    "student"               # categorized as 'other'
+                            # output: Invalid occupation 'student' will be categorized as 'Other'
+    ```
 <br>
 <br>
 
 
 ### Genres  
-- The `genres` available are listed as the following:  
-`action`, `animation`, `children's`, `comedy`, `crime`,  `documentary`, `drama`, `fantasy`, `film-noir`, `horror`,  `musical`, `mystery`, `romance`, `scifi`, `thriller`, `war`, `western`  
+- **List of available input**: `action`, `adventure`, `animation`, `children's`, `comedy`, `crime`,  `documentary`, `drama`, `fantasy`, `film-noir`, `horror`,  `musical`, `mystery`, `romance`, `scifi`, `thriller`, `war`, `western`  
     ```
-    action            # output: Your genres are [action]
+    "Action"                # search for 'action'
     ```
-    **Capitalization** does not matter.  
+- **Genres that are not in the list above** will be ignored when entered.  
     ```
-    thRILler          # output: Your genres are [thriller]
+    "sports"                # ignored
+                            # output: Invalid genres 'sports' will be ignored
     ```
-    **Genres not listed on the list above** will be ignored when entered.  
-    ```
-    adventure         # output: adventure is invalid or already exist. Try using another genres.
-                      #         There is no valid input. Terminate program.
-    ```
-    Please **avoid spelling mistakes.**  
-    This program does not provide any fool-proof feature for such mistakes.  
-    In this case, the input will be ignored.  
- 
-    ```
-    actino            # output: actino is invalid or already exist. Try using another genres.
-                      #         There is no valid input. Terminate program.
-    ```
-
 - In case you are entering **several genres**, please distinguish each genre by delimiter `|`.  
-The program will search for movies that match all genres given as input.  
+    The program will search for movies that belong genres given as input.  
     ```
-    action|thriller   # output: Your genres are [action, thriller]
-    ```
-    Please **do not include spaces** in between genres.  
-    If a space exists, only the inputs in front of the space will be applied, and `occupation` information may be omitted.  
-
-    ```
-    action|romance |thriller|war     # output: Your genres are [action, romance]
-                                     # thriller, war are not included
-    ```
-
-- If a genre is not in the list above but is included in a list of genres given, the invalid genre will be ignored, and the program will search only for those available.  
-    ```
-    adventure|animation      # output: Your genres are [animation]
-    ```
-    If there is **no valid genre input**, the program will be terminated.  
-    ```
-    adventure|animatino      # output: adventure is invalid or already exist. Try using another genres.
-                             #         animatino is invalid or already exist. Try using another genres.
-                             #         There is no valid input. Terminate program.
+    "action|romance"        # search for `action` or 'romance'
     ```
 - **Repeated inputs** will be ignored.  
     ```
-    animation|animation|romance      # output: animation is invalid or already exist. Try using another genres.
-                                     # Your genres are [animation, romance]
+    action|action|romance   # search for 'action' or 'romance'
     ```
-<br>
-
-### Occupation  
-- The `occupations` available are listed as the following:  
-`academic`, `educator`, `artist`, `clerical`, `admin`, `collegestudent`, `gradstudent`, `customerservice`, `doctor`,`healthcare`, `executive`, `managerial`, `farmer`, `homemaker`, `k-12student`, `lawyer`, `programmer`, `retired`, `sales`, `marketing`, `scientist`, `self-employed`, `technician`, `engineer`, `tradesman`, `craftsman`, `unemployed`, `writer`, `other`  
+- Please **do not include spaces** in between genres.  
+    If a space exists, the genre will be ignored.
     ```
-    artist          # output: Your occupation code is [2]
+    "action| romance"       # search for 'action'
+                            # output: Invalid genres ' romance' will be ignored
     ```
-    **Capitalization** does not matter.  
+- If there is **no valid genre input**, the program will search movie regardless of genres.  
     ```
-    faRMer             # output: Your occupation code is [8]
+    "action |sports"        # search for regardless of genres
+                            # output: Invalid genres ' action' will be ignored
+                            #         Invalid genres 'sports' will be ignored
     ```
-    **Occupations that are not listed in the list above** will be regarded as `other`.   
-    ```
-    dentist            # output: Your occupation code is [0]
-                       # The occupation code of 'other' is 0
-    ```
-    Please **avoid spelling mistakes.**  
-    This program does not provide any fool-proof feature for such mistakes.  
-    In this case, the input will be regarded as `other`.  
-  
-    ```
-    aritst             # output: Your occupation code is [0]
-    ```
-    
-- For an `occupation` that consists of **more than one word**, omit the space in between and **input as one word.**  
-    ```
-    collegestudent     # output: Your occupation code is [4]
-    ```
-    If only a part of occupation is entered, it will be regarded as `other`.     
-    ```
-    college            # output: Your occupation code is [0]
-    ```
-
-- If `genre(s)` has been entered and **`occupation` omitted**, the program will include movies rated by all `occupations`.  
-    ```
-    java -cp target/CSE364-project-1.0-SNAPSHOT-jar-with-dependencies.jar main.java.Main Action|Romance   # output: Your occupation code is [0, 1, 2, ..., 19, 20]
-    ```  
-<br>
-
-### Rating
-- `Rating` is an **average rating score** of the movies in given `genres` and rated by given `occupation`.  
-- Rating will be printed out with a value rounded off to the nearest hundreadths.  
-- If there is no movie rating information corresponding to given inputs, a message of `No Information` will be printed out, and 0 will be the return value.  
 <br>
 <br>
 <br>
@@ -162,21 +208,14 @@ The program will search for movies that match all genres given as input.
 
 
 ## Contributors
-- 20171113 박소연
-    1. Suggested algorithm utilizing boolean ArrayList
-    2. Implemented code that receives boolean ArrayList as input and returns Rating as output
+|Student ID|NAME|ROLE|
+|:------|:-----|:--------|
+|20171113|박소연|[Milestone 1]<br>- Suggested algorithm utilizing boolean ArrayList<br>- Implemented code that receives boolean ArrayList as input and returns Rating as output<br>[Milestone 2]<br>- Implemented 'recommender' package<br>- Implemented 'recommender' package test codes|
+|20171155|안종민|[Milestone 1]<br>- Implemented code that processes parsed data as a boolean ArrayList<br>- Edited Pom.xml<br>[Milestone 2]<br>- Implemented 'parsinginputargs' package<br>- Implemented 'loadingdata' package test codes|
+|20171375|류성화|[Milestone 1]<br>- Implemented code that processes parsed data as a boolean ArrayList<br> - Translated README.md<br>[Milestone 2]<br>- Implemented 'recommender' package<br>- Implemented 'Milestone2.java' test codes|
+|20181072|김혜진|[Milestone 1]<br>- Implemented code that receives and parses arguments as inputs<br>- Wrote first draft of README.md<br>[Milestone 2]<br>- Implemented 'loadingdata' package<br>- Implemented 'customdatastructure' and 'parsinginputargs' package test codes|
 
-- 20171155 안종민
-    1. Implemented code that processes parsed data as a boolean ArrayList
-    2. Edited Pom.xml
 
-- 20171375 류성화
-    1. Implemented code that processes parsed data as a boolean ArrayList
-    2. Translated README.md
-
-- 20181072 김혜진
-    1. Implemented code that receives and parses arguments as inputs
-    2. Wrote first draft of README.md
 <br>
 <br>
 <br>

@@ -7,10 +7,14 @@ Find your next movie to watch with `VIM PROJECTOR`!!!
 <br>
 <br>
 <br>
-
+### Milestone 2
+`VIM PROJECTOR` is a `movie recommendation program` which recommends movies according to given conditions.  
+Type in the `genres` you wish to watch and your `gender`, `age` and `occupation` than you will recieve an `10 recommended movies` of the movies that belong to the given genres.  
+Find your next movie to watch with `VIM PROJECTOR`!!!
 
 
 ## Index
++ [Algorithm](#Algorithm)
 + [Introduction](#Introduction)
 + [Index](#Index)
 + [Installation](#Installation)
@@ -22,6 +26,22 @@ Find your next movie to watch with `VIM PROJECTOR`!!!
 <br>
 <br>
 <br>
+
+## Algorithm
+(한국어, 이후 번역 예정)
+
+좋은 영화 추천을 위해 우리 영화추천 시스템은 `rating`과 `count` 두가지 조건을 사용한다.
+
+`rating`은 입력된 `gender`, `age`, `occupation` 에 속한 사람들이 입력된 `genre`에 속하는 각 영화의 평균 점수를 말한다.
+`count`는 target 유저가 해당 영화에 대해 평가한 데이터의 수를 말한다.
+
+우리는 우선적으로 전체 target rating을 rating이 높은 것이 먼저 오도록 정렬하고, 이 중 추천할 영화 10개를 찾는다.
+이 때 `rating`은 4점 이상, `count`는 입력된 `gender`, `age`, `occupation`와 `genre`에 해당하는 모든 rating data 수의 1% 이상의 조건을 만족해야
+추천되도록 했다.
+
+만약 그렇게 찾은 총 영화의 개수가 10 보다 작다면, 우리는 `occupation`, `age`, `gender` 순으로 target user의 범위를 넓혀 부족한 개수를 채운다.
+예를들어 남자, 65세 이상의 k-12 student 에 해당하는 유저는 한명밖에 없다. 이 경우 추천 영화가 부족하다면 우선 65세 이상의 남자 유저로 범위를 넓힌다.
+만약 그래도 충분하지 않다면 다음은 65세 이상에 대해 데이터를 찾고, 이후는 모든 유저에 대해 데이터를 찾는다.
 
 
 

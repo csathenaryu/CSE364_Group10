@@ -43,6 +43,22 @@ Find your next movie to watch with `VIM PROJECTOR`!!!
 예를들어 남자, 65세 이상의 k-12 student 에 해당하는 유저는 한명밖에 없다. 이 경우 추천 영화가 부족하다면 우선 65세 이상의 남자 유저로 범위를 넓힌다.
 만약 그래도 충분하지 않다면 다음은 65세 이상에 대해 데이터를 찾고, 이후는 모든 유저에 대해 데이터를 찾는다.
 
+Our system uses two condition for good recommendation, `rating` and `count`.
+`rating` is the average score of each movie that belongs to `genre` which is rated by user belongs to `gender`, `age`, and `occupation`.
+`count` is the number of rating data corresponding to target users and movies which is entered by user.
+
+First, we sort the entire target rating so that the high rating comes first, and find 10 of them to recommend.
+At this, `rating` must be at least 4 points, and `count` must be at least 1% of the number of total rating data
+that corresponds to `gender`, `age`, `occupation`, and `genre`.
+
+If total number movies that satisfy condition is less than 10, the range or users will be expanded in order of
+`occupation`, `age`, and `gender` to fill 10 movies.
+
+For example, there is only one person in `male`, `56+`, `k-12 student` group. In this case, recommended movies are less than 10,
+so the scope of user will be expanded to `male`, `56+`. If this is still not enough, look for data for `male` user, and then all users.
+Finally, we recommend 10 movies by expanding the range to all users, even if the rating data of the target user is very little.
+
+
 
 
 ## Installation

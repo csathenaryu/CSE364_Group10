@@ -19,7 +19,12 @@ public class StaticFieldList {
         // assert splitDataLength == labelLength
         HashMap<String, String> temp = new HashMap<>();
         for(int i=0; i<splitDataLength; i++){
-            temp.put(field[i], splitData[i]);
+            if(splitData[i].equals("")){
+                temp.put(field[i], null);
+            }
+            else{
+                temp.put(field[i], splitData[i]);
+            }
         }
         data.add(temp);
     }

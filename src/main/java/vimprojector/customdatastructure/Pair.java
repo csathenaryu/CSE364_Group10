@@ -11,7 +11,11 @@ public class Pair {
         String[] mappingList = pairString.split(",");
         for (String mapping : mappingList){
             String[] keyValue = mapping.split(":");
-            pairs.put(keyValue[0], keyValue[1]);
+            try{
+                pairs.put(keyValue[0], keyValue[1]);
+            } catch(Exception e){
+
+            }
         }
     }
 
@@ -27,9 +31,7 @@ public class Pair {
         Set<String> keys = pairs.keySet();
         ArrayList<String> allKeys = new ArrayList<>();
         keys.forEach(key -> {
-            if(!allKeys.contains(pairs.get(key))) {
-                allKeys.add(pairs.get(key));
-            }
+            allKeys.add(pairs.get(key));
         });
         return allKeys;
     }

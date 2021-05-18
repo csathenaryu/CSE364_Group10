@@ -14,6 +14,7 @@ import vimprojector.recommender.TopRating;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 //import java.util.List;
 
 public class Milestone2 {
@@ -21,8 +22,18 @@ public class Milestone2 {
     //@Autowired
     //MoviedataRepository repository;
 
-    public MoviedataRepository milestone2(String[] args, MoviedataRepository repository) {
+    public MoviedataRepository milestone2_loadRepository(String[] args, MoviedataRepository repository) {
 
+        ArrayList<MovieData> movieDataArrayList = milestone2(args, "data/ratings.dat");
+
+        repository.saveAll(movieDataArrayList);
+
+        return repository;
+    }
+
+    public ArrayList<MovieData> milestone2(String[] args, String rating_file) {
+
+        ArrayList<MovieData> movieDataArrayList = new ArrayList<>();
         ArrayList<RecommendedMovieInfo> recommendedMovie = new ArrayList<>();
         String[] genderProperty;
         String[] ageProperty;
@@ -44,7 +55,7 @@ public class Milestone2 {
         String charset = "ISO-8859-15";
         ArrayList<HashMap<String, String>> userData = FilePreprocessing.loadDataFrom("data/users.dat", userLabel, charset);
         ArrayList<HashMap<String, String>> movieData = FilePreprocessing.loadDataFrom("data/movies.dat", movieLabel, charset);
-        ArrayList<HashMap<String, String>> ratingData = FilePreprocessing.loadDataFrom("data/ratings.dat", ratingLabel, charset);
+        ArrayList<HashMap<String, String>> ratingData = FilePreprocessing.loadDataFrom(rating_file, ratingLabel, charset);
         HashMap<Integer, String> linkHash = FilePreprocessing.loadHashFrom("data/links.dat", linkLabel, "MovieID", "imdbID", charset);
         HashMap<Integer, String> movieHash = FilePreprocessing.loadHashFrom("data/movies.dat", movieLabel, "MovieID", "Title", charset);
         HashMap<Integer, String> genresHash = FilePreprocessing.loadHashFrom("data/movies.dat", movieLabel, "MovieID", "Genres", charset);
@@ -156,6 +167,8 @@ public class Milestone2 {
             } else if(step == 3){
                 genderProperty = new ParsingGender().getAllProperty();
             } else{
+                step = 0; // for branch coverage,
+                // step is 0 if it escape while loop.
                 break;
             }
             step++;
@@ -186,15 +199,20 @@ public class Milestone2 {
             String movieTitle = movieHash.get(movieId);
             String movieGenres = genresHash.get(movieId);
             String imdbId = linkHash.get(movieId);
+            movieDataArrayList.add(new MovieData(movieTitle, movieGenres, "(http://www.imdb.com/title/tt" + imdbId + ")"));
 
-            repository.save(new MovieData(movieTitle, movieGenres, "(http://www.imdb.com/title/tt" + imdbId + ")"));
+
+            //repository.save(new MovieData(movieTitle, movieGenres, "(http://www.imdb.com/title/tt" + imdbId + ")"));
             //repository.findAll();
             //System.out.printf("[RATING] %.2f  ", movieRating);
             //System.out.printf("[COUNT] %4d   ", ratingCount);
             //System.out.printf("[%4d] ", movieId);
+            //System.out.print(movieGenres + " ");
             //System.out.print(movieTitle + " ");
             //System.out.println("(http://www.imdb.com/title/tt" + imdbId + ") ");
+            //System.out.println(movieTitle);
         }
-        return repository;
+    return movieDataArrayList;
+
     }
 }

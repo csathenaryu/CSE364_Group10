@@ -11,15 +11,15 @@ class MovieData {
     //private String id;
     private @Id String title;
     private String genres;
-    private String link;
+    private String imdb;
 
     MovieData(){};
 
-    MovieData(String title, String genres, String link){
+    MovieData(String title, String genres, String imdb){
         //this.id = id;
         this.title = title;
         this.genres = genres;
-        this.link = link;
+        this.imdb = imdb;
     }
     public String getTitle() {
         return this.title;
@@ -33,11 +33,11 @@ class MovieData {
     public void setGenres(String genres) {
         this.genres = genres;
     }
-    public String getLink() {
-        return this.link;
+    public String getImdb() {
+        return this.imdb;
     }
-    public void setLink(String link) {
-        this.link = link;
+    public void setImdb(String imdb) {
+        this.imdb = imdb;
     }
 
 }

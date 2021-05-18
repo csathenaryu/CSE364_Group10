@@ -25,7 +25,7 @@ class MovieDataController {
     List<MovieData> all(@RequestBody UserData userdata){
 
         Milestone2 milestone2 = new Milestone2();
-        repository = milestone2.milestone2(userdata.getUserData(), repository);
+        repository = milestone2.milestone2_setrepository(userdata.getUserData(), repository);
         return repository.findAll();
 
         //String gender = "F";

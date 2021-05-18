@@ -24,13 +24,13 @@ class MovieDataController {
     @GetMapping("/users/recommendations")
     List<MovieData> all(@RequestBody UserData userdata){
 
+        repository.deleteAll();
         Milestone2 milestone2 = new Milestone2();
         //System.out.println(userdata.getUserData()[0]);
         //System.out.println(userdata.getUserData()[1]);
         //System.out.println(userdata.getUserData()[2]);
         //System.out.println(userdata.getUserData()[3]);
-        repository.deleteAll();
-        repository = milestone2.milestone2_setrepository(userdata.getUserData(), repository);
+        repository = milestone2.milestone2_loadRepository(userdata.getUserData(), repository);
         return repository.findAll();
 
         //String gender = "F";

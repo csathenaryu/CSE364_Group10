@@ -22,7 +22,7 @@ public class Milestone2 {
     //@Autowired
     //MoviedataRepository repository;
 
-    public MoviedataRepository milestone2_setrepository(String[] args, MoviedataRepository repository) {
+    public MoviedataRepository milestone2_loadRepository(String[] args, MoviedataRepository repository) {
 
         ArrayList<MovieData> movieDataArrayList = milestone2(args, "data/ratings.dat");
 

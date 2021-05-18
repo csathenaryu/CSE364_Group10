@@ -167,6 +167,8 @@ public class Milestone2 {
             } else if(step == 3){
                 genderProperty = new ParsingGender().getAllProperty();
             } else{
+                step = 0; // for branch coverage,
+                // step is 0 if it escape while loop.
                 break;
             }
             step++;

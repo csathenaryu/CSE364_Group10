@@ -207,8 +207,10 @@ public class Milestone2 {
             //System.out.printf("[RATING] %.2f  ", movieRating);
             //System.out.printf("[COUNT] %4d   ", ratingCount);
             //System.out.printf("[%4d] ", movieId);
+            //System.out.print(movieGenres + " ");
             //System.out.print(movieTitle + " ");
             //System.out.println("(http://www.imdb.com/title/tt" + imdbId + ") ");
+            //System.out.println(movieTitle);
         }
     return movieDataArrayList;
 

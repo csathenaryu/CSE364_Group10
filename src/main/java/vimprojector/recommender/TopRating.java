@@ -14,12 +14,14 @@ public class TopRating {
     ArrayList<HashMap<String, String>> ratingData;
     Bitmap targetMovie;
     Bitmap targetUser;
+    int limit;
 
-    public TopRating(ArrayList<HashMap<String, String>> ratData, Bitmap targetMovieList, Bitmap targetUserList){
+    public TopRating(ArrayList<HashMap<String, String>> ratData, Bitmap targetMovieList, Bitmap targetUserList, int limit){
         movieRating = new HashMap<>();
         ratingData = ratData;
         targetMovie = targetMovieList;
         targetUser = targetUserList;
+        this.limit = limit;
     }
 
     public ArrayList<RecommendedMovieInfo> getTopRating() {
@@ -91,13 +93,13 @@ public class TopRating {
          */
     }
     public ArrayList<RecommendedMovieInfo> extractTopMovie(ArrayList<RecommendedMovieInfo> movieRatingList) {
-        ArrayList<RecommendedMovieInfo> recommendedMovie = new ArrayList<>(10);
+        ArrayList<RecommendedMovieInfo> recommendedMovie = new ArrayList<>(limit);
 
 
 
         int size = (int) (movieRatingList.size() * 0.01);
         int i = 0;
-        while (recommendedMovie.size() < 10 && i < movieRatingList.size() - 1) {
+        while (recommendedMovie.size() < limit && i < movieRatingList.size() - 1) {
             if (movieRatingList.get(i).rating >= 4 && movieRatingList.get(i).count >= size) {
                 recommendedMovie.add(movieRatingList.get(i));
             }
@@ -106,7 +108,7 @@ public class TopRating {
         return recommendedMovie;
 
     }
-
+/*
     public ArrayList<RecommendedMovieInfo> extractTopMovie(ArrayList<RecommendedMovieInfo> movieRatingList, int limits) {
         ArrayList<RecommendedMovieInfo> recommendedMovie = new ArrayList<>(10);
 
@@ -120,4 +122,6 @@ public class TopRating {
         }
         return recommendedMovie;
     }
+
+ */
 }

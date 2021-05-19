@@ -56,6 +56,7 @@ public class Milestone3 {
         // Get movie genres from title
         HashMap<String, String> genresHash = FilePreprocessing.stringStringloadHashFrom("data/movies.dat", movieLabel, "Title", "Genres", charset);
 
+        HashMap<String, String> movieIDHash = FilePreprocessing.stringStringloadHashFrom("data/movies.dat", movieLabel, "Title", "MovieID", charset);
 
 
         /* Implement code here (Revise 3. and 4.)
@@ -115,10 +116,22 @@ public class Milestone3 {
             }
 
 
+
             // 4. extract top 10 movie
-            TopRating topRating = new TopRating(ratingData, filteredMovie, filteredUser);
+
+            // exclude input movie
+            int inputID = Integer.parseInt(movieIDHash.get(title));
+            // System.out.println(filteredMovie.getAt(inputID));
+            filteredMovie.setAt(inputID, false);
+            // System.out.println(filteredMovie.getAt(inputID));
+
+
+            TopRating topRating = new TopRating(ratingData, filteredMovie, filteredUser, limit);
             ArrayList<RecommendedMovieInfo> newlyRecommendedMovie = topRating.getTopRating();
             // System.out.println(newlyRecommendedMovie.get(1).rating);
+
+            // String movieTitle = movieTitleHash.get(movieId);
+            // System.out.println("title is " + title);
 
             if (recommendedMovie.isEmpty()) {
                 recommendedMovie = newlyRecommendedMovie;
@@ -138,7 +151,7 @@ public class Milestone3 {
                     }
                 }
             }
-
+            // System.out.println("size is " + recommendedMovie.size());
             if (recommendedMovie.size() == limit)
                 break;
 
@@ -164,11 +177,13 @@ public class Milestone3 {
                 break;*/
 
         }
+        // System.out.println("recommend for " + inputID);
+
 
         // 5. Print top rating movie information
         for (RecommendedMovieInfo recommendedMovieInfo : recommendedMovie) {
             int movieId = recommendedMovieInfo.id;
-            //float movieRating = recommendedMovieInfo.rating;
+            float movieRating = recommendedMovieInfo.rating;
             //int ratingCount = recommendedMovieInfo.count;
             String movieTitle = movieTitleHash.get(movieId);
             String movieGenres = genresHash.get(movieTitle);
@@ -178,13 +193,13 @@ public class Milestone3 {
 
             //repository.save(new MovieData(movieTitle, movieGenres, "(http://www.imdb.com/title/tt" + imdbId + ")"));
             //repository.findAll();
-            //System.out.printf("[RATING] %.2f  ", movieRating);
+            System.out.printf("[RATING] %.2f  ", movieRating);
             //System.out.printf("[COUNT] %4d   ", ratingCount);
             //System.out.printf("[%4d] ", movieId);
-            //System.out.print(movieGenres + " ");
+            System.out.print(movieGenres + " ");
             //System.out.print(movieTitle + " ");
             //System.out.println("(http://www.imdb.com/title/tt" + imdbId + ") ");
-            //System.out.println(movieTitle);
+            System.out.println(movieTitle);
         }
         return movieDataArrayList;
     }

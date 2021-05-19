@@ -130,7 +130,7 @@ public class Milestone2 {
 
 
             // 4. extract top 10 movie
-            TopRating topRating = new TopRating(ratingData, filteredMovie, filteredUser);
+            TopRating topRating = new TopRating(ratingData, filteredMovie, filteredUser, 10);
             ArrayList<RecommendedMovieInfo> newlyRecommendedMovie = topRating.getTopRating();
             // System.out.println(newlyRecommendedMovie.get(1).rating);
 

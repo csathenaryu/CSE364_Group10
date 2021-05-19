@@ -9,6 +9,10 @@ public class OneToMany {
         property = prop;
     }
 
+    public int getPropertyLength(){
+        return property.length;
+    }
+
     public String getArgument(){
         return argument;
     }

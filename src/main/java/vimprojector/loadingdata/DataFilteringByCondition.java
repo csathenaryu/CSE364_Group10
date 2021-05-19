@@ -11,7 +11,7 @@ public class DataFilteringByCondition {
 
     private FilteringStrategy filteringStrategy;
 
-    public void setFilteringStrategy(FilteringStrategy filteringStrategy){
+    DataFilteringByCondition(FilteringStrategy filteringStrategy){
         this.filteringStrategy = filteringStrategy;
     }
 
@@ -25,8 +25,7 @@ public class DataFilteringByCondition {
         return filter(oneToMany, dataProperty.split("\\|"));
     }
 
-    public Bitmap filterData(OneToMany[] oneToMany, ArrayList<HashMap<String, String>> loadedData, String keyArgument, FilteringStrategy filteringStrategy){
-        setFilteringStrategy(filteringStrategy);
+    public Bitmap filterData(OneToMany[] oneToMany, ArrayList<HashMap<String, String>> loadedData, String keyArgument){
         Bitmap markedData = new Bitmap();
         // 예컨대, argument = "Occupation", "Gender"
         for (HashMap<String, String> data : loadedData) {

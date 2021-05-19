@@ -13,7 +13,7 @@ class MovieData {
     private String genres;
     private String imdb;
 
-    MovieData(){};
+    MovieData(){}
 
     MovieData(String title, String genres, String imdb){
         //this.id = id;

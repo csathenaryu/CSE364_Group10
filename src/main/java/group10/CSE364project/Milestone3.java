@@ -76,7 +76,16 @@ public class Milestone3 {
         String[] genderProperty = new ParsingGender().getAllProperty();
         String[] ageProperty = new ParsingAge().getAllProperty();
         String[] occupationProperty = new ParsingOccupation().getAllProperty();
-        String[] genresProperty = new ParsingGenres().parseProperty(genresHash.get(title), "\\|");
+        String[] genresProperty;
+
+        if (genresHash.get(title) == null) {
+            System.out.println("The given title is invalid or does not exist in our movie data base.");
+            System.out.println("The recommended movies will be selected from all genres.");
+            genresProperty = new ParsingGenres().getAllProperty();
+        }
+        else {
+            genresProperty = new ParsingGenres().parseProperty(genresHash.get(title), "\\|");
+        }
 
         int step = 1;
 

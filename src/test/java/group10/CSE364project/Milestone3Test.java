@@ -59,4 +59,22 @@ public class Milestone3Test {
         // System.out.println("TestmainValidInput" + movieDataArrayList.size());
 
     }
+
+    @Test
+    public void Test_empty_title() {
+        String title = "";
+        int limit = 10;
+        movieDataArrayList = milestone3.milestone3(title, limit, "data/ratings.dat");
+        // System.out.println("TestmainValidInput" + movieDataArrayList.size());
+
+    }
+
+    @Test
+    public void Test_invalid_title() {
+        String title = "Toi Stori";
+        int limit = 10;
+        movieDataArrayList = milestone3.milestone3(title, limit, "data/ratings.dat");
+        // System.out.println("TestmainValidInput" + movieDataArrayList.size());
+
+    }
 }

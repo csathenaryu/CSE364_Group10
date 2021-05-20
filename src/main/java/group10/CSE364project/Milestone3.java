@@ -178,7 +178,7 @@ public class Milestone3 {
 
         }
         // System.out.println("recommend for " + inputID);
-
+        System.out.println("step for " + title + " is " + step);
 
         // 5. Print top rating movie information
         for (RecommendedMovieInfo recommendedMovieInfo : recommendedMovie) {
@@ -193,13 +193,13 @@ public class Milestone3 {
 
             //repository.save(new MovieData(movieTitle, movieGenres, "(http://www.imdb.com/title/tt" + imdbId + ")"));
             //repository.findAll();
-            System.out.printf("[RATING] %.2f  ", movieRating);
+            // System.out.printf("[RATING] %.2f  ", movieRating);
             //System.out.printf("[COUNT] %4d   ", ratingCount);
             //System.out.printf("[%4d] ", movieId);
-            System.out.print(movieGenres + " ");
+            // System.out.print(movieGenres + " ");
             //System.out.print(movieTitle + " ");
             //System.out.println("(http://www.imdb.com/title/tt" + imdbId + ") ");
-            System.out.println(movieTitle);
+            // System.out.println(movieTitle);
         }
         return movieDataArrayList;
     }

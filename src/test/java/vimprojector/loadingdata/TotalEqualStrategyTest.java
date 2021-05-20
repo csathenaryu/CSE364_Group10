@@ -1,8 +1,7 @@
-package loadingdata;
+package vimprojector.loadingdata;
 
 import org.junit.Test;
 import vimprojector.customdatastructure.OneToMany;
-import vimprojector.loadingdata.TotalEqualStrategy;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;

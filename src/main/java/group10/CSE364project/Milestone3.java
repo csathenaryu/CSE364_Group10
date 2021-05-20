@@ -77,11 +77,12 @@ public class Milestone3 {
         String[] ageProperty = new ParsingAge().getAllProperty();
         String[] occupationProperty = new ParsingOccupation().getAllProperty();
         String[] genresProperty;
-
+        boolean is_valid_title = true;
         if (genresHash.get(title) == null) {
             System.out.println("The given title is invalid or does not exist in our movie data base.");
             System.out.println("The recommended movies will be selected from all genres.");
             genresProperty = new ParsingGenres().getAllProperty();
+            is_valid_title = false;
         }
         else {
             genresProperty = new ParsingGenres().parseProperty(genresHash.get(title), "\\|");
@@ -127,12 +128,13 @@ public class Milestone3 {
 
 
             // 4. extract top 10 movie
-
-            // exclude input movie
-            int inputID = Integer.parseInt(movieIDHash.get(title));
-            // System.out.println(filteredMovie.getAt(inputID));
-            filteredMovie.setAt(inputID, false);
-            // System.out.println(filteredMovie.getAt(inputID));
+            if (is_valid_title) {
+                // exclude input movie
+                int inputID = Integer.parseInt(movieIDHash.get(title));
+                // System.out.println(filteredMovie.getAt(inputID));
+                filteredMovie.setAt(inputID, false);
+                // System.out.println(filteredMovie.getAt(inputID));
+            }
 
 
             TopRating topRating = new TopRating(ratingData, filteredMovie, filteredUser, limit);

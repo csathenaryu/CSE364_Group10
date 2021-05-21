@@ -28,7 +28,7 @@ public class FilePreprocessing {
         return staticFieldList.getLoadedData();
     }
 
-    public static HashMap<Integer, String> loadHashFrom(String fileName, String[] dataLabel, String key, String value, String charset){
+    public static HashMap<Integer, String> intStringloadHashFrom(String fileName, String[] dataLabel, String key, String value, String charset){
         // try 문 안으로 넣어야 할까?
         HashMap<Integer, String> hashMap = new HashMap<>();
         try {
@@ -39,6 +39,25 @@ public class FilePreprocessing {
                 String[] splitData = dataLine.split("::");
                 HashMap<String, String> hash = makeHash(dataLabel, splitData);
                 hashMap.put(Integer.parseInt(hash.get(key)), hash.get(value));
+            }
+            bufReader.close();
+        } catch(Exception e) {
+            System.out.printf("There is no such file: %s%n", fileName);
+        }
+        return hashMap;
+    }
+
+    public static HashMap<String, String> stringStringloadHashFrom(String fileName, String[] dataLabel, String key, String value, String charset){
+        // try 문 안으로 넣어야 할까?
+        HashMap<String, String> hashMap = new HashMap<>();
+        try {
+            FileInputStream fileInputStream = new FileInputStream(fileName);
+            BufferedReader bufReader = new BufferedReader(new InputStreamReader(fileInputStream, charset));
+            String dataLine;
+            while ((dataLine = bufReader.readLine()) != null) {
+                String[] splitData = dataLine.split("::");
+                HashMap<String, String> hash = makeHash(dataLabel, splitData);
+                hashMap.put(hash.get(key), hash.get(value));
             }
             bufReader.close();
         } catch(Exception e) {

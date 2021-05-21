@@ -11,7 +11,7 @@ public class DataFilteringByCondition {
 
     private FilteringStrategy filteringStrategy;
 
-    DataFilteringByCondition(FilteringStrategy filteringStrategy){
+    public DataFilteringByCondition(FilteringStrategy filteringStrategy){
         this.filteringStrategy = filteringStrategy;
     }
 

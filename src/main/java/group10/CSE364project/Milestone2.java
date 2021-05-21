@@ -1,6 +1,6 @@
 package group10.CSE364project;
 
-import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.beans.factory.annotation.Autowired;
 import vimprojector.customdatastructure.Bitmap;
 import vimprojector.customdatastructure.OneToMany;
 import vimprojector.loadingdata.DataFiltering;
@@ -14,7 +14,7 @@ import vimprojector.recommender.TopRating;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
+//import java.util.List;
 //import java.util.List;
 
 public class Milestone2 {
@@ -56,9 +56,9 @@ public class Milestone2 {
         ArrayList<HashMap<String, String>> userData = FilePreprocessing.loadDataFrom("data/users.dat", userLabel, charset);
         ArrayList<HashMap<String, String>> movieData = FilePreprocessing.loadDataFrom("data/movies.dat", movieLabel, charset);
         ArrayList<HashMap<String, String>> ratingData = FilePreprocessing.loadDataFrom(rating_file, ratingLabel, charset);
-        HashMap<Integer, String> linkHash = FilePreprocessing.loadHashFrom("data/links.dat", linkLabel, "MovieID", "imdbID", charset);
-        HashMap<Integer, String> movieHash = FilePreprocessing.loadHashFrom("data/movies.dat", movieLabel, "MovieID", "Title", charset);
-        HashMap<Integer, String> genresHash = FilePreprocessing.loadHashFrom("data/movies.dat", movieLabel, "MovieID", "Genres", charset);
+        HashMap<Integer, String> linkHash = FilePreprocessing.intStringloadHashFrom("data/links.dat", linkLabel, "MovieID", "imdbID", charset);
+        HashMap<Integer, String> movieHash = FilePreprocessing.intStringloadHashFrom("data/movies.dat", movieLabel, "MovieID", "Title", charset);
+        HashMap<Integer, String> genresHash = FilePreprocessing.intStringloadHashFrom("data/movies.dat", movieLabel, "MovieID", "Genres", charset);
 
 
 
@@ -130,7 +130,7 @@ public class Milestone2 {
 
 
             // 4. extract top 10 movie
-            TopRating topRating = new TopRating(ratingData, filteredMovie, filteredUser);
+            TopRating topRating = new TopRating(ratingData, filteredMovie, filteredUser, 10);
             ArrayList<RecommendedMovieInfo> newlyRecommendedMovie = topRating.getTopRating();
             // System.out.println(newlyRecommendedMovie.get(1).rating);
 
@@ -194,8 +194,8 @@ public class Milestone2 {
         // 5. Print top rating movie information
         for (RecommendedMovieInfo recommendedMovieInfo: recommendedMovie){
             int movieId = recommendedMovieInfo.id;
-            float movieRating = recommendedMovieInfo.rating;
-            int ratingCount = recommendedMovieInfo.count;
+            //float movieRating = recommendedMovieInfo.rating;
+            //int ratingCount = recommendedMovieInfo.count;
             String movieTitle = movieHash.get(movieId);
             String movieGenres = genresHash.get(movieId);
             String imdbId = linkHash.get(movieId);

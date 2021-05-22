@@ -27,7 +27,7 @@ public class RatingCounter {
     public float getAverageRating(){
 /*
         if (count == 0) {
-            // System.out.println("No0 information");
+            // System.out.println("No information");
             return 0;
         }
 */

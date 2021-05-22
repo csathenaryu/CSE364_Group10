@@ -16,7 +16,7 @@ public class ContainsAllStrategyTest {
         String[] inputData = {"a", "b"};
 
         OneToMany oneToMany = new OneToMany("Genre", a);
-        assertTrue(t.filter(oneToMany, inputData));
+        assertFalse(t.filter(oneToMany, inputData));
     }
 
 
@@ -28,7 +28,7 @@ public class ContainsAllStrategyTest {
         String[] inputData = {"a", "b", "c"};
 
         OneToMany oneToMany = new OneToMany("Genre", a);
-        assertFalse(t.filter(oneToMany, inputData));
+        assertTrue(t.filter(oneToMany, inputData));
     }
 
 

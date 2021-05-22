@@ -15,9 +15,9 @@ public class OneToManyTest {
     }
 
     @Test
-    public void containsAll_Subset_true() {
+    public void containsAll_All_true() {
         OneToMany oneToMany = new OneToMany(argument, property);
-        String[] inputProperty = {"a", "b"};
+        String[] inputProperty = {"a", "b", "c", "d", "e"};
         assertEquals(true, oneToMany.containsAll(inputProperty));
     }
 

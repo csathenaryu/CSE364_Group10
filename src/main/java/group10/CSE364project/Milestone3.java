@@ -29,7 +29,7 @@ public class Milestone3 {
         ArrayList<MovieData> movieDataArrayList = new ArrayList<>();
         ArrayList<RecommendedMovieInfo> recommendedMovie = new ArrayList<>();
 
-        if (limit == 0) {
+        if (limit <= 0) {
             limit = 10;
         }
 

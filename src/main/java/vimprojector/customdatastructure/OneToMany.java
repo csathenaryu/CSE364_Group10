@@ -31,14 +31,13 @@ public class OneToMany {
 
     // 주어진 inputProperties 를 targetProperty 가 모두 포함하고 있는지
     public Boolean containsAll(String[] inputProperty){
-        boolean isIn = true;
+        int trueCount = 0;
         for(String inputProp : inputProperty){
-            if(!contains(inputProp)){
-                isIn = false;
-                break;
+            if(contains(inputProp)){
+                trueCount++;
             }
         }
-        return isIn;
+        return trueCount == getPropertyLength();
     }
 
     // 주어진 inputProperties 를 targetProperty 가 하나라도 포함하고 있는지

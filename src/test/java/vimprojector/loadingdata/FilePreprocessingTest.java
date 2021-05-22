@@ -27,7 +27,7 @@ public class FilePreprocessingTest {
     }
 
     @Test
-    public void loadHashFromTEST() {
+    public void intStringloadHashFromTEST() {
         // HashMap<Integer, String> linkHash = FilePreprocessing.loadHashFrom("data/links.dat", linkLabel, "MovieID", "imdbID", charset);
         String[] linkLabel = {"MovieID", "imdbID"};
         String charset = "ISO-8859-15";
@@ -36,7 +36,18 @@ public class FilePreprocessingTest {
 
         HashMap<Integer, String> b = new HashMap();
         assertNotEquals(FilePreprocessing.intStringloadHashFrom("data/links.dat", linkLabel, "MovieID", "imdbID", charset), b);
+    }
 
+    @Test
+    public void stringStringloadHashFromTEST() {
+        // HashMap<Integer, String> linkHash = FilePreprocessing.loadHashFrom("data/links.dat", linkLabel, "MovieID", "imdbID", charset);
+        String[] linkLabel = {"MovieID", "imdbID"};
+        String charset = "ISO-8859-15";
+        HashMap<String, String> a = new HashMap();
+        assertEquals(FilePreprocessing.stringStringloadHashFrom("data/lindfdks.dat", linkLabel, "MovieID", "imdbID", charset), a);
+
+        HashMap<String, String> b = new HashMap();
+        assertNotEquals(FilePreprocessing.stringStringloadHashFrom("data/links.dat", linkLabel, "MovieID", "imdbID", charset), b);
     }
 
     @Test

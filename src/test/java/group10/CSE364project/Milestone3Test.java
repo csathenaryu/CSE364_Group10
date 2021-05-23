@@ -77,7 +77,7 @@ public class Milestone3Test {
             boolean TF = false;
             for(String i: each_genres) {
                 for(String j: inputArray) {
-                    System.out.println(i + " " + j);
+                    // System.out.println(i + " " + j);
                     if(i.equals(j)) {
                         TF = true;
                         break;
@@ -98,7 +98,7 @@ public class Milestone3Test {
         boolean TF = false;
         for(String i: a) {
             for(String j: inputArray) {
-                System.out.println(j);
+                // System.out.println(j);
                 if(i.equals(j)) {
                     TF = true;
                     break;

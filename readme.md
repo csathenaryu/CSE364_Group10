@@ -120,6 +120,7 @@ Following items should be set at the HTTP Header to call API.
 |imdb|string|Link of receommended movies|
 <br>
 
+
 **[Sample Request]**
 ```
 curl -X GET http://localhost:8080/users/recommendations -H 'Content-type:application/json' -d '{"gender":"F", "age":"25", "occupation":"educator", "genres":"Action|War"}'
@@ -162,6 +163,17 @@ curl -X GET http://localhost:8080/users/recommendations -H 'Content-type:applica
 |:---|:---|:---|:---|:---|
 |title|string|mandatory|Title of Movie|ISO-8859-15 encoding required|
 |limit|integer|optional|10 (default)|Number of recommended movies|
+<br>
+
+
+- Title
+    - **List of available input**: Movie titles in `movies.dat` of data directory.
+    - **Invalid input case**: Titles that are not in `movies.dat` (e.g., typo) or empty title.
+    - If input title is **invalid**, the program will recommend from the entire dataset.
+- Limit
+    - **List of available input**: Integers
+    - If limit is **zero or less than zero**, the program will recommend 10 movies.
+
 <br>
 
 **[Response Body]**

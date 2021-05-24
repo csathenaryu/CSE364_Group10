@@ -1,13 +1,13 @@
 package vimprojector.loadingdata;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import vimprojector.customdatastructure.Bitmap;
 import vimprojector.customdatastructure.OneToMany;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 import static vimprojector.loadingdata.DataFiltering.containsTargetProperty;
 import static vimprojector.loadingdata.FilePreprocessing.makeHash;
 

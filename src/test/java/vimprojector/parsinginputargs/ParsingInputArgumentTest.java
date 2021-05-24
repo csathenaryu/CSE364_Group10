@@ -1,12 +1,10 @@
 package vimprojector.parsinginputargs;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import java.awt.image.AreaAveragingScaleFilter;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ParsingInputArgumentTest {
 

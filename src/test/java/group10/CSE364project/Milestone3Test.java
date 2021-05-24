@@ -1,13 +1,13 @@
 package group10.CSE364project;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import vimprojector.parsinginputargs.ArgumentParser;
 import vimprojector.parsinginputargs.ParsingGenres;
 
 import java.util.ArrayList;
 import java.util.Locale;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 import static vimprojector.parsinginputargs.ArgumentParser.parseByDelimiter;
 
 public class Milestone3Test {

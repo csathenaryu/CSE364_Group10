@@ -5,35 +5,35 @@ import java.util.HashMap;
 import java.util.Set;
 
 public class Pair {
-<span class="nc" id="L8">    HashMap&lt;String, String&gt; pairs = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L8">    HashMap&lt;String, String&gt; pairs = new HashMap&lt;&gt;();</span>
 
-<span class="nc" id="L10">    public Pair(String pairString){</span>
-<span class="nc" id="L11">        String[] mappingList = pairString.split(&quot;,&quot;);</span>
-<span class="nc bnc" id="L12" title="All 2 branches missed.">        for (String mapping : mappingList){</span>
-<span class="nc" id="L13">            String[] keyValue = mapping.split(&quot;:&quot;);</span>
+<span class="fc" id="L10">    public Pair(String pairString){</span>
+<span class="fc" id="L11">        String[] mappingList = pairString.split(&quot;,&quot;);</span>
+<span class="fc bfc" id="L12" title="All 2 branches covered.">        for (String mapping : mappingList){</span>
+<span class="fc" id="L13">            String[] keyValue = mapping.split(&quot;:&quot;);</span>
             try{
-<span class="nc" id="L15">                pairs.put(keyValue[0], keyValue[1]);</span>
-<span class="nc" id="L16">            } catch(Exception e){</span>
+<span class="fc" id="L15">                pairs.put(keyValue[0], keyValue[1]);</span>
+<span class="fc" id="L16">            } catch(Exception e){</span>
 
-<span class="nc" id="L18">            }</span>
+<span class="fc" id="L18">            }</span>
         }
-<span class="nc" id="L20">    }</span>
+<span class="fc" id="L20">    }</span>
 
     public boolean has(String key){
-<span class="nc" id="L23">        return pairs.containsKey(key);</span>
+<span class="fc" id="L23">        return pairs.containsKey(key);</span>
     }
 
     public String get(String key){
-<span class="nc" id="L27">        return pairs.get(key);</span>
+<span class="fc" id="L27">        return pairs.get(key);</span>
     }
 
     public ArrayList&lt;String&gt; getAll(){
-<span class="nc" id="L31">        Set&lt;String&gt; keys = pairs.keySet();</span>
-<span class="nc" id="L32">        ArrayList&lt;String&gt; allKeys = new ArrayList&lt;&gt;();</span>
-<span class="nc" id="L33">        keys.forEach(key -&gt; {</span>
-<span class="nc" id="L34">            allKeys.add(pairs.get(key));</span>
-<span class="nc" id="L35">        });</span>
-<span class="nc" id="L36">        return allKeys;</span>
+<span class="fc" id="L31">        Set&lt;String&gt; keys = pairs.keySet();</span>
+<span class="fc" id="L32">        ArrayList&lt;String&gt; allKeys = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L33">        keys.forEach(key -&gt; {</span>
+<span class="fc" id="L34">            allKeys.add(pairs.get(key));</span>
+<span class="fc" id="L35">        });</span>
+<span class="fc" id="L36">        return allKeys;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

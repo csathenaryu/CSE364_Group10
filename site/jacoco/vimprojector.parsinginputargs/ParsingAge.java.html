@@ -4,55 +4,55 @@ import vimprojector.customdatastructure.Pair;
 
 import java.util.ArrayList;
 
-<span class="nc" id="L7">public class ParsingAge extends ParsingInputArgument{</span>
+<span class="fc" id="L7">public class ParsingAge extends ParsingInputArgument{</span>
 
-<span class="nc" id="L9">    Pair propertyMapping = new Pair(</span>
+<span class="fc" id="L9">    Pair propertyMapping = new Pair(</span>
             &quot;under18:1,18-24:18,25-34:25,35-44:35,45-49:45,50-55:50,56+:56&quot;);
 
     public String[] parseProperty(String inputProp, String delimiter){
-<span class="nc" id="L13">        return getParsedProperty(propertyMapping, inputProp, delimiter);</span>
+<span class="fc" id="L13">        return getParsedProperty(propertyMapping, inputProp, delimiter);</span>
     }
 
     public String[] getAllProperty(){
-<span class="nc" id="L17">        return propertyMapping.getAll().toArray(new String[0]);</span>
+<span class="fc" id="L17">        return propertyMapping.getAll().toArray(new String[0]);</span>
     }
 
     @Override
     public void addProperty(ArrayList&lt;String&gt; propertyList, String property) {
-<span class="nc" id="L22">        int age = 0;</span>
+<span class="fc" id="L22">        int age = 0;</span>
         try{
-<span class="nc" id="L24">            age = Integer.parseInt(property);</span>
-<span class="nc" id="L25">        } catch (Exception e){</span>
-<span class="nc" id="L26">            age = -1;</span>
-<span class="nc" id="L27">        }</span>
+<span class="fc" id="L24">            age = Integer.parseInt(property);</span>
+<span class="fc" id="L25">        } catch (Exception e){</span>
+<span class="fc" id="L26">            age = -1;</span>
+<span class="fc" id="L27">        }</span>
 
-<span class="nc bnc" id="L29" title="All 2 branches missed.">        if (age &gt;= 0){</span>
-<span class="nc" id="L30">            String key = &quot;&quot;;</span>
-<span class="nc bnc" id="L31" title="All 2 branches missed.">            if (age &lt; 18) {</span>
-<span class="nc" id="L32">                key = &quot;under18&quot;;</span>
-<span class="nc bnc" id="L33" title="All 2 branches missed.">            } else if (age &lt;= 24) {</span>
-<span class="nc" id="L34">                key = &quot;18-24&quot;;</span>
-<span class="nc bnc" id="L35" title="All 2 branches missed.">            } else if (age &lt;= 34) {</span>
-<span class="nc" id="L36">                key = &quot;25-34&quot;;</span>
-<span class="nc bnc" id="L37" title="All 2 branches missed.">            } else if (age &lt;= 44) {</span>
-<span class="nc" id="L38">                key = &quot;35-44&quot;;</span>
-<span class="nc bnc" id="L39" title="All 2 branches missed.">            } else if (age &lt;= 49) {</span>
-<span class="nc" id="L40">                key = &quot;45-49&quot;;</span>
-<span class="nc bnc" id="L41" title="All 2 branches missed.">            } else if (age &lt;= 55) {</span>
-<span class="nc" id="L42">                key = &quot;50-55&quot;;</span>
+<span class="fc bfc" id="L29" title="All 2 branches covered.">        if (age &gt;= 0){</span>
+<span class="fc" id="L30">            String key = &quot;&quot;;</span>
+<span class="fc bfc" id="L31" title="All 2 branches covered.">            if (age &lt; 18) {</span>
+<span class="fc" id="L32">                key = &quot;under18&quot;;</span>
+<span class="fc bfc" id="L33" title="All 2 branches covered.">            } else if (age &lt;= 24) {</span>
+<span class="fc" id="L34">                key = &quot;18-24&quot;;</span>
+<span class="fc bfc" id="L35" title="All 2 branches covered.">            } else if (age &lt;= 34) {</span>
+<span class="fc" id="L36">                key = &quot;25-34&quot;;</span>
+<span class="fc bfc" id="L37" title="All 2 branches covered.">            } else if (age &lt;= 44) {</span>
+<span class="fc" id="L38">                key = &quot;35-44&quot;;</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">            } else if (age &lt;= 49) {</span>
+<span class="fc" id="L40">                key = &quot;45-49&quot;;</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">            } else if (age &lt;= 55) {</span>
+<span class="fc" id="L42">                key = &quot;50-55&quot;;</span>
             } else{
-<span class="nc" id="L44">                key = &quot;56+&quot;;</span>
+<span class="fc" id="L44">                key = &quot;56+&quot;;</span>
             }
 
-<span class="nc" id="L47">            String mappedProperty = propertyMapping.get(key);</span>
-<span class="nc bnc" id="L48" title="All 2 branches missed.">            if (!propertyList.contains(mappedProperty)){</span>
-<span class="nc" id="L49">                propertyList.add(mappedProperty);</span>
+<span class="fc" id="L47">            String mappedProperty = propertyMapping.get(key);</span>
+<span class="fc bfc" id="L48" title="All 2 branches covered.">            if (!propertyList.contains(mappedProperty)){</span>
+<span class="fc" id="L49">                propertyList.add(mappedProperty);</span>
             } else {
                 // pass
             }
-<span class="nc" id="L53">        } else{</span>
-<span class="nc" id="L54">            System.out.printf(&quot;Invalid age '%s' will be ignored.\n&quot;, property);</span>
+<span class="fc" id="L53">        } else{</span>
+<span class="fc" id="L54">            System.out.printf(&quot;Invalid age '%s' will be ignored.\n&quot;, property);</span>
         }
-<span class="nc" id="L56">    }</span>
+<span class="fc" id="L56">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -4,24 +4,24 @@ public class RatingCounter {
     int sum;
     int count;
 
-<span class="nc" id="L7">    public RatingCounter(){</span>
-<span class="nc" id="L8">        sum = 0;</span>
-<span class="nc" id="L9">        count = 0;</span>
-<span class="nc" id="L10">    }</span>
+<span class="fc" id="L7">    public RatingCounter(){</span>
+<span class="fc" id="L8">        sum = 0;</span>
+<span class="fc" id="L9">        count = 0;</span>
+<span class="fc" id="L10">    }</span>
 
     public void updateSum(int rating){
-<span class="nc" id="L13">        sum += rating;</span>
-<span class="nc" id="L14">    }</span>
+<span class="fc" id="L13">        sum += rating;</span>
+<span class="fc" id="L14">    }</span>
 
     public void updateCount(){
-<span class="nc" id="L17">        count++;</span>
-<span class="nc" id="L18">    }</span>
+<span class="fc" id="L17">        count++;</span>
+<span class="fc" id="L18">    }</span>
 
     // sum 과 count 를 증가시킴
     public void update(int rating){
-<span class="nc" id="L22">        updateSum(rating);</span>
-<span class="nc" id="L23">        updateCount();</span>
-<span class="nc" id="L24">    }</span>
+<span class="fc" id="L22">        updateSum(rating);</span>
+<span class="fc" id="L23">        updateCount();</span>
+<span class="fc" id="L24">    }</span>
 
     // average rating 을 반환
     public float getAverageRating(){
@@ -32,9 +32,9 @@ public class RatingCounter {
         }
 */
 
-<span class="nc" id="L35">        float averageRating = (float)sum / (float)count;</span>
+<span class="fc" id="L35">        float averageRating = (float)sum / (float)count;</span>
         // 소수점 셋째자리에서 반올림
-<span class="nc" id="L37">        return averageRating;</span>
+<span class="fc" id="L37">        return averageRating;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

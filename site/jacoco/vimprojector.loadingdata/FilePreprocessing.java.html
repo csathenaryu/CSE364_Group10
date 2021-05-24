@@ -12,67 +12,67 @@ import java.util.HashMap;
     // file 이 존재하지 않는 경우 empty arrayList 가 반환됨
     public static ArrayList&lt;HashMap&lt;String, String&gt;&gt; loadDataFrom(String fileName, String[] dataLabel, String charset){
         // try 문 안으로 넣어야 할까?
-<span class="nc" id="L15">        StaticFieldList staticFieldList = new StaticFieldList(dataLabel);</span>
+<span class="fc" id="L15">        StaticFieldList staticFieldList = new StaticFieldList(dataLabel);</span>
         try {
-<span class="nc" id="L17">            FileInputStream fileInputStream = new FileInputStream(fileName);</span>
-<span class="nc" id="L18">            BufferedReader bufReader = new BufferedReader(new InputStreamReader(fileInputStream, charset));</span>
+<span class="fc" id="L17">            FileInputStream fileInputStream = new FileInputStream(fileName);</span>
+<span class="fc" id="L18">            BufferedReader bufReader = new BufferedReader(new InputStreamReader(fileInputStream, charset));</span>
             String dataLine;
-<span class="nc bnc" id="L20" title="All 2 branches missed.">            while ((dataLine = bufReader.readLine()) != null) {</span>
-<span class="nc" id="L21">                String[] splitData = dataLine.split(&quot;::&quot;);</span>
-<span class="nc" id="L22">                staticFieldList.push(splitData);</span>
-<span class="nc" id="L23">            }</span>
-<span class="nc" id="L24">            bufReader.close();</span>
-<span class="nc" id="L25">        } catch(Exception e) {</span>
-<span class="nc" id="L26">            System.out.printf(&quot;There is no such file: %s%n&quot;, fileName);</span>
-<span class="nc" id="L27">        }</span>
-<span class="nc" id="L28">        return staticFieldList.getLoadedData();</span>
+<span class="fc bfc" id="L20" title="All 2 branches covered.">            while ((dataLine = bufReader.readLine()) != null) {</span>
+<span class="fc" id="L21">                String[] splitData = dataLine.split(&quot;::&quot;);</span>
+<span class="fc" id="L22">                staticFieldList.push(splitData);</span>
+<span class="fc" id="L23">            }</span>
+<span class="fc" id="L24">            bufReader.close();</span>
+<span class="fc" id="L25">        } catch(Exception e) {</span>
+<span class="fc" id="L26">            System.out.printf(&quot;There is no such file: %s%n&quot;, fileName);</span>
+<span class="fc" id="L27">        }</span>
+<span class="fc" id="L28">        return staticFieldList.getLoadedData();</span>
     }
 
     public static HashMap&lt;Integer, String&gt; intStringloadHashFrom(String fileName, String[] dataLabel, String key, String value, String charset){
         // try 문 안으로 넣어야 할까?
-<span class="nc" id="L33">        HashMap&lt;Integer, String&gt; hashMap = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L33">        HashMap&lt;Integer, String&gt; hashMap = new HashMap&lt;&gt;();</span>
         try {
-<span class="nc" id="L35">            FileInputStream fileInputStream = new FileInputStream(fileName);</span>
-<span class="nc" id="L36">            BufferedReader bufReader = new BufferedReader(new InputStreamReader(fileInputStream, charset));</span>
+<span class="fc" id="L35">            FileInputStream fileInputStream = new FileInputStream(fileName);</span>
+<span class="fc" id="L36">            BufferedReader bufReader = new BufferedReader(new InputStreamReader(fileInputStream, charset));</span>
             String dataLine;
-<span class="nc bnc" id="L38" title="All 2 branches missed.">            while ((dataLine = bufReader.readLine()) != null) {</span>
-<span class="nc" id="L39">                String[] splitData = dataLine.split(&quot;::&quot;);</span>
-<span class="nc" id="L40">                HashMap&lt;String, String&gt; hash = makeHash(dataLabel, splitData);</span>
-<span class="nc" id="L41">                hashMap.put(Integer.parseInt(hash.get(key)), hash.get(value));</span>
-<span class="nc" id="L42">            }</span>
-<span class="nc" id="L43">            bufReader.close();</span>
-<span class="nc" id="L44">        } catch(Exception e) {</span>
-<span class="nc" id="L45">            System.out.printf(&quot;There is no such file: %s%n&quot;, fileName);</span>
-<span class="nc" id="L46">        }</span>
-<span class="nc" id="L47">        return hashMap;</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">            while ((dataLine = bufReader.readLine()) != null) {</span>
+<span class="fc" id="L39">                String[] splitData = dataLine.split(&quot;::&quot;);</span>
+<span class="fc" id="L40">                HashMap&lt;String, String&gt; hash = makeHash(dataLabel, splitData);</span>
+<span class="fc" id="L41">                hashMap.put(Integer.parseInt(hash.get(key)), hash.get(value));</span>
+<span class="fc" id="L42">            }</span>
+<span class="fc" id="L43">            bufReader.close();</span>
+<span class="fc" id="L44">        } catch(Exception e) {</span>
+<span class="fc" id="L45">            System.out.printf(&quot;There is no such file: %s%n&quot;, fileName);</span>
+<span class="fc" id="L46">        }</span>
+<span class="fc" id="L47">        return hashMap;</span>
     }
 
     public static HashMap&lt;String, String&gt; stringStringloadHashFrom(String fileName, String[] dataLabel, String key, String value, String charset){
         // try 문 안으로 넣어야 할까?
-<span class="nc" id="L52">        HashMap&lt;String, String&gt; hashMap = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L52">        HashMap&lt;String, String&gt; hashMap = new HashMap&lt;&gt;();</span>
         try {
-<span class="nc" id="L54">            FileInputStream fileInputStream = new FileInputStream(fileName);</span>
-<span class="nc" id="L55">            BufferedReader bufReader = new BufferedReader(new InputStreamReader(fileInputStream, charset));</span>
+<span class="fc" id="L54">            FileInputStream fileInputStream = new FileInputStream(fileName);</span>
+<span class="fc" id="L55">            BufferedReader bufReader = new BufferedReader(new InputStreamReader(fileInputStream, charset));</span>
             String dataLine;
-<span class="nc bnc" id="L57" title="All 2 branches missed.">            while ((dataLine = bufReader.readLine()) != null) {</span>
-<span class="nc" id="L58">                String[] splitData = dataLine.split(&quot;::&quot;);</span>
-<span class="nc" id="L59">                HashMap&lt;String, String&gt; hash = makeHash(dataLabel, splitData);</span>
-<span class="nc" id="L60">                hashMap.put(hash.get(key), hash.get(value));</span>
-<span class="nc" id="L61">            }</span>
-<span class="nc" id="L62">            bufReader.close();</span>
-<span class="nc" id="L63">        } catch(Exception e) {</span>
-<span class="nc" id="L64">            System.out.printf(&quot;There is no such file: %s%n&quot;, fileName);</span>
-<span class="nc" id="L65">        }</span>
-<span class="nc" id="L66">        return hashMap;</span>
+<span class="fc bfc" id="L57" title="All 2 branches covered.">            while ((dataLine = bufReader.readLine()) != null) {</span>
+<span class="fc" id="L58">                String[] splitData = dataLine.split(&quot;::&quot;);</span>
+<span class="fc" id="L59">                HashMap&lt;String, String&gt; hash = makeHash(dataLabel, splitData);</span>
+<span class="fc" id="L60">                hashMap.put(hash.get(key), hash.get(value));</span>
+<span class="fc" id="L61">            }</span>
+<span class="fc" id="L62">            bufReader.close();</span>
+<span class="fc" id="L63">        } catch(Exception e) {</span>
+<span class="fc" id="L64">            System.out.printf(&quot;There is no such file: %s%n&quot;, fileName);</span>
+<span class="fc" id="L65">        }</span>
+<span class="fc" id="L66">        return hashMap;</span>
     }
 
     public static HashMap&lt;String, String&gt; makeHash(String[] dataLabel, String[] splitData){
-<span class="nc" id="L70">        HashMap&lt;String, String&gt; hashMap = new HashMap&lt;&gt;();</span>
-<span class="nc" id="L71">        int size = dataLabel.length;</span>
-<span class="nc bnc" id="L72" title="All 2 branches missed.">        for(int i=0; i&lt;size; i++){</span>
-<span class="nc" id="L73">            hashMap.put(dataLabel[i], splitData[i]);</span>
+<span class="fc" id="L70">        HashMap&lt;String, String&gt; hashMap = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L71">        int size = dataLabel.length;</span>
+<span class="fc bfc" id="L72" title="All 2 branches covered.">        for(int i=0; i&lt;size; i++){</span>
+<span class="fc" id="L73">            hashMap.put(dataLabel[i], splitData[i]);</span>
         }
-<span class="nc" id="L75">        return hashMap;</span>
+<span class="fc" id="L75">        return hashMap;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

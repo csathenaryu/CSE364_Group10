@@ -8,29 +8,29 @@ public class StaticFieldList {
     int fieldLength;
     ArrayList&lt;HashMap&lt;String, String&gt;&gt; data;
 
-<span class="nc" id="L11">    public StaticFieldList(String[] fieldList){</span>
-<span class="nc" id="L12">        field = fieldList;</span>
-<span class="nc" id="L13">        fieldLength = fieldList.length;</span>
-<span class="nc" id="L14">        data = new ArrayList&lt;&gt;();</span>
-<span class="nc" id="L15">    }</span>
+<span class="fc" id="L11">    public StaticFieldList(String[] fieldList){</span>
+<span class="fc" id="L12">        field = fieldList;</span>
+<span class="fc" id="L13">        fieldLength = fieldList.length;</span>
+<span class="fc" id="L14">        data = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L15">    }</span>
 
     public void push(String[] splitData){
-<span class="nc" id="L18">        int splitDataLength = Math.min(splitData.length, fieldLength);</span>
+<span class="fc" id="L18">        int splitDataLength = Math.min(splitData.length, fieldLength);</span>
         // assert splitDataLength == labelLength
-<span class="nc" id="L20">        HashMap&lt;String, String&gt; temp = new HashMap&lt;&gt;();</span>
-<span class="nc bnc" id="L21" title="All 2 branches missed.">        for(int i=0; i&lt;splitDataLength; i++){</span>
-<span class="nc bnc" id="L22" title="All 2 branches missed.">            if(splitData[i].equals(&quot;&quot;)){</span>
-<span class="nc" id="L23">                temp.put(field[i], null);</span>
+<span class="fc" id="L20">        HashMap&lt;String, String&gt; temp = new HashMap&lt;&gt;();</span>
+<span class="fc bfc" id="L21" title="All 2 branches covered.">        for(int i=0; i&lt;splitDataLength; i++){</span>
+<span class="fc bfc" id="L22" title="All 2 branches covered.">            if(splitData[i].equals(&quot;&quot;)){</span>
+<span class="fc" id="L23">                temp.put(field[i], null);</span>
             }
             else{
-<span class="nc" id="L26">                temp.put(field[i], splitData[i]);</span>
+<span class="fc" id="L26">                temp.put(field[i], splitData[i]);</span>
             }
         }
-<span class="nc" id="L29">        data.add(temp);</span>
-<span class="nc" id="L30">    }</span>
+<span class="fc" id="L29">        data.add(temp);</span>
+<span class="fc" id="L30">    }</span>
 
     public ArrayList&lt;HashMap&lt;String, String&gt;&gt; getLoadedData(){
-<span class="nc" id="L33">        return data;</span>
+<span class="fc" id="L33">        return data;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

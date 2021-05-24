@@ -4,32 +4,32 @@ import vimprojector.customdatastructure.Pair;
 
 import java.util.ArrayList;
 
-<span class="nc" id="L7">public class ParsingGenres extends ParsingInputArgument{</span>
-<span class="nc" id="L8">    static Pair propertyMapping = new Pair(</span>
+<span class="fc" id="L7">public class ParsingGenres extends ParsingInputArgument{</span>
+<span class="fc" id="L8">    static Pair propertyMapping = new Pair(</span>
             &quot;action:action,adventure:adventure,animation:animation,children's:children's,comedy:comedy,crime:crime,documentary:documentary,drama:drama,fantasy:fantasy,film-noir:film-noir,horror:horror,musical:musical,mystery:mystery,romance:romance,sci-fi:sci-fi,thriller:thriller,war:war,western:western&quot;);
 
     public String[] parseProperty(String inputProp, String delimiter){
-<span class="nc" id="L12">        return getParsedProperty(propertyMapping, inputProp, delimiter);</span>
+<span class="fc" id="L12">        return getParsedProperty(propertyMapping, inputProp, delimiter);</span>
     }
 
     public String[] getAllProperty(){
-<span class="nc" id="L16">        return propertyMapping.getAll().toArray(new String[0]);</span>
+<span class="fc" id="L16">        return propertyMapping.getAll().toArray(new String[0]);</span>
     }
 
     @Override
     public void addProperty(ArrayList&lt;String&gt; propertyList, String property){
-<span class="nc bnc" id="L21" title="All 2 branches missed.">        if (propertyMapping.has(property)){</span>
-<span class="nc" id="L22">            String mapping = propertyMapping.get(property);</span>
-<span class="nc bnc" id="L23" title="All 2 branches missed.">            if(!propertyList.contains(mapping)){</span>
-<span class="nc" id="L24">                propertyList.add(propertyMapping.get(property));</span>
+<span class="fc bfc" id="L21" title="All 2 branches covered.">        if (propertyMapping.has(property)){</span>
+<span class="fc" id="L22">            String mapping = propertyMapping.get(property);</span>
+<span class="fc bfc" id="L23" title="All 2 branches covered.">            if(!propertyList.contains(mapping)){</span>
+<span class="fc" id="L24">                propertyList.add(propertyMapping.get(property));</span>
             }
             else{
                 // pass
             }
-<span class="nc" id="L29">        }</span>
+<span class="fc" id="L29">        }</span>
         else {
-<span class="nc" id="L31">            System.out.printf(&quot;Invalid genres '%s' will be ignored\n&quot;, property);</span>
+<span class="fc" id="L31">            System.out.printf(&quot;Invalid genres '%s' will be ignored\n&quot;, property);</span>
         }
-<span class="nc" id="L33">    }</span>
+<span class="fc" id="L33">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

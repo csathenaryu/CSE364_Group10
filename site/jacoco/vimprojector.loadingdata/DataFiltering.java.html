@@ -10,26 +10,26 @@ import java.util.HashMap;
 <span class="nc" id="L10">public class DataFiltering {</span>
 
     public static Boolean containsTargetProperty(OneToMany oneToMany, HashMap&lt;String, String&gt; data){
-<span class="nc" id="L13">        String argument = oneToMany.getArgument();</span>
-<span class="nc" id="L14">        String dataProperty = data.get(argument).toLowerCase();</span>
-<span class="nc" id="L15">        return oneToMany.containsAtLeastOne(dataProperty.split(&quot;\\|&quot;));</span>
+<span class="fc" id="L13">        String argument = oneToMany.getArgument();</span>
+<span class="fc" id="L14">        String dataProperty = data.get(argument).toLowerCase();</span>
+<span class="fc" id="L15">        return oneToMany.containsAtLeastOne(dataProperty.split(&quot;\\|&quot;));</span>
     }
 
     public static Bitmap filterData(OneToMany[] oneToMany, ArrayList&lt;HashMap&lt;String, String&gt;&gt; loadedData, String keyArgument){
-<span class="nc" id="L19">        Bitmap markedData = new Bitmap();</span>
+<span class="fc" id="L19">        Bitmap markedData = new Bitmap();</span>
         // 예컨대, argument = &quot;Occupation&quot;, &quot;Gender&quot;
-<span class="nc bnc" id="L21" title="All 2 branches missed.">        for (HashMap&lt;String, String&gt; data : loadedData) {</span>
-<span class="nc" id="L22">            boolean containsAll = true;</span>
-<span class="nc bnc" id="L23" title="All 2 branches missed.">            for (OneToMany targetProp : oneToMany) {</span>
-<span class="nc bnc" id="L24" title="All 2 branches missed.">                if (!containsTargetProperty(targetProp, data)) {</span>
-<span class="nc" id="L25">                    containsAll = false;</span>
-<span class="nc" id="L26">                    break;</span>
+<span class="fc bfc" id="L21" title="All 2 branches covered.">        for (HashMap&lt;String, String&gt; data : loadedData) {</span>
+<span class="fc" id="L22">            boolean containsAll = true;</span>
+<span class="fc bfc" id="L23" title="All 2 branches covered.">            for (OneToMany targetProp : oneToMany) {</span>
+<span class="fc bfc" id="L24" title="All 2 branches covered.">                if (!containsTargetProperty(targetProp, data)) {</span>
+<span class="fc" id="L25">                    containsAll = false;</span>
+<span class="fc" id="L26">                    break;</span>
                 }
             }
-<span class="nc" id="L29">            int key = Integer.parseInt(data.get(keyArgument));</span>
-<span class="nc" id="L30">            markedData.push(key, containsAll);</span>
-<span class="nc" id="L31">        }</span>
-<span class="nc" id="L32">        return markedData;</span>
+<span class="fc" id="L29">            int key = Integer.parseInt(data.get(keyArgument));</span>
+<span class="fc" id="L30">            markedData.push(key, containsAll);</span>
+<span class="fc" id="L31">        }</span>
+<span class="fc" id="L32">        return markedData;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -4,29 +4,29 @@ import vimprojector.customdatastructure.Pair;
 
 import java.util.ArrayList;
 
-<span class="nc" id="L7">public class ParsingGender extends ParsingInputArgument{</span>
-<span class="nc" id="L8">     Pair propertyMapping = new Pair(</span>
+<span class="fc" id="L7">public class ParsingGender extends ParsingInputArgument{</span>
+<span class="fc" id="L8">     Pair propertyMapping = new Pair(</span>
             &quot;m:m,f:f&quot;);
 
     public String[] parseProperty(String inputProp, String delimiter){
-<span class="nc" id="L12">        return getParsedProperty(propertyMapping, inputProp, delimiter);</span>
+<span class="fc" id="L12">        return getParsedProperty(propertyMapping, inputProp, delimiter);</span>
     }
 
     public String[] getAllProperty(){
-<span class="nc" id="L16">        return propertyMapping.getAll().toArray(new String[0]);</span>
+<span class="fc" id="L16">        return propertyMapping.getAll().toArray(new String[0]);</span>
     }
 
     @Override
     public void addProperty(ArrayList&lt;String&gt; propertyList, String property){
-<span class="nc bnc" id="L21" title="All 2 branches missed.">        if (propertyMapping.has(property)){</span>
-<span class="nc" id="L22">            String mapping = propertyMapping.get(property);</span>
-<span class="nc bnc" id="L23" title="All 2 branches missed.">            if(!propertyList.contains(mapping)){</span>
-<span class="nc" id="L24">                propertyList.add(propertyMapping.get(property));</span>
+<span class="fc bfc" id="L21" title="All 2 branches covered.">        if (propertyMapping.has(property)){</span>
+<span class="fc" id="L22">            String mapping = propertyMapping.get(property);</span>
+<span class="fc bfc" id="L23" title="All 2 branches covered.">            if(!propertyList.contains(mapping)){</span>
+<span class="fc" id="L24">                propertyList.add(propertyMapping.get(property));</span>
             }
-<span class="nc" id="L26">        }</span>
+<span class="fc" id="L26">        }</span>
         else{
-<span class="nc" id="L28">            System.out.printf(&quot;Invalid gender '%s' will be ignored.\n&quot;, property);</span>
+<span class="fc" id="L28">            System.out.printf(&quot;Invalid gender '%s' will be ignored.\n&quot;, property);</span>
         }
-<span class="nc" id="L30">    }</span>
+<span class="fc" id="L30">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -16,50 +16,50 @@ public class TopRating {
     Bitmap targetUser;
     int limit;
 
-<span class="nc" id="L19">    public TopRating(ArrayList&lt;HashMap&lt;String, String&gt;&gt; ratData, Bitmap targetMovieList, Bitmap targetUserList, int limit){</span>
-<span class="nc" id="L20">        movieRating = new HashMap&lt;&gt;();</span>
-<span class="nc" id="L21">        ratingData = ratData;</span>
-<span class="nc" id="L22">        targetMovie = targetMovieList;</span>
-<span class="nc" id="L23">        targetUser = targetUserList;</span>
-<span class="nc" id="L24">        this.limit = limit;</span>
-<span class="nc" id="L25">    }</span>
+<span class="fc" id="L19">    public TopRating(ArrayList&lt;HashMap&lt;String, String&gt;&gt; ratData, Bitmap targetMovieList, Bitmap targetUserList, int limit){</span>
+<span class="fc" id="L20">        movieRating = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L21">        ratingData = ratData;</span>
+<span class="fc" id="L22">        targetMovie = targetMovieList;</span>
+<span class="fc" id="L23">        targetUser = targetUserList;</span>
+<span class="fc" id="L24">        this.limit = limit;</span>
+<span class="fc" id="L25">    }</span>
 
     public ArrayList&lt;RecommendedMovieInfo&gt; getTopRating() {
 
-<span class="nc bnc" id="L29" title="All 2 branches missed.">        for (HashMap&lt;String, String&gt; rat : ratingData){</span>
-<span class="nc" id="L30">            int movieID = Integer.parseInt(rat.get(&quot;MovieID&quot;));</span>
-<span class="nc" id="L31">            int userID = Integer.parseInt(rat.get(&quot;UserID&quot;));</span>
-<span class="nc" id="L32">            int rating = Integer.parseInt(rat.get(&quot;Rating&quot;));</span>
-<span class="nc" id="L33">            updateMovieRating(movieID, userID, rating);</span>
-<span class="nc" id="L34">        }</span>
+<span class="fc bfc" id="L29" title="All 2 branches covered.">        for (HashMap&lt;String, String&gt; rat : ratingData){</span>
+<span class="fc" id="L30">            int movieID = Integer.parseInt(rat.get(&quot;MovieID&quot;));</span>
+<span class="fc" id="L31">            int userID = Integer.parseInt(rat.get(&quot;UserID&quot;));</span>
+<span class="fc" id="L32">            int rating = Integer.parseInt(rat.get(&quot;Rating&quot;));</span>
+<span class="fc" id="L33">            updateMovieRating(movieID, userID, rating);</span>
+<span class="fc" id="L34">        }</span>
 
-<span class="nc" id="L36">        ArrayList&lt;RecommendedMovieInfo&gt; movieAverageRating = getMovieAverageRating();</span>
+<span class="fc" id="L36">        ArrayList&lt;RecommendedMovieInfo&gt; movieAverageRating = getMovieAverageRating();</span>
 
-<span class="nc" id="L38">        sortMovieAverageRating(movieAverageRating);</span>
-<span class="nc" id="L39">        return extractTopMovie(movieAverageRating);</span>
+<span class="fc" id="L38">        sortMovieAverageRating(movieAverageRating);</span>
+<span class="fc" id="L39">        return extractTopMovie(movieAverageRating);</span>
     }
 
     public void updateMovieRating(int movieID, int userID, int rating) {
-<span class="nc bnc" id="L43" title="All 4 branches missed.">        if(targetMovie.getAt(movieID) &amp;&amp; targetUser.getAt(userID)){</span>
-<span class="nc bnc" id="L44" title="All 2 branches missed.">            if (movieRating.containsKey(movieID)){</span>
-<span class="nc" id="L45">                RatingCounter ratingCounter = movieRating.get(movieID);</span>
-<span class="nc" id="L46">                ratingCounter.update(rating);</span>
-<span class="nc" id="L47">            }</span>
+<span class="fc bfc" id="L43" title="All 4 branches covered.">        if(targetMovie.getAt(movieID) &amp;&amp; targetUser.getAt(userID)){</span>
+<span class="fc bfc" id="L44" title="All 2 branches covered.">            if (movieRating.containsKey(movieID)){</span>
+<span class="fc" id="L45">                RatingCounter ratingCounter = movieRating.get(movieID);</span>
+<span class="fc" id="L46">                ratingCounter.update(rating);</span>
+<span class="fc" id="L47">            }</span>
             else{
-<span class="nc" id="L49">                RatingCounter ratingCounter = new RatingCounter();</span>
-<span class="nc" id="L50">                ratingCounter.update(rating);</span>
-<span class="nc" id="L51">                movieRating.put(movieID, ratingCounter);</span>
+<span class="fc" id="L49">                RatingCounter ratingCounter = new RatingCounter();</span>
+<span class="fc" id="L50">                ratingCounter.update(rating);</span>
+<span class="fc" id="L51">                movieRating.put(movieID, ratingCounter);</span>
             }
         }
-<span class="nc" id="L54">    }</span>
+<span class="fc" id="L54">    }</span>
 
     public ArrayList&lt;RecommendedMovieInfo&gt; getMovieAverageRating() {
-<span class="nc" id="L57">        ArrayList&lt;RecommendedMovieInfo&gt; movieAverageRating = new ArrayList&lt;&gt;();</span>
-<span class="nc bnc" id="L58" title="All 2 branches missed.">        for (Map.Entry&lt;Integer, RatingCounter&gt; movieRatingCounter : movieRating.entrySet()){</span>
-<span class="nc" id="L59">            RecommendedMovieInfo recommendedMovieInfo = new RecommendedMovieInfo(movieRatingCounter.getKey(), movieRatingCounter.getValue().getAverageRating(), movieRatingCounter.getValue().count);</span>
-<span class="nc" id="L60">            movieAverageRating.add(recommendedMovieInfo);</span>
-<span class="nc" id="L61">        }</span>
-<span class="nc" id="L62">        return movieAverageRating;</span>
+<span class="fc" id="L57">        ArrayList&lt;RecommendedMovieInfo&gt; movieAverageRating = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L58" title="All 2 branches covered.">        for (Map.Entry&lt;Integer, RatingCounter&gt; movieRatingCounter : movieRating.entrySet()){</span>
+<span class="fc" id="L59">            RecommendedMovieInfo recommendedMovieInfo = new RecommendedMovieInfo(movieRatingCounter.getKey(), movieRatingCounter.getValue().getAverageRating(), movieRatingCounter.getValue().count);</span>
+<span class="fc" id="L60">            movieAverageRating.add(recommendedMovieInfo);</span>
+<span class="fc" id="L61">        }</span>
+<span class="fc" id="L62">        return movieAverageRating;</span>
     }
 
     public void sortMovieAverageRating(ArrayList&lt;RecommendedMovieInfo&gt; movieAverageRating) {
@@ -74,16 +74,16 @@ public class TopRating {
             }
         };
  */
-<span class="nc" id="L77">        Comparator&lt;RecommendedMovieInfo&gt; comparator = (o1, o2) -&gt; {</span>
-<span class="nc bnc" id="L78" title="All 2 branches missed.">            if (o1.rating &gt; o2.rating){</span>
-<span class="nc" id="L79">                return -1;</span>
-<span class="nc bnc" id="L80" title="All 2 branches missed.">            } else if (o1.rating &lt; o2.rating){</span>
-<span class="nc" id="L81">                return 1;</span>
+<span class="fc" id="L77">        Comparator&lt;RecommendedMovieInfo&gt; comparator = (o1, o2) -&gt; {</span>
+<span class="fc bfc" id="L78" title="All 2 branches covered.">            if (o1.rating &gt; o2.rating){</span>
+<span class="fc" id="L79">                return -1;</span>
+<span class="fc bfc" id="L80" title="All 2 branches covered.">            } else if (o1.rating &lt; o2.rating){</span>
+<span class="fc" id="L81">                return 1;</span>
             } else{
-<span class="nc" id="L83">                return Integer.compare(o2.count, o1.count);</span>
+<span class="fc" id="L83">                return Integer.compare(o2.count, o1.count);</span>
             }
         };
-<span class="nc" id="L86">        movieAverageRating.sort(comparator);</span>
+<span class="fc" id="L86">        movieAverageRating.sort(comparator);</span>
         /*
         for (int i = 0; i &lt; movieAverageRating.size(); i++)
         {
@@ -91,21 +91,21 @@ public class TopRating {
         }
 
          */
-<span class="nc" id="L94">    }</span>
+<span class="fc" id="L94">    }</span>
     public ArrayList&lt;RecommendedMovieInfo&gt; extractTopMovie(ArrayList&lt;RecommendedMovieInfo&gt; movieRatingList) {
-<span class="nc" id="L96">        ArrayList&lt;RecommendedMovieInfo&gt; recommendedMovie = new ArrayList&lt;&gt;(limit);</span>
+<span class="fc" id="L96">        ArrayList&lt;RecommendedMovieInfo&gt; recommendedMovie = new ArrayList&lt;&gt;(limit);</span>
 
 
 
-<span class="nc" id="L100">        int size = (int) (movieRatingList.size() * 0.01);</span>
-<span class="nc" id="L101">        int i = 0;</span>
-<span class="nc bnc" id="L102" title="All 4 branches missed.">        while (recommendedMovie.size() &lt; limit &amp;&amp; i &lt; movieRatingList.size() - 1) {</span>
-<span class="nc bnc" id="L103" title="All 4 branches missed.">            if (movieRatingList.get(i).rating &gt;= 4 &amp;&amp; movieRatingList.get(i).count &gt;= size) {</span>
-<span class="nc" id="L104">                recommendedMovie.add(movieRatingList.get(i));</span>
+<span class="fc" id="L100">        int size = (int) (movieRatingList.size() * 0.01);</span>
+<span class="fc" id="L101">        int i = 0;</span>
+<span class="fc bfc" id="L102" title="All 4 branches covered.">        while (recommendedMovie.size() &lt; limit &amp;&amp; i &lt; movieRatingList.size() - 1) {</span>
+<span class="fc bfc" id="L103" title="All 4 branches covered.">            if (movieRatingList.get(i).rating &gt;= 4 &amp;&amp; movieRatingList.get(i).count &gt;= size) {</span>
+<span class="fc" id="L104">                recommendedMovie.add(movieRatingList.get(i));</span>
             }
-<span class="nc" id="L106">            i++;</span>
+<span class="fc" id="L106">            i++;</span>
         }
-<span class="nc" id="L108">        return recommendedMovie;</span>
+<span class="fc" id="L108">        return recommendedMovie;</span>
 
     }
 /*

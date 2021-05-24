@@ -1,6 +1,6 @@
 package vimprojector.loadingdata;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.io.BufferedReader;
@@ -9,7 +9,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 import static vimprojector.loadingdata.FilePreprocessing.makeHash;
 
 public class FilePreprocessingTest {

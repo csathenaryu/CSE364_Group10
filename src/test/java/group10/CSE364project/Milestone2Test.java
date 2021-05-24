@@ -1,8 +1,9 @@
 package group10.CSE364project;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class Milestone2Test {
     Milestone2 milestone2 = new Milestone2();

@@ -5,7 +5,6 @@ import vimprojector.parsinginputargs.ArgumentParser;
 import vimprojector.parsinginputargs.ParsingGenres;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static vimprojector.parsinginputargs.ArgumentParser.parseByDelimiter;

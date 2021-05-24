@@ -1,7 +1,8 @@
 package vimprojector.recommender;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class RatingCounterTest {
 
@@ -11,7 +12,7 @@ public class RatingCounterTest {
         ratingCounter.update(4);
         ratingCounter.update(5);
         ratingCounter.update(6);
-        Assert.assertEquals(ratingCounter.getAverageRating(), 5, 0.001);
+        assertEquals(ratingCounter.getAverageRating(), 5, 0.001);
 
     }
     /*

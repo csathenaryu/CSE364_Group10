@@ -1,8 +1,8 @@
 package vimprojector.recommender;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.experimental.theories.suppliers.TestedOn;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 import vimprojector.customdatastructure.Bitmap;
 import vimprojector.customdatastructure.OneToMany;
 import vimprojector.loadingdata.DataFiltering;
@@ -50,7 +50,7 @@ public class TopRatingTest {
         boolean is_sorted_rating;
         for (int i = 0; i < result.size()-1; i++) {
             is_sorted_rating = (result.get(i).rating >= result.get(i+1).rating);
-            Assert.assertTrue(is_sorted_rating);
+            assertTrue(is_sorted_rating);
         }
         /*
         boolean is_sorted_count;
@@ -78,8 +78,8 @@ public class TopRatingTest {
 
         TopRating topRating = new TopRating(ratingData, filteredMovie, filteredUser, 10);
         ArrayList<RecommendedMovieInfo> result = topRating.getTopRating();
-        Assert.assertEquals(topRating.getTopRating().get(0).rating, 5, 0.001);
-        Assert.assertTrue(result.get(0).rating >= result.get(1).rating);
+        assertEquals(topRating.getTopRating().get(0).rating, 5, 0.001);
+        assertTrue(result.get(0).rating >= result.get(1).rating);
         Is_sorted(result);
 
     }
@@ -93,7 +93,7 @@ public class TopRatingTest {
         TopRating topRating = new TopRating(ratingData, filteredMovie, filteredUser, 10);
         ArrayList<RecommendedMovieInfo> result = topRating.getTopRating();
         ArrayList<RecommendedMovieInfo> result_empty = new ArrayList<>();
-        Assert.assertEquals(result, result_empty);
+        assertEquals(result, result_empty);
 
         Is_sorted(result);
     }
@@ -106,7 +106,7 @@ public class TopRatingTest {
 
         TopRating topRating = new TopRating(ratingData, filteredMovie, filteredUser, 10);
         ArrayList<RecommendedMovieInfo> result = topRating.getTopRating();
-        Assert.assertTrue(result.size() < 10);
+        assertTrue(result.size() < 10);
         Is_sorted(result);
     }
 
@@ -119,7 +119,7 @@ public class TopRatingTest {
 
         TopRating topRating = new TopRating(ratingData, filteredMovie, filteredUser, 10);
         ArrayList<RecommendedMovieInfo> result = topRating.getTopRating();
-        Assert.assertTrue(result.size() < 10);
+        assertTrue(result.size() < 10);
         Is_sorted(result);
     }
 
@@ -131,7 +131,7 @@ public class TopRatingTest {
 
         TopRating topRating = new TopRating(ratingData, filteredMovie, filteredUser, 10);
         ArrayList<RecommendedMovieInfo> result = topRating.getTopRating();
-        Assert.assertTrue(result.size() < 10);
+        assertTrue(result.size() < 10);
         Is_sorted(result);
     }
 

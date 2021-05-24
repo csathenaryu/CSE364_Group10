@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserData.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">CSE364-project</a> &gt; <a href="index.source.html" class="el_package">group10.CSE364project</a> &gt; <span class="el_source">UserData.java</span></div><h1>UserData.java</h1><pre class="source lang-java linenums">package group10.CSE364project;
+
+import java.util.Objects;
+
+import javax.persistence.Entity;
+//import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
+class UserData {
+    private @Id String gender;
+    private String age;
+    private String occupation;
+    private String genres;
+
+<span class="nc" id="L16">    UserData(){}</span>
+
+<span class="nc" id="L18">    UserData (String gender, String age, String occupation, String genres){</span>
+<span class="nc" id="L19">        this.gender = gender;</span>
+<span class="nc" id="L20">        this.age = age;</span>
+<span class="nc" id="L21">        this.occupation = occupation;</span>
+<span class="nc" id="L22">        this.genres = genres;</span>
+<span class="nc" id="L23">    }</span>
+    public String getGender() {
+<span class="nc" id="L25">        return this.gender;</span>
+    }
+    public void setGender(String gender) {
+<span class="nc" id="L28">        this.gender = gender;</span>
+<span class="nc" id="L29">    }</span>
+    public String getAge() {
+<span class="nc" id="L31">        return this.age;</span>
+    }
+    public void setAge(String age) {
+<span class="nc" id="L34">        this.age = age;</span>
+<span class="nc" id="L35">    }</span>
+    public String getOccupation() {
+<span class="nc" id="L37">        return this.occupation;</span>
+    }
+    public void setOccupation(String occupation) {
+<span class="nc" id="L40">        this.occupation = occupation;</span>
+<span class="nc" id="L41">    }</span>
+    public String getGenres() {
+<span class="nc" id="L43">        return this.genres;</span>
+    }
+    public void setGenres(String genres) {
+<span class="nc" id="L46">        this.genres = genres;</span>
+<span class="nc" id="L47">    }</span>
+
+    public String[] getUserData (){
+<span class="nc" id="L50">        String userData[] = new String[4];</span>
+<span class="nc" id="L51">        userData[0] = this.gender;</span>
+<span class="nc" id="L52">        userData[1] = this.age;</span>
+<span class="nc" id="L53">        userData[2] = this.occupation;</span>
+<span class="nc" id="L54">        userData[3] = this.genres;</span>
+
+<span class="nc" id="L56">        return userData;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

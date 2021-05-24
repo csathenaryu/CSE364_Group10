@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ParsingGenres.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">CSE364-project</a> &gt; <a href="index.source.html" class="el_package">vimprojector.parsinginputargs</a> &gt; <span class="el_source">ParsingGenres.java</span></div><h1>ParsingGenres.java</h1><pre class="source lang-java linenums">package vimprojector.parsinginputargs;
+
+import vimprojector.customdatastructure.Pair;
+
+import java.util.ArrayList;
+
+<span class="nc" id="L7">public class ParsingGenres extends ParsingInputArgument{</span>
+<span class="nc" id="L8">    static Pair propertyMapping = new Pair(</span>
+            &quot;action:action,adventure:adventure,animation:animation,children's:children's,comedy:comedy,crime:crime,documentary:documentary,drama:drama,fantasy:fantasy,film-noir:film-noir,horror:horror,musical:musical,mystery:mystery,romance:romance,sci-fi:sci-fi,thriller:thriller,war:war,western:western&quot;);
+
+    public String[] parseProperty(String inputProp, String delimiter){
+<span class="nc" id="L12">        return getParsedProperty(propertyMapping, inputProp, delimiter);</span>
+    }
+
+    public String[] getAllProperty(){
+<span class="nc" id="L16">        return propertyMapping.getAll().toArray(new String[0]);</span>
+    }
+
+    @Override
+    public void addProperty(ArrayList&lt;String&gt; propertyList, String property){
+<span class="nc bnc" id="L21" title="All 2 branches missed.">        if (propertyMapping.has(property)){</span>
+<span class="nc" id="L22">            String mapping = propertyMapping.get(property);</span>
+<span class="nc bnc" id="L23" title="All 2 branches missed.">            if(!propertyList.contains(mapping)){</span>
+<span class="nc" id="L24">                propertyList.add(propertyMapping.get(property));</span>
+            }
+            else{
+                // pass
+            }
+<span class="nc" id="L29">        }</span>
+        else {
+<span class="nc" id="L31">            System.out.printf(&quot;Invalid genres '%s' will be ignored\n&quot;, property);</span>
+        }
+<span class="nc" id="L33">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

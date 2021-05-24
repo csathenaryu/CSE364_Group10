@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Milestone2.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">CSE364-project</a> &gt; <a href="index.source.html" class="el_package">group10.CSE364project</a> &gt; <span class="el_source">Milestone2.java</span></div><h1>Milestone2.java</h1><pre class="source lang-java linenums">package group10.CSE364project;
+
+//import org.springframework.beans.factory.annotation.Autowired;
+import vimprojector.customdatastructure.Bitmap;
+import vimprojector.customdatastructure.OneToMany;
+import vimprojector.loadingdata.DataFiltering;
+import vimprojector.loadingdata.FilePreprocessing;
+import vimprojector.parsinginputargs.ParsingAge;
+import vimprojector.parsinginputargs.ParsingGender;
+import vimprojector.parsinginputargs.ParsingGenres;
+import vimprojector.parsinginputargs.ParsingOccupation;
+import vimprojector.recommender.RecommendedMovieInfo;
+import vimprojector.recommender.TopRating;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+//import java.util.List;
+//import java.util.List;
+
+<span class="fc" id="L20">public class Milestone2 {</span>
+
+    //@Autowired
+    //MoviedataRepository repository;
+
+    public MoviedataRepository milestone2_loadRepository(String[] args, MoviedataRepository repository) {
+
+<span class="nc" id="L27">        ArrayList&lt;MovieData&gt; movieDataArrayList = milestone2(args, &quot;data/ratings.dat&quot;);</span>
+
+<span class="nc" id="L29">        repository.saveAll(movieDataArrayList);</span>
+
+<span class="nc" id="L31">        return repository;</span>
+    }
+
+    public ArrayList&lt;MovieData&gt; milestone2(String[] args, String rating_file) {
+
+<span class="fc" id="L36">        ArrayList&lt;MovieData&gt; movieDataArrayList = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L37">        ArrayList&lt;RecommendedMovieInfo&gt; recommendedMovie = new ArrayList&lt;&gt;();</span>
+        String[] genderProperty;
+        String[] ageProperty;
+        String[] occupationProperty;
+        String[] genresProperty;
+
+        // 1. Data Label
+        // user: UserID::Gender::Age::Occupation::Zip-code
+<span class="fc" id="L45">        String[] userLabel = {&quot;UserID&quot;, &quot;Gender&quot;, &quot;Age&quot;, &quot;Occupation&quot;, &quot;Zip-code&quot;};</span>
+        // movie: MovieID::Title::Genres
+<span class="fc" id="L47">        String[] movieLabel = {&quot;MovieID&quot;, &quot;Title&quot;, &quot;Genres&quot;};</span>
+        // rating: UserID::MovieID::Rating::Timestamp
+<span class="fc" id="L49">        String[] ratingLabel = {&quot;UserID&quot;, &quot;MovieID&quot;, &quot;Rating&quot;, &quot;Timestamp&quot;};</span>
+        // link: MovieID::imdbID
+<span class="fc" id="L51">        String[] linkLabel = {&quot;MovieID&quot;, &quot;imdbID&quot;};</span>
+
+
+        // 2. Load Data
+<span class="fc" id="L55">        String charset = &quot;ISO-8859-15&quot;;</span>
+<span class="fc" id="L56">        ArrayList&lt;HashMap&lt;String, String&gt;&gt; userData = FilePreprocessing.loadDataFrom(&quot;data/users.dat&quot;, userLabel, charset);</span>
+<span class="fc" id="L57">        ArrayList&lt;HashMap&lt;String, String&gt;&gt; movieData = FilePreprocessing.loadDataFrom(&quot;data/movies.dat&quot;, movieLabel, charset);</span>
+<span class="fc" id="L58">        ArrayList&lt;HashMap&lt;String, String&gt;&gt; ratingData = FilePreprocessing.loadDataFrom(rating_file, ratingLabel, charset);</span>
+<span class="fc" id="L59">        HashMap&lt;Integer, String&gt; linkHash = FilePreprocessing.intStringloadHashFrom(&quot;data/links.dat&quot;, linkLabel, &quot;MovieID&quot;, &quot;imdbID&quot;, charset);</span>
+<span class="fc" id="L60">        HashMap&lt;Integer, String&gt; movieHash = FilePreprocessing.intStringloadHashFrom(&quot;data/movies.dat&quot;, movieLabel, &quot;MovieID&quot;, &quot;Title&quot;, charset);</span>
+<span class="fc" id="L61">        HashMap&lt;Integer, String&gt; genresHash = FilePreprocessing.intStringloadHashFrom(&quot;data/movies.dat&quot;, movieLabel, &quot;MovieID&quot;, &quot;Genres&quot;, charset);</span>
+
+
+
+        /* Implement code here (Revise 3. and 4.)
+            &gt; 'xxProperty' should be implemented. Using 'parsingInputArgs' package to get and parse 'args'.
+            &gt; 'topRating' must have 10 entries after this part.
+            &gt; When using package, please be careful to import it. */
+        //args[0] = &quot;m&quot;;
+        //args[1] = &quot;18&quot;;
+        //args[2] = &quot;11&quot;;
+        //args[3] = &quot;adventure|animation&quot;;
+        // 3. Set Target Property and Filter User and Movie
+        //String[] genderProperty = {&quot;m&quot;};
+        //String[] ageProperty = {&quot;18&quot;};
+        //String[] occupationProperty = {&quot;11&quot;};
+        //String[] genresProperty = {&quot;adventure&quot;, &quot;animation&quot;};
+
+        try{
+<span class="fc bfc" id="L80" title="All 2 branches covered.">            if (args[0].equals(&quot;&quot;)){</span>
+<span class="fc" id="L81">                throw new Exception();</span>
+            }
+<span class="fc" id="L83">            genderProperty = new ParsingGender().parseProperty(args[0], &quot;\\|&quot;);</span>
+<span class="fc" id="L84">        } catch (Exception e){</span>
+<span class="fc" id="L85">            genderProperty = new ParsingGender().getAllProperty();</span>
+<span class="fc" id="L86">        }</span>
+
+        try{
+<span class="fc bfc" id="L89" title="All 2 branches covered.">            if (args[1].equals(&quot;&quot;)){</span>
+<span class="fc" id="L90">                throw new Exception();</span>
+            }
+<span class="fc" id="L92">            ageProperty = new ParsingAge().parseProperty(args[1], &quot;\\|&quot;);</span>
+<span class="fc" id="L93">        } catch (Exception e){</span>
+<span class="fc" id="L94">            ageProperty = new ParsingAge().getAllProperty();</span>
+<span class="fc" id="L95">        }</span>
+
+        try{
+<span class="fc bfc" id="L98" title="All 2 branches covered.">            if (args[2].equals(&quot;&quot;)){</span>
+<span class="fc" id="L99">                throw new Exception();</span>
+            }
+<span class="fc" id="L101">            occupationProperty = new ParsingOccupation().parseProperty(args[2], &quot;\\|&quot;);</span>
+<span class="fc" id="L102">        } catch (Exception e){</span>
+<span class="fc" id="L103">            occupationProperty = new ParsingOccupation().getAllProperty();</span>
+<span class="fc" id="L104">        }</span>
+
+        try{
+<span class="fc bfc" id="L107" title="All 2 branches covered.">            if (args[3].equals(&quot;&quot;)){</span>
+<span class="fc" id="L108">                throw new Exception();</span>
+            }
+<span class="fc" id="L110">            genresProperty = new ParsingGenres().parseProperty(args[3], &quot;\\|&quot;);</span>
+<span class="fc" id="L111">        } catch (Exception e){</span>
+<span class="fc" id="L112">            genresProperty = new ParsingGenres().getAllProperty();</span>
+<span class="fc" id="L113">        }</span>
+
+<span class="fc" id="L115">        int step = 1;</span>
+
+        while(true) {
+
+            /* 늘리는 순위: occupation (제한을 풀어버림) &gt; age &gt; gender */
+<span class="fc" id="L120">            OneToMany genderTargetProperty = new OneToMany(&quot;Gender&quot;, genderProperty);</span>
+<span class="fc" id="L121">            OneToMany ageTargetProperty = new OneToMany(&quot;Age&quot;, ageProperty);</span>
+<span class="fc" id="L122">            OneToMany occupationTargetProperty = new OneToMany(&quot;Occupation&quot;, occupationProperty);</span>
+<span class="fc" id="L123">            OneToMany genresTargetProperty = new OneToMany(&quot;Genres&quot;, genresProperty);</span>
+
+<span class="fc" id="L125">            OneToMany[] userFilteringCriteria = {genderTargetProperty, ageTargetProperty, occupationTargetProperty};</span>
+<span class="fc" id="L126">            OneToMany[] movieFilteringCriteria = {genresTargetProperty};</span>
+
+<span class="fc" id="L128">            Bitmap filteredUser = DataFiltering.filterData(userFilteringCriteria, userData, &quot;UserID&quot;);</span>
+<span class="fc" id="L129">            Bitmap filteredMovie = DataFiltering.filterData(movieFilteringCriteria, movieData, &quot;MovieID&quot;);</span>
+
+
+            // 4. extract top 10 movie
+<span class="fc" id="L133">            TopRating topRating = new TopRating(ratingData, filteredMovie, filteredUser, 10);</span>
+<span class="fc" id="L134">            ArrayList&lt;RecommendedMovieInfo&gt; newlyRecommendedMovie = topRating.getTopRating();</span>
+            // System.out.println(newlyRecommendedMovie.get(1).rating);
+
+<span class="fc bfc" id="L137" title="All 2 branches covered.">            if (recommendedMovie.isEmpty()){</span>
+<span class="fc" id="L138">                recommendedMovie = newlyRecommendedMovie;</span>
+            }
+            else {
+<span class="pc bpc" id="L141" title="1 of 2 branches missed.">                for (RecommendedMovieInfo recommendedMovieInfo : newlyRecommendedMovie) {</span>
+<span class="fc bfc" id="L142" title="All 2 branches covered.">                    if (recommendedMovie.size() &gt;= 10){</span>
+<span class="fc" id="L143">                        break;</span>
+                    }
+                    else {
+<span class="fc" id="L146">                        boolean is_exist = false;</span>
+<span class="fc bfc" id="L147" title="All 2 branches covered.">                        for (int i = 0; i &lt; recommendedMovie.size(); i++) {</span>
+<span class="fc bfc" id="L148" title="All 2 branches covered.">                            if (recommendedMovieInfo.id == recommendedMovie.get(i).id)</span>
+<span class="fc" id="L149">                                is_exist = true;</span>
+                        }
+<span class="fc bfc" id="L151" title="All 2 branches covered.">                        if(!is_exist) {</span>
+<span class="fc" id="L152">                            recommendedMovie.add(recommendedMovieInfo);</span>
+                        }
+                    }
+<span class="fc" id="L155">                }</span>
+            }
+
+<span class="fc bfc" id="L158" title="All 2 branches covered.">            if (recommendedMovie.size() == 10)</span>
+<span class="fc" id="L159">                break;</span>
+
+            // System.out.println(&quot;Poor data!&quot;);
+
+<span class="fc bfc" id="L163" title="All 2 branches covered.">            if (step == 1){</span>
+<span class="fc" id="L164">                occupationProperty = new ParsingOccupation().getAllProperty();</span>
+<span class="fc bfc" id="L165" title="All 2 branches covered.">            } else if(step == 2){</span>
+<span class="fc" id="L166">                ageProperty = new ParsingAge().getAllProperty();</span>
+<span class="fc bfc" id="L167" title="All 2 branches covered.">            } else if(step == 3){</span>
+<span class="fc" id="L168">                genderProperty = new ParsingGender().getAllProperty();</span>
+            } else{
+<span class="fc" id="L170">                step = 0; // for branch coverage,</span>
+                // step is 0 if it escape while loop.
+<span class="fc" id="L172">                break;</span>
+            }
+<span class="fc" id="L174">            step++;</span>
+            /*
+            if (!args[2].equals(&quot;&quot;)){
+                args[2] = &quot;&quot;;
+                continue;
+            }
+
+            if (!args[1].equals(&quot;&quot;)){
+                args[1] = &quot;&quot;;
+                continue;
+            }
+
+            if (!args[0].equals(&quot;&quot;)){
+                args[0] = &quot;&quot;;
+            }
+            else
+                break;*/
+
+<span class="fc" id="L192">        }</span>
+
+        // 5. Print top rating movie information
+<span class="fc bfc" id="L195" title="All 2 branches covered.">        for (RecommendedMovieInfo recommendedMovieInfo: recommendedMovie){</span>
+<span class="fc" id="L196">            int movieId = recommendedMovieInfo.id;</span>
+            //float movieRating = recommendedMovieInfo.rating;
+            //int ratingCount = recommendedMovieInfo.count;
+<span class="fc" id="L199">            String movieTitle = movieHash.get(movieId);</span>
+<span class="fc" id="L200">            String movieGenres = genresHash.get(movieId);</span>
+<span class="fc" id="L201">            String imdbId = linkHash.get(movieId);</span>
+<span class="fc" id="L202">            movieDataArrayList.add(new MovieData(movieTitle, movieGenres, &quot;(http://www.imdb.com/title/tt&quot; + imdbId + &quot;)&quot;));</span>
+
+
+            //repository.save(new MovieData(movieTitle, movieGenres, &quot;(http://www.imdb.com/title/tt&quot; + imdbId + &quot;)&quot;));
+            //repository.findAll();
+            //System.out.printf(&quot;[RATING] %.2f  &quot;, movieRating);
+            //System.out.printf(&quot;[COUNT] %4d   &quot;, ratingCount);
+            //System.out.printf(&quot;[%4d] &quot;, movieId);
+            //System.out.print(movieGenres + &quot; &quot;);
+            //System.out.print(movieTitle + &quot; &quot;);
+            //System.out.println(&quot;(http://www.imdb.com/title/tt&quot; + imdbId + &quot;) &quot;);
+            //System.out.println(movieTitle);
+<span class="fc" id="L214">        }</span>
+<span class="fc" id="L215">    return movieDataArrayList;</span>
+
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

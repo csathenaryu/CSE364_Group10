@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DataFilteringByCondition.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">CSE364-project</a> &gt; <a href="index.source.html" class="el_package">vimprojector.loadingdata</a> &gt; <span class="el_source">DataFilteringByCondition.java</span></div><h1>DataFilteringByCondition.java</h1><pre class="source lang-java linenums">package vimprojector.loadingdata;
+
+import vimprojector.customdatastructure.Bitmap;
+import vimprojector.customdatastructure.OneToMany;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+
+public class DataFilteringByCondition {
+
+    private FilteringStrategy filteringStrategy;
+
+<span class="fc" id="L14">    public DataFilteringByCondition(FilteringStrategy filteringStrategy){</span>
+<span class="fc" id="L15">        this.filteringStrategy = filteringStrategy;</span>
+<span class="fc" id="L16">    }</span>
+
+    public Boolean filter(OneToMany oneToMany, String[] inputProperty){
+<span class="fc" id="L19">        return filteringStrategy.filter(oneToMany, inputProperty);</span>
+    }
+
+    public Boolean containsTargetProperty(OneToMany oneToMany, HashMap&lt;String, String&gt; data){
+<span class="fc" id="L23">        String argument = oneToMany.getArgument();</span>
+<span class="fc" id="L24">        String dataProperty = data.get(argument).toLowerCase();</span>
+<span class="fc" id="L25">        return filter(oneToMany, dataProperty.split(&quot;\\|&quot;));</span>
+    }
+
+    public Bitmap filterData(OneToMany[] oneToMany, ArrayList&lt;HashMap&lt;String, String&gt;&gt; loadedData, String keyArgument){
+<span class="fc" id="L29">        Bitmap markedData = new Bitmap();</span>
+        // 예컨대, argument = &quot;Occupation&quot;, &quot;Gender&quot;
+<span class="fc bfc" id="L31" title="All 2 branches covered.">        for (HashMap&lt;String, String&gt; data : loadedData) {</span>
+<span class="fc" id="L32">            boolean containsAll = true;</span>
+<span class="fc bfc" id="L33" title="All 2 branches covered.">            for (OneToMany targetProp : oneToMany) {</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">                if (!containsTargetProperty(targetProp, data)) {</span>
+<span class="fc" id="L35">                    containsAll = false;</span>
+<span class="fc" id="L36">                    break;</span>
+                }
+            }
+<span class="fc" id="L39">            int key = Integer.parseInt(data.get(keyArgument));</span>
+<span class="fc" id="L40">            markedData.push(key, containsAll);</span>
+<span class="fc" id="L41">        }</span>
+<span class="fc" id="L42">        return markedData;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

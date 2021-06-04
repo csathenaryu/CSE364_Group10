@@ -1,6 +1,5 @@
 package group10.CSE364project;
 
-//import org.springframework.beans.factory.annotation.Autowired;
 import vimprojector.customdatastructure.Bitmap;
 import vimprojector.customdatastructure.OneToMany;
 import vimprojector.loadingdata.DataFiltering;
@@ -14,24 +13,10 @@ import vimprojector.recommender.TopRating;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-//import java.util.List;
-//import java.util.List;
 
 public class Milestone2 {
 
-    //@Autowired
-    //MoviedataRepository repository;
-
-    public MoviedataRepository milestone2_loadRepository(String[] args, MoviedataRepository repository) {
-
-        ArrayList<MovieData> movieDataArrayList = milestone2(args, "data/ratings.dat");
-
-        repository.saveAll(movieDataArrayList);
-
-        return repository;
-    }
-
-    public ArrayList<MovieData> milestone2(String[] args, String rating_file) {
+    public static ArrayList<MovieData> milestone2(String[] args, String rating_file) {
 
         ArrayList<MovieData> movieDataArrayList = new ArrayList<>();
         ArrayList<RecommendedMovieInfo> recommendedMovie = new ArrayList<>();
@@ -39,6 +24,7 @@ public class Milestone2 {
         String[] ageProperty;
         String[] occupationProperty;
         String[] genresProperty;
+
 
         // 1. Data Label
         // user: UserID::Gender::Age::Occupation::Zip-code
@@ -59,7 +45,6 @@ public class Milestone2 {
         HashMap<Integer, String> linkHash = FilePreprocessing.intStringloadHashFrom("data/links.dat", linkLabel, "MovieID", "imdbID", charset);
         HashMap<Integer, String> movieHash = FilePreprocessing.intStringloadHashFrom("data/movies.dat", movieLabel, "MovieID", "Title", charset);
         HashMap<Integer, String> genresHash = FilePreprocessing.intStringloadHashFrom("data/movies.dat", movieLabel, "MovieID", "Genres", charset);
-
 
 
         /* Implement code here (Revise 3. and 4.)

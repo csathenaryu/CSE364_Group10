@@ -15,24 +15,13 @@ import java.util.HashMap;
 
 public class Milestone3 {
 
-    public MoviedataRepository milestone3_loadRepository(String title, int limit, MoviedataRepository repository) {
-
-        ArrayList<MovieData> movieDataArrayList = milestone3(title, limit, "data/ratings.dat");
-
-        repository.saveAll(movieDataArrayList);
-
-        return repository;
-    }
-
-    public ArrayList<MovieData> milestone3(String title, int limit, String rating_file) {
-
+    public static ArrayList<MovieData> milestone3(String title, int limit, String rating_file) {
         ArrayList<MovieData> movieDataArrayList = new ArrayList<>();
         ArrayList<RecommendedMovieInfo> recommendedMovie = new ArrayList<>();
 
         if (limit <= 0) {
             limit = 10;
         }
-
 
         // 1. Data Label
         // user: UserID::Gender::Age::Occupation::Zip-code

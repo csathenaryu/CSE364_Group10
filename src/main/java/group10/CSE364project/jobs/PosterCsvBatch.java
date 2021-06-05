@@ -1,6 +1,6 @@
 package group10.CSE364project.jobs;
 
-import group10.CSE364project.model.User;
+import group10.CSE364project.model.Poster;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
@@ -38,17 +38,17 @@ public class PosterCsvBatch {
 
     @Bean
     public Step stepPoster() {
-        return stepBuilderFactory.get("stepPoster").<User, Poster>chunk(10).reader(readerPicture())
+        return stepBuilderFactory.get("stepPoster").<Poster, Poster>chunk(10).reader(readerPoster())
                 .writer(writerPoster()).build();
     }
 
     @Bean
     public FlatFileItemReader<Poster> readerPoster() {
         FlatFileItemReader<Poster> reader = new FlatFileItemReader<>();
-        reader.setResource(new ClassPathResource("users.csv"));
+        reader.setResource(new ClassPathResource("movie_poster.csv"));
         reader.setLineMapper(new DefaultLineMapper<Poster>() {{
             setLineTokenizer(new DelimitedLineTokenizer() {{
-                setNames(new String[]{"userId", "gender", "age", "occupation", "zipCode"});
+                setNames(new String[]{"posterId", "posterURL"});
             }});
             setFieldSetMapper(new BeanWrapperFieldSetMapper<Poster>() {{
                 setTargetType(Poster.class);
@@ -58,8 +58,8 @@ public class PosterCsvBatch {
     }
 
     @Bean
-    public MongoItemWriter<User> writerPoster() {
-        MongoItemWriter<User> writer = new MongoItemWriter<User>();
+    public MongoItemWriter<Poster> writerPoster() {
+        MongoItemWriter<Poster> writer = new MongoItemWriter<Poster>();
         writer.setTemplate(mongoTemplate);
         writer.setCollection("Poster");
         return writer;

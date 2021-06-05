@@ -30,6 +30,8 @@ public class ApiController {
     private RatingRepository ratingRepository;
     @Autowired
     private LinkRepository linkRepository;
+    @Autowired
+    private PosterRepository posterRepository;
 
     @PostConstruct
     public void dropDB(){

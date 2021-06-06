@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.*;
 
 import group10.CSE364project.model.*;
 import group10.CSE364project.repository.*;
-import org.testng.annotations.BeforeMethod;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -47,7 +47,7 @@ public class ApiController {
         for (String arg:args) {
             System.out.println(arg);
         }
-        return Milestone2.milestone2(args, "data/ratings.dat");
+        return Milestone2.milestone2(args, "data/ratings.dat", movieRepository);
     }
 
     @ResponseBody
@@ -80,5 +80,36 @@ public class ApiController {
         return list;
     }
 
+    @ResponseBody
+    @GetMapping("/movies/ids")
+    List<Movie> getMovieByID(@RequestParam int movieID){
+        System.out.println("GET movie by ID");
+
+        List<Movie> list = movieRepository.findByMovieId(movieID);
+        return list;
+    }
     // MovieData class 에 poster link 필드 추가하기
+
+    // Rating 관련 함수 테스트
+    @ResponseBody
+    @GetMapping("/ratings/users")
+    List<Rating> getRatingByUSER(@RequestParam int userID){
+        System.out.println("GET rating by USER");
+        return ratingRepository.findByUserId(userID);
+    }
+
+    @ResponseBody
+    @GetMapping("/ratings/movies")
+    List<Rating> getRatingByMOVIE(@RequestParam int movieID){
+        System.out.println("GET rating by MOVIE");
+        return ratingRepository.findByMovieId(movieID);
+    }
+
+    @ResponseBody
+    @GetMapping("/ratings/targets")
+    List<Rating> getRatingByTARGET(@RequestParam int userID, int movieID){
+        System.out.println("Get rating by TARGET");
+        return ratingRepository.findByUserIdAndMovieId(userID, movieID);
+    }
+
 }

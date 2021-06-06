@@ -1,5 +1,6 @@
 package group10.CSE364project;
 
+import group10.CSE364project.repository.MovieRepository;
 import vimprojector.customdatastructure.Bitmap;
 import vimprojector.customdatastructure.OneToMany;
 import vimprojector.loadingdata.DataFiltering;
@@ -16,8 +17,9 @@ import java.util.HashMap;
 
 public class Milestone2 {
 
-    public static ArrayList<MovieData> milestone2(String[] args, String rating_file) {
+    public static ArrayList<MovieData> milestone2(String[] args, String rating_file, MovieRepository movieRepository) {
 
+        System.out.println(movieRepository.findByMovieId(0));
         ArrayList<MovieData> movieDataArrayList = new ArrayList<>();
         ArrayList<RecommendedMovieInfo> recommendedMovie = new ArrayList<>();
         String[] genderProperty;

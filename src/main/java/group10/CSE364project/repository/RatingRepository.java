@@ -6,4 +6,7 @@ import java.util.List;
 
 public interface RatingRepository extends MongoRepository<Rating, String>{
     List<Rating> findByRating(int rating);
+    List<Rating> findByMovieId(int movieId);
+    List<Rating> findByUserId(int userId);
+    List<Rating> findByUserIdAndMovieId(int userId, int movieId);
 }

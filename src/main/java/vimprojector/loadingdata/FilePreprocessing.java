@@ -1,5 +1,8 @@
 package vimprojector.loadingdata;
 
+import group10.CSE364project.model.User;
+import group10.CSE364project.repository.UserRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 import vimprojector.customdatastructure.StaticFieldList;
 
 import java.io.BufferedReader;
@@ -7,9 +10,48 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class FilePreprocessing {
     // file 이 존재하지 않는 경우 empty arrayList 가 반환됨
+
+    public static ArrayList<HashMap<String, String>> loadDataFrom(String dataName, String[] dataLabel, MongoRepository mongoRepository){
+        // try 문 안으로 넣어야 할까?
+        StaticFieldList staticFieldList = new StaticFieldList(dataLabel);
+
+        switch(dataName) {
+            case "user":
+                fromUserRepository(staticFieldList, (UserRepository) mongoRepository);
+
+        }
+
+        return staticFieldList.getLoadedData();
+    }
+    public static StaticFieldList fromUserRepository(StaticFieldList staticFieldList, UserRepository userRepository) {
+        int count = (int) userRepository.count();
+        List<User> list = userRepository.findAll();
+        System.out.println(count);
+        for (int i = 0; i < count; i++) {
+            User user = list.get(i);
+            /*
+            splitData[0] = String.valueOf(user.getUserId());
+            splitData[1] = user.getGender();
+            splitData[2] = user.getAge();
+            splitData[3] = user.getOccupation();
+            splitData[4] = user.getZipCode();
+
+             */
+            String splitData[] = user.getUserInformation();
+            staticFieldList.push(splitData);
+        }
+        return staticFieldList;
+    }
+
+
+
+
+
+
     public static ArrayList<HashMap<String, String>> loadDataFrom(String fileName, String[] dataLabel, String charset){
         // try 문 안으로 넣어야 할까?
         StaticFieldList staticFieldList = new StaticFieldList(dataLabel);

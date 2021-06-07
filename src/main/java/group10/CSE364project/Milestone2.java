@@ -1,6 +1,7 @@
 package group10.CSE364project;
 
-import group10.CSE364project.repository.MovieRepository;
+import group10.CSE364project.model.Rating;
+import group10.CSE364project.repository.*;
 import vimprojector.customdatastructure.Bitmap;
 import vimprojector.customdatastructure.OneToMany;
 import vimprojector.loadingdata.DataFiltering;
@@ -14,10 +15,12 @@ import vimprojector.recommender.TopRating;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Milestone2 {
 
-    public static ArrayList<MovieData> milestone2(String[] args, String rating_file, MovieRepository movieRepository) {
+    public static ArrayList<MovieData> milestone2(String[] args, String rating_file, MovieRepository movieRepository, UserRepository userRepository,
+                                                  RatingRepository ratingRepository, LinkRepository linkRepository, PosterRepository posterRepository) {
 
         System.out.println(movieRepository.findByMovieId(0));
         ArrayList<MovieData> movieDataArrayList = new ArrayList<>();
@@ -38,12 +41,15 @@ public class Milestone2 {
         // link: MovieID::imdbID
         String[] linkLabel = {"MovieID", "imdbID"};
 
+        // System.out.println(movieRepository.count());
+        // System.out.println(movieRepository.findAll().size());
+        // System.out.println(movieRepository.findAll().get(3882).getMovieId());
 
         // 2. Load Data
         String charset = "ISO-8859-15";
-        ArrayList<HashMap<String, String>> userData = FilePreprocessing.loadDataFrom("data/users.dat", userLabel, charset);
+        ArrayList<HashMap<String, String>> userData = FilePreprocessing.loadDataFrom("user", userLabel, userRepository);
         ArrayList<HashMap<String, String>> movieData = FilePreprocessing.loadDataFrom("data/movies.dat", movieLabel, charset);
-        ArrayList<HashMap<String, String>> ratingData = FilePreprocessing.loadDataFrom(rating_file, ratingLabel, charset);
+        ArrayList<HashMap<String, String>> ratingData = FilePreprocessing.loadDataFrom("data/ratings.dat", ratingLabel, charset);
         HashMap<Integer, String> linkHash = FilePreprocessing.intStringloadHashFrom("data/links.dat", linkLabel, "MovieID", "imdbID", charset);
         HashMap<Integer, String> movieHash = FilePreprocessing.intStringloadHashFrom("data/movies.dat", movieLabel, "MovieID", "Title", charset);
         HashMap<Integer, String> genresHash = FilePreprocessing.intStringloadHashFrom("data/movies.dat", movieLabel, "MovieID", "Genres", charset);

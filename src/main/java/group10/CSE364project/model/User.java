@@ -47,4 +47,6 @@ public class User {
     public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
     }
+
+    public String[] getUserInformation() { return new String[]{String.valueOf(userId), gender, age, occupation, zipCode}; }
 }

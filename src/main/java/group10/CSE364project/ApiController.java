@@ -47,7 +47,7 @@ public class ApiController {
         for (String arg:args) {
             System.out.println(arg);
         }
-        return Milestone2.milestone2(args, "data/ratings.dat", movieRepository);
+        return Milestone2.milestone2(args, "data/ratings.dat", movieRepository, userRepository, ratingRepository, linkRepository, posterRepository);
     }
 
     @ResponseBody

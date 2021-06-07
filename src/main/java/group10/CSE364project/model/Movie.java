@@ -38,6 +38,8 @@ public class Movie {
         this.genres = genres;
     }
 
+    public String[] getMovieInformation() { return new String[]{String.valueOf(movieId), title, genres}; }
+
     /*
     public int getPosterId(){
         return posterId;

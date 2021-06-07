@@ -1,6 +1,10 @@
 package vimprojector.loadingdata;
 
+import group10.CSE364project.model.Movie;
+import group10.CSE364project.model.Rating;
 import group10.CSE364project.model.User;
+import group10.CSE364project.repository.MovieRepository;
+import group10.CSE364project.repository.RatingRepository;
 import group10.CSE364project.repository.UserRepository;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import vimprojector.customdatastructure.StaticFieldList;
@@ -14,41 +18,68 @@ import java.util.List;
 
 public class FilePreprocessing {
     // file 이 존재하지 않는 경우 empty arrayList 가 반환됨
-
+/*
     public static ArrayList<HashMap<String, String>> loadDataFrom(String dataName, String[] dataLabel, MongoRepository mongoRepository){
         // try 문 안으로 넣어야 할까?
         StaticFieldList staticFieldList = new StaticFieldList(dataLabel);
-
         switch(dataName) {
             case "user":
                 fromUserRepository(staticFieldList, (UserRepository) mongoRepository);
+            case "movie":
+                fromMovieRepository(staticFieldList, mongoRepository);
+            case "rating":
+                fromRatingRepository(staticFieldList, mongoRepository);
 
+// repository 변환시 문제 생김
         }
 
         return staticFieldList.getLoadedData();
     }
-    public static StaticFieldList fromUserRepository(StaticFieldList staticFieldList, UserRepository userRepository) {
+
+
+ */
+
+    public static ArrayList<HashMap<String, String>> fromUserRepository(String[] dataLabel, UserRepository userRepository) {
+        StaticFieldList staticFieldList = new StaticFieldList(dataLabel);
+
         int count = (int) userRepository.count();
         List<User> list = userRepository.findAll();
-        System.out.println(count);
+
         for (int i = 0; i < count; i++) {
             User user = list.get(i);
-            /*
-            splitData[0] = String.valueOf(user.getUserId());
-            splitData[1] = user.getGender();
-            splitData[2] = user.getAge();
-            splitData[3] = user.getOccupation();
-            splitData[4] = user.getZipCode();
-
-             */
             String splitData[] = user.getUserInformation();
             staticFieldList.push(splitData);
         }
-        return staticFieldList;
+        return staticFieldList.getLoadedData();
     }
 
+    public static ArrayList<HashMap<String, String>> fromMovieRepository(String[] dataLabel, MovieRepository movieRepository) {
+        StaticFieldList staticFieldList = new StaticFieldList(dataLabel);
 
+        int count = (int) movieRepository.count();
+        List<Movie> list = movieRepository.findAll();
 
+        for (int i = 0; i < count; i++) {
+            Movie movie = list.get(i);
+            String splitData[] = movie.getMovieInformation();
+            staticFieldList.push(splitData);
+        }
+        return staticFieldList.getLoadedData();
+    }
+
+    public static ArrayList<HashMap<String, String>> fromRatingRepository(String[] dataLabel, RatingRepository ratingRepository) {
+        StaticFieldList staticFieldList = new StaticFieldList(dataLabel);
+
+        int count = (int) ratingRepository.count();
+        List<Rating> list = ratingRepository.findAll();
+
+        for (int i = 0; i < count; i++) {
+            Rating rating = list.get(i);
+            String splitData[] = rating.getRatingInformation();
+            staticFieldList.push(splitData);
+        }
+        return staticFieldList.getLoadedData();
+    }
 
 
 

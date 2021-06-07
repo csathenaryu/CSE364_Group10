@@ -4,6 +4,7 @@ import group10.CSE364project.model.Rating;
 import group10.CSE364project.repository.*;
 import vimprojector.customdatastructure.Bitmap;
 import vimprojector.customdatastructure.OneToMany;
+import vimprojector.customdatastructure.StaticFieldList;
 import vimprojector.loadingdata.DataFiltering;
 import vimprojector.loadingdata.FilePreprocessing;
 import vimprojector.parsinginputargs.ParsingAge;
@@ -46,10 +47,12 @@ public class Milestone2 {
         // System.out.println(movieRepository.findAll().get(3882).getMovieId());
 
         // 2. Load Data
+        StaticFieldList staticFieldList = new StaticFieldList(movieLabel);
+
         String charset = "ISO-8859-15";
-        ArrayList<HashMap<String, String>> userData = FilePreprocessing.loadDataFrom("user", userLabel, userRepository);
-        ArrayList<HashMap<String, String>> movieData = FilePreprocessing.loadDataFrom("data/movies.dat", movieLabel, charset);
-        ArrayList<HashMap<String, String>> ratingData = FilePreprocessing.loadDataFrom("data/ratings.dat", ratingLabel, charset);
+        ArrayList<HashMap<String, String>> userData = FilePreprocessing.fromUserRepository(userLabel, userRepository);
+        ArrayList<HashMap<String, String>> movieData = FilePreprocessing.fromMovieRepository(movieLabel, movieRepository);
+        ArrayList<HashMap<String, String>> ratingData = FilePreprocessing.fromRatingRepository(ratingLabel, ratingRepository);
         HashMap<Integer, String> linkHash = FilePreprocessing.intStringloadHashFrom("data/links.dat", linkLabel, "MovieID", "imdbID", charset);
         HashMap<Integer, String> movieHash = FilePreprocessing.intStringloadHashFrom("data/movies.dat", movieLabel, "MovieID", "Title", charset);
         HashMap<Integer, String> genresHash = FilePreprocessing.intStringloadHashFrom("data/movies.dat", movieLabel, "MovieID", "Genres", charset);

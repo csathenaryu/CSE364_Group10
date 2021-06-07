@@ -1,8 +1,10 @@
 package vimprojector.loadingdata;
 
+import group10.CSE364project.model.Link;
 import group10.CSE364project.model.Movie;
 import group10.CSE364project.model.Rating;
 import group10.CSE364project.model.User;
+import group10.CSE364project.repository.LinkRepository;
 import group10.CSE364project.repository.MovieRepository;
 import group10.CSE364project.repository.RatingRepository;
 import group10.CSE364project.repository.UserRepository;
@@ -47,7 +49,10 @@ public class FilePreprocessing {
 
         for (int i = 0; i < count; i++) {
             User user = list.get(i);
-            String splitData[] = user.getUserInformation();
+
+            String[] splitData = new String[]{String.valueOf(user.getUserId()), user.getGender(),
+                    user.getAge(), user.getOccupation(), user.getZipCode()};
+            // String splitData[] = user.getUserInformation();
             staticFieldList.push(splitData);
         }
         return staticFieldList.getLoadedData();
@@ -61,7 +66,9 @@ public class FilePreprocessing {
 
         for (int i = 0; i < count; i++) {
             Movie movie = list.get(i);
-            String splitData[] = movie.getMovieInformation();
+
+            String[] splitData = new String[]{String.valueOf(movie.getMovieId()), movie.getTitle(), movie.getGenres()};
+            // String splitData[] = movie.getMovieInformation();
             staticFieldList.push(splitData);
         }
         return staticFieldList.getLoadedData();
@@ -75,13 +82,34 @@ public class FilePreprocessing {
 
         for (int i = 0; i < count; i++) {
             Rating rating = list.get(i);
-            String splitData[] = rating.getRatingInformation();
+
+            String[] splitData = new String[]{
+                    String.valueOf(rating.getUserId()), String.valueOf(rating.getMovieId()),
+                    String.valueOf(rating.getRating()), rating.getTimestamp()};
+            //String splitData[] = rating.getRatingInformation();
             staticFieldList.push(splitData);
         }
         return staticFieldList.getLoadedData();
     }
 
 
+    public static ArrayList<HashMap<String, String>> fromLinkRepository(String[] dataLabel, LinkRepository linkRepository) {
+        StaticFieldList staticFieldList = new StaticFieldList(dataLabel);
+
+        int count = (int) linkRepository.count();
+        List<Link> list = linkRepository.findAll();
+
+        for (int i = 0; i < count; i++) {
+            Link link = list.get(i);
+            String[] splitData = new String[]{String.valueOf(link.getMovieId()), link.getImdbId()};
+
+
+            // String splitData[] = link.getLinkInformation();
+            staticFieldList.push(splitData);
+        }
+        return staticFieldList.getLoadedData();
+    }
+/*
 
     public static ArrayList<HashMap<String, String>> loadDataFrom(String fileName, String[] dataLabel, String charset){
         // try 문 안으로 넣어야 할까?
@@ -100,7 +128,6 @@ public class FilePreprocessing {
         }
         return staticFieldList.getLoadedData();
     }
-
     public static HashMap<Integer, String> intStringloadHashFrom(String fileName, String[] dataLabel, String key, String value, String charset){
         // try 문 안으로 넣어야 할까?
         HashMap<Integer, String> hashMap = new HashMap<>();
@@ -147,4 +174,6 @@ public class FilePreprocessing {
         }
         return hashMap;
     }
+
+ */
 }

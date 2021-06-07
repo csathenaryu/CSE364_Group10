@@ -48,5 +48,5 @@ public class User {
         this.zipCode = zipCode;
     }
 
-    public String[] getUserInformation() { return new String[]{String.valueOf(userId), gender, age, occupation, zipCode}; }
+    // public String[] getUserInformation() { return new String[]{String.valueOf(userId), gender, age, occupation, zipCode}; }
 }

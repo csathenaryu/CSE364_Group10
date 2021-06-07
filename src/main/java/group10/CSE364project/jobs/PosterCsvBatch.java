@@ -61,7 +61,7 @@ public class PosterCsvBatch {
     public MongoItemWriter<Poster> writerPoster() {
         MongoItemWriter<Poster> writer = new MongoItemWriter<Poster>();
         writer.setTemplate(mongoTemplate);
-        writer.setCollection("Poster");
+        writer.setCollection("poster");
         return writer;
     }
 }

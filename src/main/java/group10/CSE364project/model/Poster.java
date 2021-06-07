@@ -3,7 +3,7 @@ package group10.CSE364project.model;
 import org.springframework.data.mongodb.core.mapping.Document;
 import javax.persistence.Id;
 
-@Document(collection = "Poster")
+@Document(collection = "poster")
 public class Poster {
 
     @Id

@@ -216,7 +216,15 @@ public class Milestone2 {
             String movieTitle = movieRepository.findByMovieId(movieId).get(0).getTitle();
             String movieGenres = movieRepository.findByMovieId(movieId).get(0).getGenres();
             String imdbId = linkRepository.findByMovieId(movieId).get(0).getImdbId();
-            movieDataArrayList.add(new MovieData(movieTitle, movieGenres, "(http://www.imdb.com/title/tt" + imdbId + ")"));
+
+            String posterURL;
+            if (posterRepository.findByPosterId(movieId).isEmpty()){
+                posterURL = " http://skg1891.cafe24.com/wp-content/uploads/2013/11/dummy-image-portrait.jpg";
+            }
+            else {
+                posterURL = posterRepository.findByPosterId(movieId).get(0).getPosterURL();
+            }
+            movieDataArrayList.add(new MovieData(movieTitle, movieGenres, "(http://www.imdb.com/title/tt" + imdbId + ")", posterURL));
 
 
             //repository.save(new MovieData(movieTitle, movieGenres, "(http://www.imdb.com/title/tt" + imdbId + ")"));

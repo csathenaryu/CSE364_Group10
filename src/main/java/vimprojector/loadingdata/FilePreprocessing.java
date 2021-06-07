@@ -1,8 +1,10 @@
 package vimprojector.loadingdata;
 
+import group10.CSE364project.model.Link;
 import group10.CSE364project.model.Movie;
 import group10.CSE364project.model.Rating;
 import group10.CSE364project.model.User;
+import group10.CSE364project.repository.LinkRepository;
 import group10.CSE364project.repository.MovieRepository;
 import group10.CSE364project.repository.RatingRepository;
 import group10.CSE364project.repository.UserRepository;
@@ -81,7 +83,19 @@ public class FilePreprocessing {
         return staticFieldList.getLoadedData();
     }
 
+    public static ArrayList<HashMap<String, String>> fromLinkRepository(String[] dataLabel, LinkRepository linkRepository) {
+        StaticFieldList staticFieldList = new StaticFieldList(dataLabel);
 
+        int count = (int) linkRepository.count();
+        List<Link> list = linkRepository.findAll();
+
+        for (int i = 0; i < count; i++) {
+            Link link = list.get(i);
+            String splitData[] = link.getLinkInformation();
+            staticFieldList.push(splitData);
+        }
+        return staticFieldList.getLoadedData();
+    }
 
     public static ArrayList<HashMap<String, String>> loadDataFrom(String fileName, String[] dataLabel, String charset){
         // try 문 안으로 넣어야 할까?

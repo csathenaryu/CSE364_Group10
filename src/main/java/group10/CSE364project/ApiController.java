@@ -56,7 +56,7 @@ public class ApiController {
         System.out.println("GET movies recommendations");
         System.out.println(title);
         System.out.println(limit);
-        return Milestone3.milestone3(title, limit, "data/ratings.dat");
+        return Milestone3.milestone3(title, limit, movieRepository, userRepository, ratingRepository, linkRepository, posterRepository);
     }
 
     @ResponseBody

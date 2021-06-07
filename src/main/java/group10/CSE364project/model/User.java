@@ -3,7 +3,7 @@ package group10.CSE364project.model;
 import org.springframework.data.mongodb.core.mapping.Document;
 import javax.persistence.Id;
 
-@Document(collection = "movie")
+@Document(collection = "user")
 public class User {
 
     @Id
@@ -47,4 +47,6 @@ public class User {
     public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
     }
+
+    public String[] getUserInformation() { return new String[]{String.valueOf(userId), gender, age, occupation, zipCode}; }
 }

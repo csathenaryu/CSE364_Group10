@@ -41,4 +41,6 @@ public class Rating {
     public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
     }
+
+    public String[] getRatingInformation() { return new String[] {String.valueOf(userId), String.valueOf(movieId), String.valueOf(rating), timestamp}; }
 }

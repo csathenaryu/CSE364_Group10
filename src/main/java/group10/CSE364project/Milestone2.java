@@ -1,8 +1,10 @@
 package group10.CSE364project;
 
-import group10.CSE364project.repository.MovieRepository;
+import group10.CSE364project.model.Rating;
+import group10.CSE364project.repository.*;
 import vimprojector.customdatastructure.Bitmap;
 import vimprojector.customdatastructure.OneToMany;
+import vimprojector.customdatastructure.StaticFieldList;
 import vimprojector.loadingdata.DataFiltering;
 import vimprojector.loadingdata.FilePreprocessing;
 import vimprojector.parsinginputargs.ParsingAge;
@@ -14,10 +16,12 @@ import vimprojector.recommender.TopRating;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Milestone2 {
 
-    public static ArrayList<MovieData> milestone2(String[] args, String rating_file, MovieRepository movieRepository) {
+    public static ArrayList<MovieData> milestone2(String[] args, MovieRepository movieRepository, UserRepository userRepository,
+                                                  RatingRepository ratingRepository, LinkRepository linkRepository, PosterRepository posterRepository) {
 
         System.out.println(movieRepository.findByMovieId(0));
         ArrayList<MovieData> movieDataArrayList = new ArrayList<>();
@@ -38,16 +42,31 @@ public class Milestone2 {
         // link: MovieID::imdbID
         String[] linkLabel = {"MovieID", "imdbID"};
 
+        // System.out.println(movieRepository.count());
+        // System.out.println(movieRepository.findAll().size());
+        // System.out.println(movieRepository.findAll().get(3882).getMovieId());
 
         // 2. Load Data
-        String charset = "ISO-8859-15";
-        ArrayList<HashMap<String, String>> userData = FilePreprocessing.loadDataFrom("data/users.dat", userLabel, charset);
-        ArrayList<HashMap<String, String>> movieData = FilePreprocessing.loadDataFrom("data/movies.dat", movieLabel, charset);
-        ArrayList<HashMap<String, String>> ratingData = FilePreprocessing.loadDataFrom(rating_file, ratingLabel, charset);
-        HashMap<Integer, String> linkHash = FilePreprocessing.intStringloadHashFrom("data/links.dat", linkLabel, "MovieID", "imdbID", charset);
-        HashMap<Integer, String> movieHash = FilePreprocessing.intStringloadHashFrom("data/movies.dat", movieLabel, "MovieID", "Title", charset);
-        HashMap<Integer, String> genresHash = FilePreprocessing.intStringloadHashFrom("data/movies.dat", movieLabel, "MovieID", "Genres", charset);
 
+        String charset = "ISO-8859-15";
+        ArrayList<HashMap<String, String>> userData = FilePreprocessing.fromUserRepository(userLabel, userRepository);
+        ArrayList<HashMap<String, String>> movieData = FilePreprocessing.fromMovieRepository(movieLabel, movieRepository);
+        ArrayList<HashMap<String, String>> ratingData = FilePreprocessing.fromRatingRepository(ratingLabel, ratingRepository);
+        // HashMap<Integer, String> linkHash = FilePreprocessing.intStringloadHashFrom("data/links.dat", linkLabel, "MovieID", "imdbID", charset);
+        // HashMap<Integer, String> movieHash = FilePreprocessing.intStringloadHashFrom("data/movies.dat", movieLabel, "MovieID", "Title", charset);
+        // HashMap<Integer, String> genresHash = FilePreprocessing.intStringloadHashFrom("data/movies.dat", movieLabel, "MovieID", "Genres", charset);
+
+        /*
+        System.out.println(linkHash.get(3000));
+        System.out.println(linkRepository.findByMovieId(3000).get(0).getImdbId());
+
+        System.out.println(movieHash.get(3000));
+        System.out.println(movieRepository.findByMovieId(3000).get(0).getTitle());
+
+        System.out.println(genresHash.get(3000));
+        System.out.println(movieRepository.findByMovieId(3000).get(0).getGenres());
+
+         */
 
         /* Implement code here (Revise 3. and 4.)
             > 'xxProperty' should be implemented. Using 'parsingInputArgs' package to get and parse 'args'.
@@ -178,14 +197,25 @@ public class Milestone2 {
 
         }
 
+        /*
+        System.out.println(linkHash.get(3000));
+        System.out.println(linkRepository.findByMovieId(3000).get(0).getImdbId());
+
+        System.out.println(movieHash.get(3000));
+        System.out.println(movieRepository.findByMovieId(3000).get(0).getTitle());
+
+        System.out.println(genresHash.get(3000));
+        System.out.println(movieRepository.findByMovieId(3000).get(0).getGenres());
+
+         */
         // 5. Print top rating movie information
         for (RecommendedMovieInfo recommendedMovieInfo: recommendedMovie){
             int movieId = recommendedMovieInfo.id;
             //float movieRating = recommendedMovieInfo.rating;
             //int ratingCount = recommendedMovieInfo.count;
-            String movieTitle = movieHash.get(movieId);
-            String movieGenres = genresHash.get(movieId);
-            String imdbId = linkHash.get(movieId);
+            String movieTitle = movieRepository.findByMovieId(movieId).get(0).getTitle();
+            String movieGenres = movieRepository.findByMovieId(movieId).get(0).getGenres();
+            String imdbId = linkRepository.findByMovieId(movieId).get(0).getImdbId();
             movieDataArrayList.add(new MovieData(movieTitle, movieGenres, "(http://www.imdb.com/title/tt" + imdbId + ")"));
 
 

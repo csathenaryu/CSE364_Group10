@@ -10,6 +10,12 @@ public class Movie {
     private int movieId;
     private String title;
     private String genres;
+    /*
+    private int posterId;
+    private String posterURL;
+
+     */
+
 
     public int getMovieId(){
         return movieId;
@@ -31,4 +37,23 @@ public class Movie {
     public void setGenres(String genres) {
         this.genres = genres;
     }
+
+    public String[] getMovieInformation() { return new String[]{String.valueOf(movieId), title, genres}; }
+
+    /*
+    public int getPosterId(){
+        return posterId;
+    }
+    public void setPosterId(int posterId) {
+        this.posterId = posterId;
+    }
+
+    public String getPosterURL() {
+        return posterURL;
+    }
+    public void setPosterURL(String posterURL) {
+        this.posterURL = posterURL;
+    }
+
+     */
 }

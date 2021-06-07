@@ -24,5 +24,5 @@ public class Link {
         this.imdbId = imdbId;
     }
 
-    public String[] getLinkInformation() { return new String[] {String.valueOf(movieId), imdbId}; }
+    // public String[] getLinkInformation() { return new String[] {String.valueOf(movieId), imdbId}; }
 }

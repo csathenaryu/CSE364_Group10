@@ -41,7 +41,7 @@ public class Milestone3 {
         ArrayList<HashMap<String, String>> userData = FilePreprocessing.fromUserRepository(userLabel, userRepository);
         ArrayList<HashMap<String, String>> movieData = FilePreprocessing.fromMovieRepository(movieLabel, movieRepository);
         ArrayList<HashMap<String, String>> ratingData = FilePreprocessing.fromRatingRepository(ratingLabel, ratingRepository);
-        ArrayList<HashMap<String, String>> linkData = FilePreprocessing.fromLinkRepository(linkLabel, linkRepository);
+        // ArrayList<HashMap<String, String>> linkData = FilePreprocessing.fromLinkRepository(linkLabel, linkRepository);
         // Get title from movieID
         //HashMap<Integer, String> movieTitleHash = FilePreprocessing.intStringloadHashFrom("data/movies.dat", movieLabel, "MovieID", "Title", charset);
         // Get movie genres from title

@@ -70,7 +70,7 @@ public class Milestone3 {
         String[] genresProperty;
         boolean is_valid_title = true;
 
-        if (movieRepository.findByTitle(title).get(0).getGenres() == null) {
+        if (movieRepository.findByTitle(title).isEmpty()) {
             System.out.println("The given title is invalid or does not exist in our movie data base.");
             System.out.println("The recommended movies will be selected from all genres.");
             genresProperty = new ParsingGenres().getAllProperty();

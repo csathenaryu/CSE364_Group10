@@ -194,7 +194,7 @@ public class Milestone3 {
 
             String posterURL;
             if (posterRepository.findByPosterId(movieId).isEmpty()){
-                posterURL = " http://skg1891.cafe24.com/wp-content/uploads/2013/11/dummy-image-portrait.jpg";
+                posterURL = "http://skg1891.cafe24.com/wp-content/uploads/2013/11/dummy-image-portrait.jpg";
             }
             else {
                 posterURL = posterRepository.findByPosterId(movieId).get(0).getPosterURL();

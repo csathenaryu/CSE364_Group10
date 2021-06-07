@@ -1,6 +1,7 @@
 package group10.CSE364project.jobs;
 
 import group10.CSE364project.model.Movie;
+import group10.CSE364project.model.Poster;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
@@ -45,6 +46,8 @@ public class MovieCsvBatch {
     @Bean
     public FlatFileItemReader<Movie> readerMovie() {
         FlatFileItemReader<Movie> reader = new FlatFileItemReader<>();
+        FlatFileItemReader<Movie> reader1 = new FlatFileItemReader<>();
+
         reader.setResource(new ClassPathResource("movies.csv"));
         reader.setLineMapper(new DefaultLineMapper<Movie>() {{
             setLineTokenizer(new DelimitedLineTokenizer() {{
@@ -54,6 +57,20 @@ public class MovieCsvBatch {
                 setTargetType(Movie.class);
             }});
         }});
+
+        /*
+        reader.setResource(new ClassPathResource("movie_poster.csv"));
+        reader.setLineMapper(new DefaultLineMapper<Movie>() {{
+            setLineTokenizer(new DelimitedLineTokenizer() {{
+                setNames(new String[]{"posterId", "posterURL"});
+            }});
+            setFieldSetMapper(new BeanWrapperFieldSetMapper<Movie>() {{
+                setTargetType(Movie.class);
+            }});
+        }});
+
+         */
+
         return reader;
     }
 

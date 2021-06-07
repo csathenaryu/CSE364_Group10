@@ -46,7 +46,7 @@ public class MovieCsvBatch {
     @Bean
     public FlatFileItemReader<Movie> readerMovie() {
         FlatFileItemReader<Movie> reader = new FlatFileItemReader<>();
-        FlatFileItemReader<Movie> reader1 = new FlatFileItemReader<>();
+        //FlatFileItemReader<Movie> reader1 = new FlatFileItemReader<>();
 
         reader.setResource(new ClassPathResource("movies.csv"));
         reader.setLineMapper(new DefaultLineMapper<Movie>() {{

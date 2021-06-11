@@ -13,6 +13,10 @@ header{
     margin: 0 auto;
 }
 
+.page {
+    background: white;
+}
+
 .user {
     transform: scaleY(0);
     transform-origin: 0px 0px;
@@ -74,7 +78,7 @@ header{
     border: none;
     border-radius: 8px;
     background-color: rgb(196, 196, 196);
-    
+
     margin-bottom: 6px;
     margin-right: 6px;
     padding: 8px;

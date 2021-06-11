@@ -7,15 +7,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bricklayer/0.4.2/bricklayer.min.css">
     <link rel="stylesheet" href="../src/css/recommendation.css">
+    <link rel="stylesheet" href="../src/css/logo.css">
     <title>Document</title>
 </head>
-<body>
-    <header>
-        <h1>#Recommended #Movie</h1>
-    </header>
-    <div class="bricklayer">
+<body id="is-preload">
+<div id="wrapper">
+    <section class="logo fullscreen onload-image-fade-in onload-content-fade-right">
+        <div class="image" style="background-color: #252A34; width: 25vw; min-width:300px;">
+            <img src="https://i.ibb.co/gm72hRC/logo-transparent.png" alt="logo-transparent"  />
 
-    </div>
+        </div>
+        <div>
+            <header>
+                <h1 style="color:#252A34; position:absolute; top:1%; left:50%;">#Recommended #Movie</h1>
+            </header>
+
+            <div class="bricklayer">
+
+            </div>
+
+        </div>
+    </section>
+
+</div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="src/js/main_logo.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/bricklayer/0.4.2/bricklayer.min.js"></script>
     <script type="module" src="./movies_recommendations.js"></script>
 </body>

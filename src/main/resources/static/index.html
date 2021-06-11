@@ -8,29 +8,45 @@
     <title>user</title>
     <link rel="stylesheet" href="./src/css/index.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato" type='text/css'>
+    <link rel="stylesheet" href="src/css/logo.css">
 </head>
-<body>
-    <header>
-        <h1>#Movie #By</h1>
-        <button id="movie-search-button">#Movie</button>
-        <button id="user-search-button">#User</button>
-    </header>
+<body class="is-preload">
+<div id="wrapper">
+    <section class="logo fullscreen onload-image-fade-in onload-content-fade-right">
+        <div class="image" style="background-color: #252A34; width: 50vw; min-width:300px;">
+            <img src="https://i.ibb.co/gm72hRC/logo-transparent.png" alt="logo-transparent"  />
 
-
-    <div id="search-container" class="movie">
-        <div class="bar-container">
-            <form class="bar-input">
-                <input type='text' placeholder="Enter the title and click."/><br>
-            </form>
         </div>
-        <ul class="movie-list"></ul>
-    </div>
+        <div>
 
-    <div id="search-container" class="user">
-        <button class="search">SEARCH</button>
-        <div class="hashtag-container-list"></div>
-    </div>
+            <header>
+                <h1 style="color:#000">#Movie #By</h1>
+                <button id="movie-search-button">#Movie</button>
+                <button id="user-search-button">#User</button>
+            </header>
 
+
+            <div id="search-container" class="movie">
+                <div class="bar-container">
+                    <form class="bar-input">
+                        <input type='text' placeholder="Enter the title and click."/><br>
+                    </form>
+                </div>
+                <ul class="movie-list"></ul>
+            </div>
+
+            <div id="search-container" class="user">
+                <button class="search">SEARCH</button>
+                <div class="hashtag-container-list"></div>
+            </div>
+
+        </div>
+    </section>
+
+</div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="src/js/main_logo.js"></script>
     <script src="./index.js"></script>
     <script type="module" src="./src/js/main_user.js"></script>
     <script type="module" src="./src/js/main_movie.js"></script>

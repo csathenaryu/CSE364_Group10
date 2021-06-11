@@ -34,7 +34,7 @@ import {UrlEncoder} from './UrlEncoder.js'
 const hashtagList = [
     {
         type : "genres",
-        value : [{"name":"Action","dataName":"action"}, {"name":"Adventure","dataName":"adventure"}, {"name":"Animation","dataName":"animation"}, {"name":"Children's","dataName":"children's"}, {"name":"Comedy","dataName":"comedy"}, {"name":"Crime","dataName":"crime"}, {"name":"Animation","dataName":"documentary"}, {"name":"Drama","dataName":"drama"}, {"name":"Fantasy","dataName":"fantasy"}, {"name":"Film-noir","dataName":"film-noir"}, {"name":"Horror","dataName":"horror"}, {"name":"Musical","dataName":"musical"}, {"name":"Mystery","dataName":"mystery"}, {"name":"Romance","dataName":"romance"}, {"name":"Scifi","dataName":"scifi"}, {"name":"Thriller","dataName":"thriller"}, {"name":"War","dataName":"war"}, {"name":"Western","dataName":"western"}],
+        value : [{"name":"Action","dataName":"action"}, {"name":"Adventure","dataName":"adventure"}, {"name":"Animation","dataName":"animation"}, {"name":"Children's","dataName":"children's"}, {"name":"Comedy","dataName":"comedy"}, {"name":"Crime","dataName":"crime"}, {"name":"Documentary","dataName":"documentary"}, {"name":"Drama","dataName":"drama"}, {"name":"Fantasy","dataName":"fantasy"}, {"name":"Film-noir","dataName":"film-noir"}, {"name":"Horror","dataName":"horror"}, {"name":"Musical","dataName":"musical"}, {"name":"Mystery","dataName":"mystery"}, {"name":"Romance","dataName":"romance"}, {"name":"Scifi","dataName":"scifi"}, {"name":"Thriller","dataName":"thriller"}, {"name":"War","dataName":"war"}, {"name":"Western","dataName":"western"}],
     },
     {
         type : "gender",

@@ -9,18 +9,18 @@ header{
 
 #search-container{
     width: 60%;
+    height: auto;
     margin: 0 auto;
 }
 
 .user {
-    height: 60vh;
     transform: scaleY(0);
     transform-origin: 0px 0px;
     transition: all 0.3s;
+    position: relative;
 }
 
 .movie {
-    height: 60vh;
     transform: scaleY(0);
     transform-origin: 0px 0px;
     transition: all 0.3s;

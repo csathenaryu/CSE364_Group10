@@ -8,18 +8,26 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bricklayer/0.4.2/bricklayer.min.css">
     <link rel="stylesheet" href="../src/css/recommendation.css">
     <link rel="stylesheet" href="../src/css/logo.css">
-    <title>Document</title>
+    <title>VIM projector</title>
 </head>
 <body id="is-preload">
 <div id="wrapper">
+    <!--
     <section class="logo fullscreen onload-image-fade-in onload-content-fade-right">
-        <div class="image" style="background-color: #252A34; width: 25vw; min-width:300px;">
+    -->
+    <section class="logo fullscreen">
+        <div class="image">
             <img src="https://i.ibb.co/gm72hRC/logo-transparent.png" alt="logo-transparent"  />
 
+            <button class="home-button" id="home-button">#Home</button>
+            <button class="movie-button" id="movie-search-button">#Movie</button>
+            <button class="user-button" id="user-search-button">#User</button>
+            <button class="lucky-button" id="lucky-search-button">#Lucky</button>
+
         </div>
-        <div>
+        <div class="not_logo">
             <header>
-                <h1 style="color:#252A34; position:absolute; top:1%; left:50%;">#Recommended #Movie</h1>
+                <h1 style="color:#252A34;">#Recommended #Movie</h1>
             </header>
 
             <div class="bricklayer">
@@ -35,5 +43,6 @@
     <script src="src/js/main_logo.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/bricklayer/0.4.2/bricklayer.min.js"></script>
     <script type="module" src="./movies_recommendations.js"></script>
+    <script type="module" src="../src/js/main_button.js"></script>
 </body>
 </html>

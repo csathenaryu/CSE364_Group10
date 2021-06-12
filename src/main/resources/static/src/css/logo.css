@@ -9,12 +9,19 @@ body {
 		background: white;
 	}
 
+    .not_logo {
+    width: 65vw;
+    }
 
 	.image {
 		border: 0;
 		border-radius: 4px;
 		display: inline-block;
 		position: relative;
+		background-color: #252A34;
+		width: 30vw;
+		min-width: 300px;
+		max-width: 500px;
 	}
 
 	.onload-image-fade-in .image img {

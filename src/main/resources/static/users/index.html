@@ -6,16 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"/>
     <title>VIM projector</title>
-    <link rel="stylesheet" href="./src/css/index.css">
+    <link rel="stylesheet" href="../src/css/index.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato" type='text/css'>
-    <link rel="stylesheet" href="./src/css/logo.css">
+    <link rel="stylesheet" href="../src/css/logo.css">
 </head>
-<body class="is-preload">
+<body>
 <div id="wrapper">
     <!--
     <section class="logo fullscreen onload-image-fade-in onload-content-fade-right">
     -->
-    <section class="logo fullscreen onload-image-fade-in onload-content-fade-right">
+    <section class="logo fullscreen">
         <div class="image">
             <img src="https://i.ibb.co/gm72hRC/logo-transparent.png" alt="logo-transparent"  />
 
@@ -26,36 +26,38 @@
         </div>
         <div class="not_logo">
 
-                <header>
-                    <h1 style="color:#000">#Recommended #Movie</h1>
-                </header>
-
-<!--        Show top ten movie in here
-
+            <header>
+                <h1 style="color:#252A34">#Movie #By</h1>
+            </header>
+            <!--
             <div id="search-container" class="movie">
                 <div class="bar-container">
+                    <form class="bar-input">
+                        <input type='text' placeholder="Enter the title and click."/><br>
+                    </form>
                 </div>
                 <ul class="movie-list"></ul>
             </div>
 
+            -->
             <div id="search-container" class="user">
                 <button class="search">SEARCH</button>
                 <div class="hashtag-container-list"></div>
             </div>
--->
-
         </div>
     </section>
 
 </div>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-    <script src="src/js/main_logo.js"></script>
-<script type="module" src="./src/js/main_button.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="../src/js/main_logo.js"></script>
+<script type="module" src="../src/js/main_button.js"></script>
+<script type="module" src="../src/js/main_user.js"></script>
+<script type="module" src="users_index.js"></script>
+
 <!--
-    <script src="./index.js"></script>
-    <script type="module" src="./src/js/main_user.js"></script>
-    <script type="module" src="./src/js/main_movie.js"></script>
+<script src="../index.js"></script>
+<script type="module" src="../src/js/main_movie.js"></script>
 -->
 </body>
 </html>

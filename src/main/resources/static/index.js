@@ -1,3 +1,4 @@
+
 const $movie = document.getElementsByClassName('movie')[0];
 const $user = document.getElementsByClassName('user')[0];
 
@@ -16,8 +17,8 @@ function hide($tag){
 
 
 show($movie)
-hide($user)
-
+//hide($user)
+show($user)
 
 $btnMovie.onclick = () => {
     show($movie)

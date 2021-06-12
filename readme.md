@@ -55,7 +55,16 @@ Please refer to the following sections about details in [calling this API](#API-
 <br>
 <br>
 
+## Website Guide
 
+### Homepage
+ - 스크린샷 첨부
+### Recommended by User
+
+### Recommended by Movie
+
+### Feeling Lucky
+- 구현 후 작성
 
 ## API Guide
 

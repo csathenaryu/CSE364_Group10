@@ -172,7 +172,10 @@ public class Milestone2 {
                 ageProperty = new ParsingAge().getAllProperty();
             } else if(step == 3){
                 genderProperty = new ParsingGender().getAllProperty();
-            } else{
+            } else if(step == 4){
+                genresProperty = new ParsingGenres().getAllProperty();
+            }
+            else{
                 step = 0; // for branch coverage,
                 // step is 0 if it escape while loop.
                 break;

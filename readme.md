@@ -55,7 +55,16 @@ Please refer to the following sections about details in [calling this API](#API-
 <br>
 <br>
 
+## Website Guide
 
+### Homepage
+ - 스크린샷 첨부
+### Recommended by User
+
+### Recommended by Movie
+
+### Feeling Lucky
+- 구현 후 작성
 
 ## API Guide
 
@@ -224,7 +233,7 @@ The criteria for recommending movies in `VIM PROJECTOR` are `rating` and `count`
 
 In our algorithms, movies with **high rating averages** will be selected as recommendations. In each step in the algorithms, rating data of the movies that fit the conditions (`target movies`) will be processed and sorted. Top N movies in the sorted list will be selected to be recommended, with N being the number of movies required.  
 
-For a movie to be recommended, the `rating average` of a movie must be **equal or above 4**, and the `count` of the movie must be **equal or above 1%** of the number of total rating data.  
+For a movie to be recommended, the `rating average` of a movie must be **equal or above 3.5**, and the `count` of the movie must be **equal or above 1%** of the number of total rating data.  
 <br>
 
 

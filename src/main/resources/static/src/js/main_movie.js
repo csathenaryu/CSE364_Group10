@@ -1,3 +1,5 @@
+import {UrlEncoder} from './UrlEncoder.js'
+
 class MovieSearch{
     constructor(list){
         this.movieList = list;
@@ -6,7 +8,7 @@ class MovieSearch{
     getCandidate(subStr, limit = 10000){
         const foundList = [];
         const sub = this.changeToLower(subStr)
-
+        
         for(let elem of this.movieList){
             const target = this.changeToLower(elem);
             if(this.hasSubString(target, sub) !== -1){
@@ -26,18 +28,6 @@ class MovieSearch{
 
     changeToLower(str){
         return str.toLowerCase();
-    }
-
-    getOriginalTitle(title){
-        let target;
-        for(let elem of this.movieList){
-            const e = this.changeToLower(elem);
-            if(this.hasSubString(e, title) !== -1){
-                target = elem;
-                break;
-            }
-        }
-        return target;
     }
 }
 
@@ -89,7 +79,7 @@ class MovieSearchView{
     reportInput(str){
         this.manager.reportInput(str);
     }
-a
+
     reportSelectedMovie(title){
         this.manager.reportSelectedMovie(title);
     }
@@ -104,44 +94,39 @@ class Manager{
     }
 
     reportInput(str){
-        const list = this.model.getCandidate(str, 20);
+        const list = this.model.getCandidate(str, 5);
         this.view.updateMovieElement(list);
     }
 
-    async reportSelectedMovie(title){
+    reportSelectedMovie(title){
         console.log(title);
-        const list = await this.getList(title);
-        console.log(list);
-    }
 
-    getList(title){
-        const url = this.getUrl(title);
-        return fetch(url, {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        })
-        .then((response) => {
-            return response.json();
-        })
-    }
+        const list = {
+            "title": [title],
+            "limit": ["20"],
+        }
+        
+        const movieRecUrlHead = "http://localhost:8080/movies/recommendations.html";
+        const urlencoder = new UrlEncoder();
 
-    getUrl(title){
-        let paramString = "movies/recommendations?limit=15"
-        let searchParams = new URLSearchParams(paramString);
-        searchParams.append("title", title);
-        return searchParams.toString();
+        const movieUrl = urlencoder.getUrl(movieRecUrlHead, list);
+        console.log("selected hashtag: ", list);
+        console.log("url: ", movieUrl);
+        location.href = movieUrl;
     }
 }
 
 function getMovieList(){
-    return fetch("http://localhost:8080/movies")
+    return fetch("http://localhost:8080/movies/title")
     .then((response) => {
         return response.json();
     })
 }
 
-async function main(){
+async function makeView(){
     const movieList = await getMovieList();
-    manager = new Manager(movieList);
+    const manager = new Manager(movieList);
 }
 
-main();
+makeView();
+

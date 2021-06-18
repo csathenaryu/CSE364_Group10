@@ -29,14 +29,14 @@ RUN apt install -y maven
 
 RUN apt-get install wget
 
+#RUN run.sh .
+CMD ["run.sh", "run"]
 RUN mkdir /usr/local/tomcat
 RUN wget  http://apache.tt.co.kr/tomcat/tomcat-9/v9.0.46/bin/apache-tomcat-9.0.46.tar.gz  -O /tmp/tomcat.tar.gz
 RUN cd /tmp && tar xvfz tomcat.tar.gz
 RUN cp -Rv /tmp/apache-tomcat-9.0.46/* /usr/local/tomcat/
 RUN rm -rf /tmp/* && rm -rf /usr/local/tomcat/webapps/*
-
-#from here not working yet
-COPY CSE364-project-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps
+COPY /CSE364_Group10/target/CSE364-project-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps
 
 
 EXPOSE 8080

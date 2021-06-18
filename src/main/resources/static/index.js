@@ -91,6 +91,7 @@ async function loading() {
     const list = await getMovieList();
     console.log(list);
     movieContainer.makeView(list);
+    const bricklayer = new Bricklayer(document.querySelector('.bricklayer'));
 }
 
 loading();

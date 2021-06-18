@@ -2,19 +2,23 @@
 <br>
 
 ## Introduction - Milestone 3
-`VIM PROJECTOR` is a **movie recommendation RESTful API** which recommends movies according to given conditions.  
+`VIM PROJECTOR` is a **movie recommendation RESTful API** which recommends **Very Impressive Movies** according to given conditions.  
 There are two ways you can get movie recommendations using `VIM PROJECTOR`.  
 
 1.  Input `user information`  
-Give the `genres` you wish to watch and your `gender`, `age` and `occupation`. Then you will receive a list of **10 recommended movies** that belong to the given genres.  
+Give the `genres` you wish to watch and your `gender`, `age` and `occupation`. Then you will receive a list of **10 recommended movies** that belong to the given genres.<br>
+    To see the list of available input, please see [here](#Input-User-Information).
+    
 
 2. Input `movie information`  
-Give a `movie title` and the `number of movies` you wish to be recommended. Then you will get the given number of movies similar to the one you gave us.  
+Give a `movie title` and the `number of movies` you wish to be recommended. Then you will get the given number of movies similar to the one you gave us.<br>
+   To see more detail of inputs, please see [here](#Input-Movie-Information).
 
 Using `VIM PROJECTOR` will give you a list of recommended movies with information such as titles, genres, and links to imdb.  
 Find your next movie to watch with `VIM PROJECTOR`!!!  
 
 If you want more information about our **recommendation algorithm**, please see [here](#Recommendation-Algorithm).  
+
 
 <br>
 <br>

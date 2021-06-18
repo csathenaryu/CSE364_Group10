@@ -80,7 +80,7 @@ class MovieContainer{
 }
 
 function getMovieList(){
-    return fetch("http://localhost:8080/users/recommendations.html?gender=&age=&occupation=&genres=")
+    return fetch("http://localhost:8080/users/recommendations?gender=&age=&occupation=&genres=")
     .then((response) => {
         return response.json();
     })

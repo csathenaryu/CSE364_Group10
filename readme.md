@@ -1,20 +1,29 @@
 # VIM PROJECTOR (CSE364_Group10)
 <br>
 
-## Introduction - Milestone 3
+## Introduction
 `VIM PROJECTOR` is a **movie recommendation RESTful API** which recommends **Very Impressive Movies** according to given conditions.  
 There are two ways you can get movie recommendations using `VIM PROJECTOR`.  
 
 1.  Input `user information`  
 Give the `genres` you wish to watch and your `gender`, `age` and `occupation`. Then you will receive a list of **10 recommended movies** that belong to the given genres.<br>
-    To see the list of available input, please see [here](#Input-User-Information).
+    To see the list of available input, refer to [here](#Input-User-Information).
     
 
 2. Input `movie information`  
 Give a `movie title` and the `number of movies` you wish to be recommended. Then you will get the given number of movies similar to the one you gave us.<br>
-   To see more detail of inputs, please see [here](#Input-Movie-Information).
+   To see more detail of inputs, refer to [here](#Input-Movie-Information).
+   
 
-Using `VIM PROJECTOR` will give you a list of recommended movies with information such as titles, genres, and links to imdb.  
+3. Feeling lucky    
+Sometimes, recommendations in a similar way can be boring for you. Just click `feeling lucky`, then you will get the randomly recommended movie.     
+   Find the unpopular but unexpectedly impressive movie!
+
+We provide `web service` for `VIM PROJECTOR`. To see the guide for web page, refer to [here](#Introduction).
+**here 위치 web page guide로 바꿔야 함**
+
+Using `VIM PROJECTOR` will give you a list of recommended movies with information such as titles, genres, and links to imdb.
+ Also, it will give you random movie    
 Find your next movie to watch with `VIM PROJECTOR`!!!  
 
 If you want more information about our **recommendation algorithm**, please see [here](#Recommendation-Algorithm).  
@@ -26,7 +35,7 @@ If you want more information about our **recommendation algorithm**, please see 
 
 ## Index
 
-+ [Introduction](#Introduction---Milestone-3)
++ [Introduction](#Introduction)
 + [Index](#Index)
 + [Installation](#Installation)
 + [API Guide](#API-Guide)
@@ -34,7 +43,7 @@ If you want more information about our **recommendation algorithm**, please see 
     + [Input User Information](#Input-User-Information)
     + [Input Movie Information](#Input-Movie-Information)
 + [Recommendation Algorithm](#Recommendation-Algorithm)
-    + [Introduction](#Introduction)
+    + [Abstraction](#Abstraction)
     + [Details](#Details)
 + [Contributors](#Contributors)
 
@@ -229,7 +238,7 @@ curl -X GET http://localhost:8080/movies/recommendations -H 'Content-type:applic
 
 ## Recommendation Algorithm
 
-### Introduction
+### Abstraction
 The criteria for recommending movies in `VIM PROJECTOR` are `rating` and `count`.  
 
 - `rating` is the average score of a movie that belongs to `genres` you input (`target genres`) and is rated by users belonging to your categories of `gender`, `age`, and `occupation` (`target users`).  

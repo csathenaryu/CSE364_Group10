@@ -67,6 +67,8 @@ public class ApiController {
         int movieId = random.nextInt() % 3951;
         if(movieId < 0)
             movieId *= -1;
+        if(movieId == 0)
+            movieId = 1;
         System.out.println(movieId);
         List<Movie> list = movieRepository.findAll();
         ArrayList<MovieData> movieList = new ArrayList<>();

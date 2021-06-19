@@ -93,7 +93,13 @@
 			<plugin>
 				<artifactId>maven-jar-plugin</artifactId>
 				<configuration>
-					<classifier>classes</classifier>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<classpathPrefix>lib/</classpathPrefix>
+							<mainClass>group10.CSE364project.repository.Cse364ProjectApplication</mainClass>
+						</manifest>
+					</archive>
 				</configuration>
 				<executions>
 					<execution>

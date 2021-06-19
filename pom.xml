@@ -86,11 +86,11 @@
 
 	</dependencies>
 
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<build>
 		<plugins>
 
-			<plugin>
+<!--			<plugin>
 				<artifactId>maven-jar-plugin</artifactId>
 				<configuration>
 					<classifier>classes</classifier>
@@ -111,7 +111,7 @@
 						</goals>
 					</execution>
 				</executions>
-			</plugin>
+			</plugin>-->
 
 
 			<plugin>

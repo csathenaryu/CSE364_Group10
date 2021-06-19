@@ -27,9 +27,9 @@ RUN apt-get install -y openjdk-11-jdk
 # install maven
 RUN apt install -y maven
 
-RUN apt-get install -y mongodb-org
+#RUN apt-get install -y mongodb-org
 
-RUN service mongod start
+#RUN service mongod start
 
 
 RUN apt-get install wget

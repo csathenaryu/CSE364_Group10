@@ -10,4 +10,4 @@ git checkout develop_final_dockerfile2
 
 mvn package
 
-java -jar target/CSE364-project-0.0.1-SNAPSHOT-classes.jar
+java -jar target/CSE364-project-0.0.1-SNAPSHOT.jar

@@ -98,7 +98,7 @@
 						<manifest>
 							<addClasspath>true</addClasspath>
 							<classpathPrefix>lib/</classpathPrefix>
-							<mainClass>group10.CSE364project.repository.Cse364ProjectApplication</mainClass>
+							<mainClass>group10.CSE364project.Cse364ProjectApplication</mainClass>
 						</manifest>
 					</archive>
 				</configuration>

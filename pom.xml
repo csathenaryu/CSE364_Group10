@@ -93,6 +93,7 @@
 			<plugin>
 				<artifactId>maven-jar-plugin</artifactId>
 				<configuration>
+					<classifier>classes</classifier>
 					<archive>
 						<manifest>
 							<addClasspath>true</addClasspath>

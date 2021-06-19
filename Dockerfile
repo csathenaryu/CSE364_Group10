@@ -28,14 +28,11 @@ RUN apt-get install -y openjdk-11-jdk
 RUN apt install -y maven
 
 RUN apt-get install wget
+RUN wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | apt-key add -
+RUN echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-4.4.list
+RUN apt-get update
+RUN apt-get install -y mongodb-org
 
-#RUN run.sh .
-#CMD ["run.sh", "run"]
-#RUN /run.sh
-#RUN chmod +x run.sh
-#ARG DEBIAN_FRONTEND=interactive
-#RUN ./run.sh
-#ARG DEBIAN_FRONTEND=noninteractive
 #RUN mkdir /usr/local/tomcat
 #RUN wget  http://apache.tt.co.kr/tomcat/tomcat-9/v9.0.46/bin/apache-tomcat-9.0.46.tar.gz  -O /tmp/tomcat.tar.gz
 #RUN cd /tmp && tar xvfz tomcat.tar.gz

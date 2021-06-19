@@ -6,7 +6,7 @@ folder="CSE364_Group10"
 git clone $repository
 
 cd $folder
-git checkout develop_final_design_war
+git checkout develop_final_dockerfile2
 
 mvn package
 

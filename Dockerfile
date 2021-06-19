@@ -5,6 +5,8 @@ RUN mkdir /root/project
 WORKDIR /root/project
 
 # add run.sh to /root/project (WORKDIR)
+
+ADD CSE364-project-0.0.1-SNAPSHOT.war .
 ADD run.sh .
 
 RUN apt-get update
@@ -24,9 +26,11 @@ RUN apt-get install -y software-properties-common
 RUN add-apt-repository ppa:openjdk-r/ppa
 RUN apt-get install -y openjdk-11-jdk
 
+
 # install maven
 RUN apt install -y maven
 
+RUN apt-get install -y wget
 
 # install sudo
 RUN apt-get install sudo
@@ -41,15 +45,21 @@ RUN sudo apt-get update
 
 RUN sudo apt-get install -y mongodb-org
 
-RUN git clone https://github.com/csathenaryu/mongodb_init.git
+ADD mongod .
 
-RUN cd mongodb_init
+COPY mongod /etc/init.d
 
-RUN cp init.d /etc/init.d/mongod
+#RUN git clone https://github.com/csathenaryu/mongodb_init.git
 
-RUN cd /etc/init.d
+#RUN cd mongodb_init
 
-RUN chmod 755 mongod
+#RUN cp init.d mongod
+
+#RUN mv mongod /etc/init.d
+
+#RUN cd /etc/init.d
+
+RUN sudo chmod 755 /etc/init.d/mongod
 
 RUN sudo service mongod start
 
@@ -62,17 +72,20 @@ RUN sed -i -e 's/\r$//' run.sh
 
 
 
-#RUN mkdir /usr/local/tomcat
-#RUN wget  http://apache.tt.co.kr/tomcat/tomcat-9/v9.0.46/bin/apache-tomcat-9.0.46.tar.gz  -O /tmp/tomcat.tar.gz
-#RUN cd /tmp && tar xvfz tomcat.tar.gz
-#RUN cp -Rv /tmp/apache-tomcat-9.0.46/* /usr/local/tomcat/
-#RUN rm -rf /tmp/* && rm -rf /usr/local/tomcat/webapps/*
-#COPY CSE364-project-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps
+RUN mkdir /usr/local/tomcat
 
+RUN wget  http://apache.tt.co.kr/tomcat/tomcat-9/v9.0.46/bin/apache-tomcat-9.0.46.tar.gz  -O /tmp/tomcat.tar.gz
 
-#EXPOSE 8080
+RUN cd /tmp && tar xvfz tomcat.tar.gz
 
-#CMD ["/usr/local/tomcat/bin/catalina.sh", "run"]
+RUN cp -Rv /tmp/apache-tomcat-9.0.46/* /usr/local/tomcat/
 
-# install expect for run.sh (may not necessary)
-# RUN apt-get install -y expect
+RUN rm -rf /tmp/* && rm -rf /usr/local/tomcat/webapps/*
+
+RUN cd /root/project
+
+COPY CSE364-project-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps
+
+EXPOSE 8080
+
+CMD ["/usr/local/tomcat/bin/catalina.sh", "run"]

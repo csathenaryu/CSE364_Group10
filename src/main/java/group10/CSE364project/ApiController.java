@@ -13,6 +13,7 @@ import javax.annotation.PreDestroy;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.Random;
 
 
 @RestController
@@ -57,6 +58,33 @@ public class ApiController {
         System.out.println(title);
         System.out.println(limit);
         return Milestone3.milestone3(title, limit, movieRepository, userRepository, ratingRepository, linkRepository, posterRepository);
+    }
+
+    @ResponseBody
+    @GetMapping("/feelinglucky/recommendations")
+    ArrayList<MovieData> feelingLucky(){
+        Random random = new Random();
+        int movieId = random.nextInt() % 3951;
+        if(movieId < 0)
+            movieId *= -1;
+        if(movieId == 0)
+            movieId = 1;
+        System.out.println(movieId);
+        List<Movie> list = movieRepository.findAll();
+        ArrayList<MovieData> movieList = new ArrayList<>();
+        String movieTitle = movieRepository.findByMovieId(movieId).get(0).getTitle();
+        String movieGenres = movieRepository.findByMovieId(movieId).get(0).getGenres();
+        String imdbId = linkRepository.findByMovieId(movieId).get(0).getImdbId();
+        String posterURL;
+        if (posterRepository.findByPosterId(movieId).isEmpty()){
+            posterURL = "http://skg1891.cafe24.com/wp-content/uploads/2013/11/dummy-image-portrait.jpg";
+        }
+        else {
+            posterURL = posterRepository.findByPosterId(movieId).get(0).getPosterURL();
+        }
+        movieList.add(new MovieData(movieTitle, movieGenres, "(http://www.imdb.com/title/tt" + imdbId + ")", posterURL));
+
+        return movieList;
     }
 
     @ResponseBody

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../src/css/index.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato" type='text/css'>
     <link rel="stylesheet" href="../src/css/logo.css">
+    <link rel="stylesheet" href="../src/css/recommendation.css">
 </head>
 <body>
 <div id="wrapper">
@@ -16,36 +17,25 @@
     <section class="logo fullscreen onload-image-fade-in onload-content-fade-right">
     -->
     <section class="logo fullscreen">
+        
         <div class="image">
-            <img src="https://i.ibb.co/gm72hRC/logo-transparent.png" alt="logo-transparent"  />
-
-            <button class="home-button" id="home-button">#Home</button>
-            <button class="movie-button" id="movie-search-button">#Movie</button>
-            <button class="user-button" id="user-search-button">#User</button>
-            <button class="lucky-button" id="lucky-search-button">#Lucky</button>
+            <div class="logo-image">
+                <img src="https://i.ibb.co/gm72hRC/logo-transparent.png" alt="logo-transparent"  />
+            </div>
+            <button class="home-button tab-button" id="home-button">#Home</button>
+            <button class="movie-button tab-button" id="movie-search-button">#Movie</button>
+            <button class="user-button tab-button" id="user-search-button">#User</button>
+            <button class="lucky-button tab-button" id="lucky-search-button">#Feeling Lucky</button>
         </div>
         <div class="not_logo">
 
             <header>
                 <h1 style="color:#252A34">#Feeling #Lucky</h1>
             </header>
-
-
-            <!--    show random movie here
-            <div id="search-container" class="movie">
-                <div class="bar-container">
-                    <form class="bar-input">
-                        <input type='text' placeholder="Enter the title and click."/><br>
-                    </form>
-                </div>
-                <ul class="movie-list"></ul>
-            </div>
-
-            <div id="search-container" class="user">
-                <button class="search">SEARCH</button>
-                <div class="hashtag-container-list"></div>
-            </div>
-            -->
+            <br>
+            <center>
+                <div class="movie-list" style="max-width:400px"></div>
+            </center>
 
         </div>
     </section>
@@ -54,6 +44,7 @@
 
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script src="../src/js/main_logo.js"></script>
+<script type="module" src="./feelinglucky_recommendations.js"></script>
 <script type="module" src="../src/js/main_button.js"></script>
 <!--
 <script src="../index.js"></script>

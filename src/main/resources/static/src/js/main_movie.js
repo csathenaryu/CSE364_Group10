@@ -99,11 +99,14 @@ class Manager{
     }
 
     reportSelectedMovie(title){
+        const $limit = document.getElementsByClassName('limit')[0];
+        let limit = $limit.value;
         console.log(title);
+        console.log(limit);
 
         const list = {
             "title": [title],
-            "limit": ["20"],
+            "limit": [limit],
         }
         
         const movieRecUrlHead = "http://localhost:8080/movies/recommendations.html";
@@ -129,4 +132,3 @@ async function makeView(){
 }
 
 makeView();
-

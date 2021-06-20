@@ -118,7 +118,13 @@ $ git checkout main
 $ mvn package
 $ java -jar target/CSE364-project-0.0.1-SNAPSHOT.jar
 ```
-
+This is the code to run docker container and run.sh.
+```
+$ docker build -t <image_name> .
+$ docker run -it -d -p  8080:8080 <image_name>
+$ docker exec -it <container_id> /bin/bash    
+$ . run.sh    (in container)
+```
 Please refer to the following sections about details in [calling this API](#rest-api).
 
 <br>

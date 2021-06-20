@@ -6,7 +6,7 @@ WORKDIR /root/project
 
 # add run.sh to /root/project (WORKDIR)
 
-ADD CSE364-project-0.0.1-SNAPSHOT.war .
+ADD ROOT.war .
 ADD run.sh .
 
 RUN apt-get update

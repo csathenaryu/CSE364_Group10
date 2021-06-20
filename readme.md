@@ -192,6 +192,8 @@ Welcome to our user-friendly webpage of `VIM PROJECTOR`!
 
 ### Recommendation Page👍
 
+> http://localhost:8080/users/recommendations?{inputs}  
+> http://localhost:8080/movies/recommendations?{inputs}  
 > Travel through our recommended movies.  
 > For more information on a recommended movie, **just click the poster!**  
 > It will take you to the `imdb` page of the movie.

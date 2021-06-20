@@ -37,18 +37,18 @@ Welcome to `VIM PROJECTOR`!
 1. **Web Service**
    > The website of `VIM PROJECTOR`.  
    > Simple and user-friendly. Easy to search.  
-   > To see more details of web service, refer to [Web Service Guide](#Web Service).
+   > To see more details of web service, refer to [Web Service Guide](#web-service).
 
 2. **REST API**
    > The command line interface of `VIM PROJECTOR`.  
    > Free to search. Make new applications.  
-   > To see more details of REST API, refer to [REST API Guide](#REST API).
+   > To see more details of REST API, refer to [REST API Guide](#rest-api).
 
 Using `VIM PROJECTOR` will give you a list of recommended movies with information such as `titles`, `genres`, and `links to imdb`.  
 Also, it will give you random movie.  
 Find your next movie to watch with `VIM PROJECTOR`!!!
 
-If you want more information about our **recommendation algorithm**, please see [Recommendation Algorithm](#Recommendation Algorithm).  
+If you want more information about our **recommendation algorithm**, please see [Recommendation Algorithm](#recommendation-algorithm).  
 Then, let's move on to quick start!
 
 <br>
@@ -101,7 +101,7 @@ $ mvn package
 $ java -jar target/CSE364-project-0.0.1-SNAPSHOT/
 ```
 
-Please refer to the following sections about details in [calling this API](#REST API).
+Please refer to the following sections about details in [calling this API](#rest-api).
 
 <br>
 <br>
@@ -118,14 +118,14 @@ Please refer to the following sections about details in [calling this API](#REST
 ## Web Service
 
 **For the Best User Experience**, we provide web service.  
-Welcome to user-friendly webpage of `VIM PROJECTOR`!
+Welcome to our user-friendly webpage of `VIM PROJECTOR`!
 
 <br>
 
 ### Home👋
 
 > Top 10 movies welcome you.  
-> For more service, click other tabs: `#Movie`, `#User`, `#Feeling Lucky`.
+> For more services, click other tabs: `#Movie`, `#User`, `#Feeling Lucky`.
 >
 > <table><tr><th><img src="https://github.com/hyejinkim99/markdown/blob/main/pic/welcomePage.png"></th></tr></table>
 
@@ -133,9 +133,10 @@ Welcome to user-friendly webpage of `VIM PROJECTOR`!
 
 ### Movie🎞️
 
-> Type **movie title** and limit.  
-> Then, click the title.  
-> `VIM PROJECTOR` recommends you highly rated movies based on given movie title.
+> Choose a limit and then type in **movie title**.
+> We provide an auto-completion feature when you type in the movie title. You will be able to see a list of candidate movies that contain what you are typing.
+> Click a title from the list to choose a movie. This brings you to your result.
+> `VIM PROJECTOR` recommends you highly rated movies based on genres of the given movie title.
 >
 > <table><tr><th width="60%"><img src="https://github.com/hyejinkim99/markdown/blob/main/pic/searchByMoviePage.png"></th><th><img src="https://github.com/hyejinkim99/markdown/blob/main/pic/searchByMovieTitle.gif"></th></tr></table>
 
@@ -143,9 +144,9 @@ Welcome to user-friendly webpage of `VIM PROJECTOR`!
 
 ### User😊
 
-> Select **hashtag**.  
+> Select **hashtags**.  
 > Then, click the search button.  
-> `VIM PROJECTOR` recommends you top 10 movies based on given user information.
+> `VIM PROJECTOR` recommends you top 10 movies based on the given user information.
 >
 > <table><tr><th width="60%"><img src="https://github.com/hyejinkim99/markdown/blob/main/pic/searchByUserPage.png"></th><th><img src="https://github.com/hyejinkim99/markdown/blob/main/pic/searchByUserInfo.gif"></th></tr></table>
 
@@ -155,6 +156,7 @@ Welcome to user-friendly webpage of `VIM PROJECTOR`!
 
 > Are you struggling with selecting movie?  
 > **Feeling Lucky** is the answer!
+> It shows you a random movie, wish you luck on finding a good one!
 >
 > <table><tr><th><img src="https://github.com/hyejinkim99/markdown/blob/main/pic/feelingLucky.png"></th></tr></table>
 
@@ -164,7 +166,7 @@ Welcome to user-friendly webpage of `VIM PROJECTOR`!
 
 > Travel recommended movies.  
 > For more information on recommended movie, **just click the poster!**  
-> It will take you `imdb` site.
+> It will take you to the `imdb` page of the movie.
 >
 > <table><tr><th width="50%"><img src="https://github.com/hyejinkim99/markdown/blob/main/pic/scroll.gif"></th><th><img src="https://github.com/hyejinkim99/markdown/blob/main/pic/interactive.gif"></th></tr></table>  
 

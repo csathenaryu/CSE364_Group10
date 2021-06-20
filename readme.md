@@ -118,7 +118,13 @@ $ git checkout main
 $ mvn package
 $ java -jar target/CSE364-project-0.0.1-SNAPSHOT.jar
 ```
-
+This is the code to run docker container and run.sh.
+```
+$ docker build -t <image_name> .
+$ docker run -it -d -p  8080:8080 <image_name>
+$ docker exec -it <container_id> /bin/bash    
+$ . run.sh    (in container)
+```
 Please refer to the following sections about details in [calling this API](#rest-api).
 
 <br>
@@ -141,7 +147,7 @@ Welcome to our user-friendly webpage of `VIM PROJECTOR`!
 
 ### Home👋
 
-> http://localhost:8080/index.html
+> http://localhost:8080/index.html  
 > Top 10 movies welcome you.  
 > For more services, click other tabs: `#Movie`, `#User`, `#Feeling Lucky`.
 > Note that when you first load the home page after booting the application, it may take as long as two minutes for the home page to show.
@@ -152,6 +158,7 @@ Welcome to our user-friendly webpage of `VIM PROJECTOR`!
 
 ### Movie🎞️
 
+> http://localhost:8080/movies/index.html  
 > Choose a limit and then type in **movie title**.
 > We provide an auto-completion feature when you type in the movie title. You will be able to see a list of candidate movies that contain what you are typing.
 > Click a title from the list to choose a movie. This brings you to your result.
@@ -163,6 +170,7 @@ Welcome to our user-friendly webpage of `VIM PROJECTOR`!
 
 ### User😊
 
+> http://localhost:8080/users/index.html  
 > Select **hashtags** for each type of information. For gender, age and occupation, only one hashtag can be selected.
 > Then, click on the search button.  
 > `VIM PROJECTOR` recommends you top 10 movies based on the given user information.
@@ -173,6 +181,7 @@ Welcome to our user-friendly webpage of `VIM PROJECTOR`!
 
 ### Feeling Lucky🍀
 
+> http://localhost:8080/feelinglucky/index.html  
 > Are you struggling with selecting movie?  
 > **Feeling Lucky** is the answer!
 > It shows you a random movie, so we wish you luck on finding a good one!

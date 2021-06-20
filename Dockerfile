@@ -45,31 +45,7 @@ RUN sudo apt-get update
 
 RUN sudo apt-get install -y mongodb-org
 
-#ADD mongod .
-
-#COPY mongod /etc/init.d
-
-##RUN git clone https://github.com/csathenaryu/mongodb_init.git
-
-##RUN cd mongodb_init
-
-##RUN cp init.d mongod
-
-##RUN mv mongod /etc/init.d
-
-##RUN cd /etc/init.d
-
-#RUN sudo chmod 755 /etc/init.d/mongod
-
-#RUN sudo service mongod start
-
-#RUN sudo service mongod start
-
-#RUN cd /root/project
-
 RUN sed -i -e 's/\r$//' run.sh
-
-
 
 
 RUN mkdir /usr/local/tomcat

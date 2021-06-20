@@ -524,7 +524,7 @@ For a movie to be recommended, the `rating average` of a movie must be **equal o
         <th>Milestone #4</th>
     </tr>
     <tr>
-        <td>박소연<br>(20171113)</td>
+        <td>박소연<br>Soyeon Park<br>(20171113)</td>
         <td>- Suggest algorithm utilizing boolean ArrayList
         <br>- Implement code that receives boolean ArrayList as input and returns Rating as output
         </td>
@@ -534,12 +534,14 @@ For a movie to be recommended, the `rating average` of a movie must be **equal o
         <td>- Implement 'Mileston2Test' and 'Milestone3Test'
         <br>- Edit 'Milestone2' and 'Milestone3' for include limit parameter
         </td>
-        <td>- 
-        <br>- 
+        <td>- Make classes using mongodb
+        <br>- Implement and design front-end
+        <br>- Write 'Introduction' and link 'Index' of readme.md
+        <br>- Make presentation PPT
         </td>
     </tr>
     <tr>
-        <td>안종민<br>(20171155)</td>
+        <td>안종민<br>Jongmin Ahn<br>(20171155)</td>
         <td>- Implement code that processes parsed data as a boolean ArrayList
         <br>- Edit pom.xml
         </td>
@@ -550,12 +552,15 @@ For a movie to be recommended, the `rating average` of a movie must be **equal o
         <br>- Implement 'loadingdata' package test codes
         <br>- Reimplement 'TopRating' class
         </td>
-        <td>- 
-        <br>- 
+        <td>- Backend development
+        <br>- Revised Dockerfile, run.sh, pom.xml
+        <br>- Web application deployment
+        <br>- Write 'quick start' part of readme.md
+        <br>- Presentation
         </td>
     </tr>
     <tr>
-        <td>류성화<br>(20171375)</td>
+        <td>류성화<br>Sungwha Ryu<br>(20171375)</td>
         <td>- Implement code that processes parsed data as a boolean ArrayList
         <br>- Translate README.md
         </td>
@@ -566,12 +571,14 @@ For a movie to be recommended, the `rating average` of a movie must be **equal o
         <br>- Implement 'Milestone3'
         <br>- Add 'stringStringloadHashFrom' method in 'FilePreprocessing.java' to get genres by title
         </td>
-        <td>- 
-        <br>- 
+        <td>- Backend development
+        <br>- Revised Dockerfile, run.sh, pom.xml
+        <br>- Web application deployment
+        <br>- Make presentation PPT
         </td>
     </tr>
     <tr>
-        <td>김혜진<br>(20181072)</td>
+        <td>김혜진<br>Hyejin Kim<br>(20181072)</td>
         <td>- Implement code that receives and parses arguments as inputs
         <br>- write first draft of README.md
         </td>
@@ -581,8 +588,10 @@ For a movie to be recommended, the `rating average` of a movie must be **equal o
         <td>- Implement 'FilteringDataByCondition'
         <br>- Implement 'FilteringDataByCondition' test codes
         </td>
-        <td>- 
-        <br>- 
+        <td>- Install and intergrate mongoDB with spring boot
+        <br>- Implement and design front-end
+        <br>- Write 'web service' and 'rest api' part of readme.md
+        <br>- Make presentation PPT
         </td>
     </tr>
 </table>

@@ -100,7 +100,7 @@ public class TopRating {
         int size = (int) (movieRatingList.size() * 0.01);
         int i = 0;
         while (recommendedMovie.size() < limit && i < movieRatingList.size() - 1) {
-            if (movieRatingList.get(i).rating >= 4 && movieRatingList.get(i).count >= size) {
+            if (movieRatingList.get(i).rating >= 3.5 && movieRatingList.get(i).count >= size) {
                 recommendedMovie.add(movieRatingList.get(i));
             }
             i++;

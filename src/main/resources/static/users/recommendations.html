@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bricklayer/0.4.2/bricklayer.min.css">
+    <link rel="stylesheet" href="../src/css/recommendation.css">
+    <link rel="stylesheet" href="../src/css/logo.css">
+    <title>VIM projector</title>
+</head>
+<body class="is-preload">
+
+    <div id="wrapper">
+        <!--
+        <section class="logo fullscreen onload-image-fade-in onload-content-fade-right">
+        -->
+        <section class="logo fullscreen">
+            <div class="image">
+                <div class="logo-image">
+                    <img src="https://i.ibb.co/gm72hRC/logo-transparent.png" alt="logo-transparent"  />
+                </div>
+                <button class="home-button tab-button" id="home-button">#Home</button>
+                <button class="movie-button tab-button" id="movie-search-button">#Movie</button>
+                <button class="user-button tab-button" id="user-search-button">#User</button>
+                <button class="lucky-button tab-button" id="lucky-search-button">#Feeling Lucky</button>
+            </div>
+            <div class="not_logo">
+
+                <header>
+                    <h1 style="color:#252A34;">#Recommended #Movie</h1>
+                </header>
+
+                <div class="bricklayer">
+
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="../src/js/main_logo.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bricklayer/0.4.2/bricklayer.min.js"></script>
+    <script type="module" src="./users_recommendations.js"></script>
+    <script type="module" src="../src/js/main_button.js"></script>
+</body>
+</html>

@@ -45,7 +45,7 @@ RUN sudo apt-get update
 
 RUN sudo apt-get install -y mongodb-org
 
-ADD mongod .
+#ADD mongod .
 
 #COPY mongod /etc/init.d
 
@@ -72,20 +72,20 @@ RUN sed -i -e 's/\r$//' run.sh
 
 
 
-#RUN mkdir /usr/local/tomcat
+RUN mkdir /usr/local/tomcat
 
-#RUN wget  http://apache.tt.co.kr/tomcat/tomcat-9/v9.0.46/bin/apache-tomcat-9.0.46.tar.gz  -O /tmp/tomcat.tar.gz
+RUN wget  http://apache.tt.co.kr/tomcat/tomcat-9/v9.0.46/bin/apache-tomcat-9.0.46.tar.gz  -O /tmp/tomcat.tar.gz
 
-#RUN cd /tmp && tar xvfz tomcat.tar.gz
+RUN cd /tmp && tar xvfz tomcat.tar.gz
 
-#RUN cp -Rv /tmp/apache-tomcat-9.0.46/* /usr/local/tomcat/
+RUN cp -Rv /tmp/apache-tomcat-9.0.46/* /usr/local/tomcat/
 
-#RUN rm -rf /tmp/* && rm -rf /usr/local/tomcat/webapps/*
+RUN rm -rf /tmp/* && rm -rf /usr/local/tomcat/webapps/*
 
-#RUN cd /root/project
+RUN cd /root/project
 
-#COPY CSE364-project-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps
+COPY CSE364-project-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps
 
-#EXPOSE 8080
+EXPOSE 8080
 
-#CMD ["/usr/local/tomcat/bin/catalina.sh", "run"]
+CMD ["/usr/local/tomcat/bin/catalina.sh", "run"]

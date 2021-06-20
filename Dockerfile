@@ -60,7 +60,7 @@ RUN rm -rf /tmp/* && rm -rf /usr/local/tomcat/webapps/*
 
 RUN cd /root/project
 
-COPY CSE364-project-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps
+COPY ROOT.war /usr/local/tomcat/webapps
 
 EXPOSE 8080
 

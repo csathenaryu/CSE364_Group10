@@ -28,9 +28,9 @@ Welcome to `VIM PROJECTOR`!
    > Then you will get the given number of movies similar to the one you gave us.
 
 3. **Feeling Lucky🍀**
-   > Sometimes, recommendations in a similar way can be boring for you.  
-   > Just click `feeling lucky`, then you will get the randomly recommended movie.  
-   > Find the unpopular but unexpectedly impressive movie!
+   > Sometimes, recommendations of similar movies can be boring for you.  
+   > Just click `feeling lucky`, then you will get a randomly recommended movie.  
+   > If you are lucky, you may find an unpopular but unexpectedly impressive movie!
 
 ### Interface
 
@@ -44,8 +44,8 @@ Welcome to `VIM PROJECTOR`!
    > Free to search. Make new applications.  
    > To see more details of REST API, refer to [REST API Guide](#rest-api).
 
-Using `VIM PROJECTOR` will give you a list of recommended movies with information such as `titles`, `genres`, and `links to imdb`.  
-Also, it will give you random movie.  
+`VIM PROJECTOR` recommends you a list of movies using infoamation such as `titles`, `genres`, and `links to imdb`.
+There also is a feature that will give you a random movie.  
 Find your next movie to watch with `VIM PROJECTOR`!!!
 
 If you want more information about our **recommendation algorithm**, please see [Recommendation Algorithm](#recommendation-algorithm).  
@@ -91,13 +91,13 @@ Then, let's move on to quick start!
 
 ## Quick Start
 Just install `Docker` for running `VIM PROJECTOR` with our Dockerfile.
-It will automatically install all necessary program, and take codes.
-All you need is downloading Dockerfile and WAR file.
+It will automatically install all the necessary program, and take codes.
+All you need is to download the Dockerfile and the WAR file.
 
-Put `Dockerfile`, `ROOT.war` file in single folder, and run commands below.
-Access to localhost:8080 with your clone.
-It will take 2~3 minutes to use program after run.
-Please wait if programs don't give proper actions.
+Put `Dockerfile` and `ROOT.war` file in a single folder, and run the commands below.
+Access localhost:8080 with your web browser.
+It will take 2~3 minutes to use the web application after running the program.
+Please wait for a while if the web page is not properly acting.
 
 ```
 $ docker build -t <image_name>
@@ -107,10 +107,10 @@ $ docker run -d -p 8080:8080 <image_name>
 If you want details about Dockerfile, please refer below.
 
 - `Java(version 11 or up)`, `Git`, `curl`,`vim`,`wget`,`mongodb`,`tomcat` and `Maven` installation must be preceded before installing and running this program.
-- Program uses embedded MongoDB dependency.
+- This program uses embedded MongoDB dependency.
 
-If you don't want tomcat for running, use run.sh for building a system.
-This is a code for run.sh.
+If you don't want to use tomcat to run this program, use run.sh to build it.
+This is the code for run.sh.
 ```
 $ git clone $repository
 $ cd $folder
@@ -141,8 +141,10 @@ Welcome to our user-friendly webpage of `VIM PROJECTOR`!
 
 ### Home👋
 
+> http://localhost:8080/index.html
 > Top 10 movies welcome you.  
 > For more services, click other tabs: `#Movie`, `#User`, `#Feeling Lucky`.
+> Note that when you first load the home page after booting the application, it may take as long as two minutes for the home page to show.
 >
 > <table><tr><th><img src="https://github.com/hyejinkim99/markdown/blob/main/pic/welcomePage.png"></th></tr></table>
 
@@ -161,8 +163,8 @@ Welcome to our user-friendly webpage of `VIM PROJECTOR`!
 
 ### User😊
 
-> Select **hashtags**.  
-> Then, click the search button.  
+> Select **hashtags** for each type of information. For gender, age and occupation, only one hashtag can be selected.
+> Then, click on the search button.  
 > `VIM PROJECTOR` recommends you top 10 movies based on the given user information.
 >
 > <table><tr><th width="60%"><img src="https://github.com/hyejinkim99/markdown/blob/main/pic/searchByUserPage.png"></th><th><img src="https://github.com/hyejinkim99/markdown/blob/main/pic/searchByUserInfo.gif"></th></tr></table>
@@ -173,7 +175,7 @@ Welcome to our user-friendly webpage of `VIM PROJECTOR`!
 
 > Are you struggling with selecting movie?  
 > **Feeling Lucky** is the answer!
-> It shows you a random movie, wish you luck on finding a good one!
+> It shows you a random movie, so we wish you luck on finding a good one!
 >
 > <table><tr><th><img src="https://github.com/hyejinkim99/markdown/blob/main/pic/feelingLucky.png"></th></tr></table>
 
@@ -181,8 +183,8 @@ Welcome to our user-friendly webpage of `VIM PROJECTOR`!
 
 ### Recommendation Page👍
 
-> Travel recommended movies.  
-> For more information on recommended movie, **just click the poster!**  
+> Travel through our recommended movies.  
+> For more information on a recommended movie, **just click the poster!**  
 > It will take you to the `imdb` page of the movie.
 >
 > <table><tr><th width="50%"><img src="https://github.com/hyejinkim99/markdown/blob/main/pic/scroll.gif"></th><th><img src="https://github.com/hyejinkim99/markdown/blob/main/pic/interactive.gif"></th></tr></table>  
@@ -518,10 +520,10 @@ For a movie to be recommended, the `rating average` of a movie must be **equal o
         <th colspan="4">ROLE</th>
     </tr>
     <tr>
-        <th>Milestone #1</th>
-        <th>Milestone #2</th>
-        <th>Milestone #3</th>
-        <th>Milestone #4</th>
+        <th width="25%">Milestone #1</th>
+        <th width="25%">Milestone #2</th>
+        <th width="25%">Milestone #3</th>
+        <th width="25%">Milestone #4</th>
     </tr>
     <tr>
         <td>박소연<br>Soyeon Park<br>(20171113)</td>

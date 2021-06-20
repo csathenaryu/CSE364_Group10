@@ -90,15 +90,33 @@ Then, let's move on to quick start!
 
 
 ## Quick Start
+Just install `Docker` for running `VIM PROJECTOR` with our Dockerfile.
+It will automatically install all necessary program, and take codes.
+All you need is downloading Dockerfile and WAR file.
 
-`Java(version 11 or up)`, `Git`, `curl` and `Maven` installation must be preceded before installing and running this program.  
-To install and this program, run the commands below, or run the [`run.sh`](./run.sh) file that is included in the repository.
+Put `Dockerfile`, `ROOT.war` file in single folder, and run commands below.
+Access to localhost:8080 with your clone.
+It will take 2~3 minutes to use program after run.
+Please wait if programs don't give proper actions.
+
 ```
-$ git clone https://github.com/csathenaryu/CSE364_Group10.git
-$ git pull origin main
+$ docker build -t <image_name>
+$ docker run -d -p 8080:8080 <image_name>
+```
+
+If you want details about Dockerfile, please refer below.
+
+- `Java(version 11 or up)`, `Git`, `curl`,`vim`,`wget`,`mongodb`,`tomcat` and `Maven` installation must be preceded before installing and running this program.
+- Program uses embedded MongoDB dependency.
+
+If you don't want tomcat for running, use run.sh for building a system.
+This is a code for run.sh.
+```
+$ git clone $repository
+$ cd $folder
 $ git checkout main
 $ mvn package
-$ java -jar target/CSE364-project-0.0.1-SNAPSHOT/
+$ java -jar target/CSE364-project-0.0.1-SNAPSHOT.jar
 ```
 
 Please refer to the following sections about details in [calling this API](#rest-api).
@@ -106,7 +124,6 @@ Please refer to the following sections about details in [calling this API](#rest
 <br>
 <br>
 <br>
-
 
 
 
